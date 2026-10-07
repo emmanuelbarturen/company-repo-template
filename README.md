@@ -58,6 +58,7 @@ aceptar el diálogo de confianza de la carpeta.
 | `/proyecto:aplicar` | **Ejecuta** el plan; cada resultado nace en `<Área>/<tema>/` |
 | `/proyecto:archivar` | Escribe la documentación resultante en su área, decide y confirma la carpeta, archiva y registra el hito |
 | `/proyecto:validar` | El validador a mano, para máquinas sin `bun` |
+| `/update-framework` | Trae la versión más nueva del framework desde su plantilla; solo toca lo del framework y pregunta ante conflictos |
 
 Y además: `_Referencias/` (archivos de afuera que se consultan, con índice), `Decisiones/` (bitácora por quarter),
 `CHANGELOG.md` (historia del framework) y, dentro de `.claude/`, la maquinaria que no hace falta mirar: los comandos,
