@@ -12,7 +12,8 @@ Tema o trabajo (opcional): $ARGUMENTS
 
 ## 0. Contexto mínimo
 
-Lee `_context.md` de la raíz (ficha y tabla de áreas). Todavía no leas áreas: primero hay que saber cuál toca.
+Lee `_context.md` de la raíz (ficha y tabla de áreas) y `_Templates/catalogo-areas.md` (las alternativas que
+ofreces cuando la tabla no alcanza). Todavía no leas áreas: primero hay que saber cuál toca.
 
 ## 1. Clasificar el trabajo y su área
 
@@ -21,11 +22,14 @@ Lee `_context.md` de la raíz (ficha y tabla de áreas). Todavía no leas áreas
 - **Si es tema nuevo:** propón el tipo con `AskUserQuestion` (header "Tipo"): **Tarea** (cabe en una página, un
   actor, sin solución técnica propia, hasta ~5 pasos) / **Proyecto** (requerimientos para que otro lo construya,
   decisiones propias, o más de ~5 tareas), marcando tu recomendación. Luego el **área**, con `AskUserQuestion`
-  (header "Área") ofreciendo **solo las filas de la tabla de áreas** de la raíz más «ninguna encaja» (con más de 3
-  áreas, las 3 más probables por el tema y el resto por nombre en texto libre). Si ninguna encaja, no fuerces: dilo,
-  y la creación de un área es una decisión aparte que se toma con el usuario.
+  (header "Área") según el procedimiento de `CLAUDE.md` «Áreas y temas»: hasta 4 opciones, **primero las filas que
+  ya tiene la tabla de áreas**, luego las del catálogo más probables por el tema; cualquier otro nombre, por texto
+  libre. La tabla puede estar vacía (es lo normal tras `setup`): entonces ofreces solo catálogo. No fuerces un
+  encaje: si el usuario quiere un área con su propio nombre, vale.
 
-La clasificación es tentativa; si la exploración la cambia, dilo.
+La clasificación es tentativa; si la exploración la cambia, dilo. **Aquí no se crea la carpeta del área** aunque
+sea nueva: este comando no escribe archivos. Se crea en `/proyecto:proponer`, o en el cierre de esta sesión solo si
+el usuario pide guardar apuntes (paso 5).
 
 ## 2. Adjuntos
 
@@ -40,7 +44,8 @@ exploración?* **Sí** / **No**.
 
 ## 3. Cargar contexto
 
-Lee `_context.md` y `_rules.md` del área elegida, y los archivos del tema que el asunto pida. Revisa si hay trabajo
+Lee `_context.md` y `_rules.md` del área elegida **si ya existe** (si es nueva, no hay nada que leer), y los
+archivos del tema que el asunto pida. Revisa si hay trabajo
 previo relacionado en `Proyectos/` **y en `Proyectos/Archivados/`**: lo archivado suele contener la mitad de la
 respuesta. No leas el repo entero: solo lo que el tema pida. Si no hay $ARGUMENTS, pregunta en una línea qué
 exploramos.
@@ -52,7 +57,8 @@ exploramos.
 - Da **orden de magnitud** (tarea vs proyecto), no estimaciones finas.
 - Cuestiona el problema antes que la solución: ¿es real? ¿de quién? ¿qué pasa si no se hace nada?
 - Ve nombrando **dónde quedaría el resultado** (`<Área>/<tema>/`): si no puedes nombrarlo, el trabajo todavía no
-  está claro.
+  está claro. Para el tema, apóyate en la tabla de temas del área si existe y en los sugeridos del catálogo; el tema
+  definitivo se pregunta y se crea en `/proyecto:proponer`.
 
 ## 5. Cierre
 
@@ -62,7 +68,9 @@ Cuando el usuario tenga claridad (o la conversación se agote), ofrece con `AskU
    heredar: tipo, área, opción elegida, alcance tentativo, resultado esperado y riesgos.
 2. **Guardar apuntes** → escribe `Proyectos/<slug>/exploracion.md` (molde `_Templates/proyecto/exploracion.md`) y
    un `propuesta.md` **mínimo** con solo el bloque `## Estado` (`Fase: explorar`, `Área:`, `Resultado esperado:`
-   tentativo, próximo paso). Si la carpeta no existe, créala solo si confirma el slug.
+   tentativo, próximo paso). Si la carpeta no existe, créala solo si confirma el slug. **Si el área elegida es
+   nueva, créala primero** con el procedimiento de `CLAUDE.md` (carpeta, tres descriptores y fila en la tabla): el
+   validador exige que `Área:` esté en la tabla de áreas.
 3. **Cerrar sin escribir** (por defecto) — la exploración queda en la conversación.
 
 Todo `.md` que escribas lleva la cabecera `<!-- Creado: AAAA-MM-DD · Actualizado: AAAA-MM-DD · Creador: ... -->`

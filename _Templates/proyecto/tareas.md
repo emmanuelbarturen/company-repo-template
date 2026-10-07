@@ -1,4 +1,4 @@
-<!-- Creado: 2026-10-07 · Actualizado: 2026-10-07 · Creador: admin -->
+<!-- Creado: 2026-10-07 · Actualizado: 2026-10-07 · Creador: System -->
 # Tareas — <Título del trabajo>
 
 Tareas atómicas: **quien la recibe sabe exactamente qué entregar y cómo se comprueba**, sin volver a preguntar.

@@ -8,6 +8,15 @@ Qué cambió en **Company Cycle OS** y qué debe migrar quien ya lo usa. La bit�
 
 - `/proyecto:explorar` pasa a llamarse **`/proyecto:nuevo`**: es el comando con el que arranca todo trabajo. El
   archivo es `.claude/commands/proyecto/nuevo.md`; la fase `explorar` del bloque Estado no cambia.
+- `setup` ya no pregunta áreas ni temas: la tabla de áreas de `_context.md` raíz nace vacía. Un área se crea cuando
+  un trabajo la necesita, desde `/proyecto:nuevo` o `/proyecto:proponer`, que preguntan en qué carpeta va
+  ofreciendo lo que ya existe más el catálogo de `_Templates/catalogo-areas.md` (nuevo). Los temas igual: se eligen
+  al proponer el trabajo, con los de la tabla del área y los sugeridos del catálogo como alternativas.
+- El creador por defecto de las cabeceras es `System`, fijo en la ficha; `setup` ya no lo pregunta.
+- `archivar` deja escrita la documentación del trabajo: escribe en el área los documentos de resultado que falten
+  (a partir de propuesta, solución, tareas y exploración), decide con criterio de organización el tema donde quedan
+  (por tipo de documento, nunca por proyecto) y lo confirma antes de escribir o mover.
+- Migración: nada que hacer en un repo ya configurado; las áreas existentes siguen valiendo.
 
 ## v1.1 — 2026-10-07
 
@@ -21,7 +30,7 @@ Qué cambió en **Company Cycle OS** y qué debe migrar quien ya lo usa. La bit�
 - Creación del framework. Mono-empresa, en español, para Claude Code (también desde la app de escritorio).
 - Descriptores con subguion por carpeta: `_context.md`, `_rules.md`, `_links.md`. Áreas declaradas en la raíz,
   temas declarados en cada área; nada se crea sin preguntar.
-- Ciclo de trabajo `/proyecto:explorar → proponer → aplicar → archivar`, más `/proyecto:setup` (adopción) y
+- Ciclo de trabajo `/proyecto:nuevo → proponer → aplicar → archivar`, más `/proyecto:setup` (adopción) y
   `/proyecto:validar` (respaldo del validador cuando no hay `bun`).
 - Todo trabajo en `Proyectos/`: proyecto (carpeta de cuatro documentos) o tarea (un archivo). Campos `Área:` y
   `Resultado esperado:`; al archivar se pregunta dónde queda el resultado.

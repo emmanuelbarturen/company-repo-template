@@ -36,9 +36,9 @@ Trabaja las tareas **en orden de numeración** (respeta dependencias), o la que 
   en la propuesta o la solución.
 - **Destino antes de escribir.** Antes de crear un archivo, nombra su ruta `<Área>/<tema>/<archivo>.md`. Si la
   tarea no lo dice, decídelo con la tabla de temas del área; si ningún tema encaja, pregunta con
-  `AskUserQuestion` ofreciendo los temas del área más «crear un tema nuevo» — **nunca crees un tema en silencio ni
-  dejes el archivo en la carpeta del proyecto «por ahora»**. Al crear un tema con permiso, agrega su fila en el
-  `_context.md` del área.
+  `AskUserQuestion` ofreciendo los temas del área, los sugeridos para esa área en `_Templates/catalogo-areas.md` y
+  «otro» — **nunca crees un tema en silencio ni dejes el archivo en la carpeta del proyecto «por ahora»**. Al crear
+  un tema con permiso, agrega su fila en el `_context.md` del área (procedimiento en `CLAUDE.md`, «Áreas y temas»).
 - **Documental / operativa:** la ejecutas tú, aquí. **Técnica en otro repo o herramienta:** pide la ruta o el
   acceso y ejecútala ahí; si el usuario decide hacerla él, déjala asignada con su bloqueo anotado — no la simules
   ni la marques.

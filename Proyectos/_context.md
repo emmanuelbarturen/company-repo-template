@@ -1,4 +1,4 @@
-<!-- Creado: 2026-09-27 · Actualizado: 2026-09-27 · Creador: company-cycle-os -->
+<!-- Creado: 2026-09-27 · Actualizado: 2026-10-07 · Creador: company-cycle-os -->
 # Proyectos
 
 Aquí vive **todo trabajo** de la empresa, en dos tamaños. Aquí escribe el ciclo `/proyecto:*`; los resultados de un
@@ -24,8 +24,11 @@ trabajo **no** viven aquí: van a `<Área>/<tema>/`.
   `Proyectos/` está reservado solo para que nadie lo confunda con un trabajo.
 - **Los resultados nacen en su destino.** Durante `aplicar`, cada archivo que produce el trabajo se escribe
   directamente en `<Área>/<tema>/`, con el destino nombrado antes de escribirlo.
-- **Al archivar se pregunta siempre** dónde queda cada resultado; el Estado conserva `Resultado: <rutas>`. La carpeta
-  (o el archivo de la tarea) se mueve a `Proyectos/Archivados/` sin renombrar, y el cierre se anota en `Decisiones/`.
+- **Al archivar, el asistente deja escrita la documentación del trabajo en su área**: escribe los documentos de
+  resultado que falten, decide con criterio de organización el tema donde quedan (nombrado por el tipo de documento,
+  no por el proyecto) y **lo confirma siempre** antes de escribir o mover. El Estado conserva `Resultado: <rutas>`.
+  La carpeta (o el archivo de la tarea) se mueve a `Proyectos/Archivados/` sin renombrar, y el cierre se anota en
+  `Decisiones/`.
 - `Fase: pausado` deja el trabajo donde está, con el motivo en el Estado. No se archiva.
 
 ## Nombres reservados dentro de `Proyectos/`

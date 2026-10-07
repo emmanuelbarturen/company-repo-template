@@ -14,9 +14,9 @@ Trabajo o tema (opcional): $ARGUMENTS
 
 ## 0. Contexto mínimo
 
-Lee `_context.md` y `_rules.md` de la raíz, y `Proyectos/_context.md` (reglas de tamaño y del bloque Estado). Cuando
-sepas el área del trabajo, lee también `_context.md` y `_rules.md` de esa área: sus reglas de «cómo se crea un
-proyecto» son parte de la entrevista.
+Lee `_context.md` y `_rules.md` de la raíz, `Proyectos/_context.md` (reglas de tamaño y del bloque Estado) y
+`_Templates/catalogo-areas.md` (alternativas de área y tema). Cuando sepas el área del trabajo y exista, lee también
+`_context.md` y `_rules.md` de esa área: sus reglas de «cómo se crea un proyecto» son parte de la entrevista.
 
 ## 1. ¿En qué trabajamos?
 
@@ -24,28 +24,39 @@ El nombre puede venir en $ARGUMENTS. **Si no viene, no lo inventes:** lista los 
 `Proyectos/` que no sean `Tareas/`, `Archivados/` ni `adjuntos/`, más los archivos de `Proyectos/Tareas/`) y
 preséntalos con `AskUserQuestion` (header "Trabajo") con una opción por trabajo **más la opción fija «Nuevo»**.
 `AskUserQuestion` admite hasta 4 opciones: con más de 3 trabajos, ofrece los 3 más recientes más «Nuevo» y pide el
-resto por nombre en texto libre. Lo mismo vale para las áreas: más de 4, agrúpalas o pide el nombre. Deriva el
-`<slug>` (kebab-case) y decide la rama:
+resto por nombre en texto libre. Deriva el `<slug>` (kebab-case) y decide la rama:
 
 - **Nuevo** → paso 2.
 - **Existente sin cerrar** (`Fase: explorar` o `proponer`, frentes abiertos) → lee sus documentos, resume en 3-5
   líneas qué está documentado y qué falta, y **retoma la entrevista donde quedó**.
 - **Existente ya documentado** (requerimientos cerrados y plan de tareas) → **modo cambio** (paso 6).
 
-## 2. Calibrar tamaño y área (solo nuevo)
+## 2. Calibrar tamaño, área y tema (solo nuevo)
 
 Con `AskUserQuestion` (header "Tamaño"): **Tarea** / **Proyecto**, con la heurística de `Proyectos/_context.md` y tu
-recomendación. Luego el **área** (header "Área"), ofreciendo solo las filas de la tabla de áreas. Si a mitad de
-camino una tarea crece (aparece solución técnica propia, más de ~5 pasos, alguien más lo va a construir), dilo y
-**gradúala**: crea la carpeta con el mismo slug y su archivo pasa a ser `propuesta.md`.
+recomendación. Luego, con el procedimiento de `CLAUDE.md` «Áreas y temas», dos preguntas más:
+
+- **Área** (header "Área"): hasta 4 opciones, primero las filas que ya tiene la tabla de áreas de la raíz, luego las
+  del catálogo más probables por el tema; cualquier otro nombre, por texto libre. La tabla puede estar vacía.
+- **Tema** (header "Tema"): la subcarpeta de esa área donde quedará el resultado. Primero los temas que ya tiene la
+  tabla del área, luego los sugeridos en el catálogo para esa área; cualquier otro nombre, por texto libre.
+
+Si `/proyecto:nuevo` ya dejó área y tema en el Estado, confírmalos en una línea en vez de volver a preguntar. Si
+el usuario eligió un área o un tema que no existe, **créalo ahora**, antes de escribir la propuesta: el área con su
+carpeta, sus tres descriptores desde `_Templates/area/` (responsabilidad redactada, no en blanco) y su fila en la
+tabla de la raíz; el tema con su carpeta (con un `.gitkeep` mientras va vacía) y su fila en la tabla del área. El
+Estado necesita un `Área:` que esté en la tabla y un `Resultado esperado:` con su `<Área>/<tema>/`.
+
+Si a mitad de camino una tarea crece (aparece solución técnica propia, más de ~5 pasos, alguien más lo va a
+construir), dilo y **gradúala**: crea la carpeta con el mismo slug y su archivo pasa a ser `propuesta.md`.
 
 ## 3. Rama tarea
 
-Un lote de 3-5 preguntas (playbook de requerimientos condensado): problema real · resultado esperado y **en qué
-`<Área>/<tema>/` queda** · qué NO entra · pasos concretos. Escribe `Proyectos/Tareas/<slug>.md` desde
-`_Templates/tarea.md`, con `Área:` y `Resultado esperado:` llenos y los pasos numerados por dependencia. Si el
-checklist quedó completo, deja **`- **Fase:** aplicar`** (el plan ya existe); si falta algo, `proponer`. Salta al
-paso 7.
+Un lote de 3-5 preguntas (playbook de requerimientos condensado): problema real · resultado esperado y **con qué
+nombre de archivo queda** en el `<Área>/<tema>/` elegido en el paso 2 · qué NO entra · pasos concretos. Escribe
+`Proyectos/Tareas/<slug>.md` desde `_Templates/tarea.md`, con `Área:` y `Resultado esperado:` llenos y los pasos
+numerados por dependencia. Si el checklist quedó completo, deja **`- **Fase:** aplicar`** (el plan ya existe); si
+falta algo, `proponer`. Salta al paso 7.
 
 ## 4. Rama proyecto — entrevista en vivo
 
@@ -67,8 +78,10 @@ Lotes de **3-5 preguntas** priorizadas por impacto, nunca un cuestionario largo.
 frentes: **problema real · actor · resultado esperado y métrica · alcance (qué sí y qué no) · flujo principal ·
 reglas y casos borde · restricciones · prioridad**. No avances si el problema o el alcance siguen ambiguos.
 Requerimientos con **MoSCoW** (Debe / Debería / Podría / No ahora). Criterios de aceptación en forma
-*Dado / Cuando / Entonces*: si no se puede comprobar, no es criterio. Pregunta siempre **dónde queda el resultado**
-(`<Área>/<tema>/<archivo>.md`): es un campo obligatorio del Estado, no un detalle.
+*Dado / Cuando / Entonces*: si no se puede comprobar, no es criterio. Fija siempre **dónde queda el resultado**
+(`<Área>/<tema>/<archivo>.md`): el tema se eligió en el paso 2, aquí se nombra el archivo. Si la entrevista revela
+que el tema no era el correcto, vuelve a preguntarlo con el mismo procedimiento. Es un campo obligatorio del Estado,
+no un detalle.
 
 ### Playbook B — Solución
 
