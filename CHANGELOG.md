@@ -4,6 +4,11 @@
 Qué cambió en **Company Cycle OS** y qué debe migrar quien ya lo usa. La bitácora de tu empresa es otra cosa: vive en
 `Decisiones/`.
 
+## v1.2 — 2026-10-07
+
+- `/proyecto:explorar` pasa a llamarse **`/proyecto:nuevo`**: es el comando con el que arranca todo trabajo. El
+  archivo es `.claude/commands/proyecto/nuevo.md`; la fase `explorar` del bloque Estado no cambia.
+
 ## v1.1 — 2026-10-07
 
 - Se retira la empresa de ejemplo (Taller Norte) y la carpeta `.ccos/`: la copia viene con la raíz en blanco

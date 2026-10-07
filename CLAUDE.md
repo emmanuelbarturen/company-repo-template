@@ -9,7 +9,7 @@ de escritorio (o con `claude` en la terminal): en _Chat_ y _Cowork_ el ciclo no 
 ## Regla #1 — clasifica antes de ejecutar
 
 En la **primera respuesta de cada sesión**, antes de hacer nada, pregunta con `AskUserQuestion` si lo que viene es
-**(a) un trabajo nuevo**, que arranca con `/proyecto:explorar`, o **(b) una pregunta suelta**. Nada se ejecuta hasta
+**(a) un trabajo nuevo**, que arranca con `/proyecto:nuevo`, o **(b) una pregunta suelta**. Nada se ejecuta hasta
 que responda. Se salta solo si el primer mensaje ya lo dice: invoca un comando `/proyecto:*`, retoma un trabajo por su
 nombre, o pide leer un archivo concreto. En la duda, pregunta. Sin esta clasificación, el trabajo que merecía entrar
 al ciclo termina como conversación suelta y se pierde.
@@ -64,7 +64,7 @@ validar.ts                                 validador de estructura
 | Situación                                                                             | Comando              |
 | ------------------------------------------------------------------------------------- | -------------------- |
 | Primera vez en el repo: nombrar la empresa, declarar áreas y temas                    | `/proyecto:setup`    |
-| Pensar una idea o problema sin compromiso, antes de crear nada                        | `/proyecto:explorar` |
+| Pensar una idea o problema sin compromiso, antes de crear nada                        | `/proyecto:nuevo`    |
 | Crear o modificar un trabajo hasta tener su plan de tareas                            | `/proyecto:proponer` |
 | Ejecutar el plan y dejar cada resultado en su área y tema                             | `/proyecto:aplicar`  |
 | Cerrar un trabajo: guardar el resultado, archivar, registrar en la bitácora           | `/proyecto:archivar` |
