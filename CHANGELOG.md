@@ -11,6 +11,9 @@ Qué cambió en **Company Cycle OS** y qué debe migrar quien ya lo usa. La bit�
   ofreciendo lo que ya existe más el catálogo de `_Templates/catalogo-areas.md` (nuevo). Los temas igual: se eligen
   al proponer el trabajo, con los de la tabla del área y los sugeridos del catálogo como alternativas.
 - El creador por defecto de las cabeceras es `System`, fijo en la ficha; `setup` ya no lo pregunta.
+- `archivar` deja escrita la documentación del trabajo: escribe en el área los documentos de resultado que falten
+  (a partir de propuesta, solución, tareas y exploración), decide con criterio de organización el tema donde quedan
+  (por tipo de documento, nunca por proyecto) y lo confirma antes de escribir o mover.
 - Migración: nada que hacer en un repo ya configurado; las áreas existentes siguen valiendo.
 
 ## v1.1 — 2026-10-07

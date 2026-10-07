@@ -46,8 +46,9 @@ necesita; igual la tabla de temas de cada área. Quien elige es siempre el usuar
 - **Tema:** al fijar dónde queda el resultado (`proponer`; también `aplicar` y `archivar` si un archivo no encaja en
   ningún tema). Primero los temas de la tabla del área, luego los sugeridos en el catálogo para esa área, más «otro».
 - **Al crear:** un área es su carpeta, sus tres descriptores desde `_Templates/area/` con la responsabilidad
-  redactada, y su fila en la tabla de la raíz. Un tema es su carpeta (con `.gitkeep` mientras va vacía) y su fila en
-  la tabla del área. Carpetas sin tildes ni espacios: la carpeta es el identificador.
+  redactada, y su fila en la tabla de la raíz. Un tema es su carpeta (con `.gitkeep` mientras va vacía; se borra al
+  llegar el primer archivo) y su fila en la tabla del área. Carpetas sin tildes ni espacios: la carpeta es el
+  identificador. Un tema se nombra por el tipo de documentos que vivirán ahí, nunca por el proyecto que los produjo.
 - **Nunca** crees un área o un tema que el usuario no haya elegido, ni dejes una carpeta sin su fila: el validador
   lo marca.
 
@@ -81,14 +82,15 @@ validar.ts                                 validador de estructura
 | Pensar una idea o problema sin compromiso, antes de crear nada                        | `/proyecto:explorar` |
 | Crear o modificar un trabajo hasta tener su plan de tareas                            | `/proyecto:proponer` |
 | Ejecutar el plan y dejar cada resultado en su área y tema                             | `/proyecto:aplicar`  |
-| Cerrar un trabajo: guardar el resultado, archivar, registrar en la bitácora           | `/proyecto:archivar` |
+| Cerrar un trabajo: escribir sus documentos en el área, archivar, registrar en bitácora | `/proyecto:archivar` |
 | Revisar la estructura cuando no hay `bun`                                             | `/proyecto:validar`  |
 
 Dos tamaños de trabajo. **Tarea** (cabe en una página, un actor, sin solución técnica propia, hasta ~5 pasos):
 un archivo `Proyectos/Tareas/<slug>.md`. **Proyecto**: carpeta `Proyectos/<slug>/` con los cuatro documentos. Ambos
 llevan `Área:` y `Resultado esperado:`, y un bloque `## Estado` con `Fase:` (`explorar | proponer | aplicar |
-pausado | archivado`) que hace la sesión retomable. **Al archivar se pregunta siempre** dónde queda el resultado, y
-el Estado conserva `Resultado: <rutas>` (o `ninguno — <motivo>`). Reglas completas en `Proyectos/_context.md`.
+pausado | archivado`) que hace la sesión retomable. **Al archivar, el asistente escribe los documentos de resultado
+que falten, decide el tema con criterio de organización y lo confirma siempre**; el Estado conserva
+`Resultado: <rutas>` (o `ninguno — <motivo>`). Reglas completas en `Proyectos/_context.md`.
 
 ## Convenciones
 

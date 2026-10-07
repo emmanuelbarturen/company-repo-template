@@ -37,7 +37,8 @@ aceptar el diálogo de confianza de la carpeta.
    **proyecto** (carpeta con propuesta, exploración, solución y tareas).
 3. **Los resultados viven en su área y su tema, no en el proyecto.** Las áreas y sus temas (subcarpetas) nacen con
    el primer trabajo que los necesita, elegidos por ti; el asistente nombra el destino de cada archivo antes de
-   escribirlo. Al archivar, siempre pregunta dónde queda el resultado.
+   escribirlo. Al archivar, escribe los documentos que el trabajo deja, propone la carpeta con criterio de
+   organización y te lo confirma antes de mover nada.
 4. **El validador exige lo que la disciplina olvida.** `bun validar.ts` comprueba descriptores, tablas contra carpetas,
    cabeceras, tope de líneas, índice de referencias y trabajos con estado. Sin `bun`, `/proyecto:validar` hace lo
    mismo a mano.
@@ -50,7 +51,7 @@ aceptar el diálogo de confianza de la carpeta.
 | `/proyecto:explorar` | Pensar una idea sin compromiso. No escribe archivos salvo que se lo pidas |
 | `/proyecto:proponer` | Entrevista en vivo → propuesta, solución y plan de tareas; elige área y tema, y los crea si no existen |
 | `/proyecto:aplicar` | **Ejecuta** el plan; cada resultado nace en `<Área>/<tema>/` |
-| `/proyecto:archivar` | Confirma dónde queda el resultado, archiva y registra el hito |
+| `/proyecto:archivar` | Escribe la documentación resultante en su área, decide y confirma la carpeta, archiva y registra el hito |
 | `/proyecto:validar` | El validador a mano, para máquinas sin `bun` |
 
 Y además: `_Templates/` (moldes de descriptores, proyecto, tarea y bitácora), `_Referencias/` (archivos de afuera
