@@ -1,0 +1,25 @@
+{
+  "permissions": {
+    "allow": [
+      "Read",
+      "Glob",
+      "Grep",
+      "Edit",
+      "Write",
+      "Bash(bun validar.ts*)",
+      "Bash(bun --version)",
+      "Bash(which bun)",
+      "Bash(ls *)",
+      "Bash(find *)",
+      "Bash(wc *)",
+      "Bash(mkdir *)",
+      "Bash(mv *)",
+      "Bash(git init*)",
+      "Bash(git status*)",
+      "Bash(git add*)",
+      "Bash(git commit*)",
+      "Bash(git log*)",
+      "Bash(git diff*)"
+    ]
+  }
+}

@@ -1,0 +1,31 @@
+# Editores e IDEs
+.vscode/
+.idea/
+.fleet/
+.zed/
+.cursor/
+.history/
+.obsidian/
+*.code-workspace
+
+# Sistema operativo
+.DS_Store
+.AppleDouble
+.Spotlight-V100
+.Trashes
+Thumbs.db
+Desktop.ini
+
+# Planes de sesión del asistente (scratch, traen rutas locales)
+Plans/
+
+# Configuración local del asistente y patrones privados de higiene
+.claude/settings.local.json
+.ccos/higiene.local.txt
+
+# Secretos: nunca versionar
+.env
+.env.*
+
+# Worktrees que la app de escritorio crea si se marca esa opción al abrir la sesión
+.claude/worktrees/
