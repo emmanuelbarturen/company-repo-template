@@ -5,14 +5,16 @@
  * Uso:  bun validar.ts [--json] [--raiz <dir>]
  *
  * Un solo archivo, sin dependencias: solo node:fs y node:path.
- * Salida: 0 limpio · 1 errores de estructura (V1-V9) · 3 uso.
+ * Salida: 0 limpio · 1 errores de estructura (V1-V10) · 3 uso.
  */
 import { existsSync, readdirSync, readFileSync, statSync } from "node:fs";
 import { basename, dirname, join, relative, resolve, sep } from "node:path";
 
 // ── Constantes ─────────────────────────────────────────────────────────────
 const RESERVADAS_RAIZ = new Set(["Proyectos", "Decisiones", "_Referencias", "_Templates", "Plans", ".claude", ".git", "node_modules"]);
-const RESERVADAS_PROYECTOS = new Set(["Tareas", "Archivados", "adjuntos"]);
+// Estructura fija de Proyectos/: Regulares/ (proyectos) y Tareas/ (tareas), cada una con su Archivados/.
+const RAMAS_PROYECTOS = ["Regulares", "Tareas"];
+const ARCHIVADOS = "Archivados";
 const DESCRIPTORES = ["_context.md", "_rules.md", "_links.md"];
 const CANONICOS = new Set(["propuesta.md", "exploracion.md", "solucion.md", "tareas.md"]);
 const FASES = new Set(["explorar", "proponer", "aplicar", "pausado", "archivado"]);
@@ -120,6 +122,10 @@ const areasReales = subdirs(raiz).filter((n) => !RESERVADAS_RAIZ.has(n) && !n.st
 
 // ── V1 Descriptores ────────────────────────────────────────────────────────
 if (!existsSync(join(raiz, "Proyectos", "_context.md"))) err("V1", "Proyectos/_context.md", "falta el descriptor");
+for (const rama of RAMAS_PROYECTOS) {
+  if (!esDir(join(raiz, "Proyectos", rama))) err("V1", `Proyectos/${rama}/`, "falta la carpeta: la estructura de Proyectos/ es fija");
+  else if (!esDir(join(raiz, "Proyectos", rama, ARCHIVADOS))) err("V1", `Proyectos/${rama}/${ARCHIVADOS}/`, "falta la carpeta de archivados de esta rama");
+}
 for (const d of ["_rules.md", "_links.md"]) if (!existsSync(join(raiz, d))) aviso("V1", d, "falta en la raíz");
 for (const a of areasReales) for (const d of DESCRIPTORES) {
   if (!existsSync(join(raiz, a, d))) err("V1", `${a}/${d}`, "falta el descriptor del área");
@@ -194,7 +200,7 @@ function revisarTrabajo(p: string, archivado: boolean, esProyecto: boolean) {
   const fase = campoEstado(t, "Fase")?.split(/\s+/)[0] ?? "";
   if (!FASES.has(fase)) err("V8", r, `Fase inválida o ausente: «${fase}»`);
   if (archivado && fase !== "archivado") err("V8", r, `está en Archivados/ pero su Fase es «${fase}»`);
-  if (!archivado && fase === "archivado") err("V8", r, "Fase archivado pero sigue fuera de Proyectos/Archivados/");
+  if (!archivado && fase === "archivado") err("V8", r, "Fase archivado pero sigue fuera de su carpeta Archivados/");
   if (esProyecto && (fase === "aplicar" || fase === "archivado")) {
     for (const f of CANONICOS) if (!existsSync(join(dirname(p), f))) err("V8", `${rel(dirname(p))}/${f}`, `falta en un proyecto en fase ${fase} (los cuatro documentos son obligatorios desde aplicar)`);
   }
@@ -216,11 +222,20 @@ function revisarTrabajo(p: string, archivado: boolean, esProyecto: boolean) {
 }
 {
   const base = join(raiz, "Proyectos");
-  for (const d of subdirs(base)) if (!RESERVADAS_PROYECTOS.has(d)) revisarTrabajo(join(base, d, "propuesta.md"), false, true);
-  for (const f of archivos(join(base, "Tareas"))) if (f.endsWith(".md")) revisarTrabajo(join(base, "Tareas", f), false, false);
-  const arch = join(base, "Archivados");
-  for (const d of subdirs(arch)) if (d !== "Tareas") revisarTrabajo(join(arch, d, "propuesta.md"), true, true);
-  for (const f of archivos(join(arch, "Tareas"))) if (f.endsWith(".md")) revisarTrabajo(join(arch, "Tareas", f), true, false);
+  // Primer nivel: solo Regulares/, Tareas/ y _context.md.
+  for (const d of subdirs(base)) if (!RAMAS_PROYECTOS.includes(d)) err("V8", `Proyectos/${d}/`, "carpeta fuera de la estructura: los proyectos van en Regulares/ y las tareas en Tareas/");
+  for (const f of archivos(base)) if (f !== "_context.md") err("V8", `Proyectos/${f}`, "archivo suelto en Proyectos/: un trabajo vive en Regulares/<slug>/ o en Tareas/<slug>.md");
+  // Regulares/: una carpeta por proyecto; Regulares/Archivados/: los cerrados.
+  const reg = join(base, "Regulares");
+  for (const d of subdirs(reg)) if (d !== ARCHIVADOS) revisarTrabajo(join(reg, d, "propuesta.md"), false, true);
+  for (const f of archivos(reg)) if (f.endsWith(".md")) err("V8", `Proyectos/Regulares/${f}`, ".md suelto: un proyecto es una carpeta con propuesta.md");
+  for (const d of subdirs(join(reg, ARCHIVADOS))) revisarTrabajo(join(reg, ARCHIVADOS, d, "propuesta.md"), true, true);
+  // Tareas/: un archivo por tarea; Tareas/Archivados/: las cerradas.
+  const tar = join(base, "Tareas");
+  for (const f of archivos(tar)) if (f.endsWith(".md")) revisarTrabajo(join(tar, f), false, false);
+  for (const d of subdirs(tar)) if (d !== ARCHIVADOS) err("V8", `Proyectos/Tareas/${d}/`, "carpeta en Tareas/: una tarea es un solo archivo .md");
+  for (const f of archivos(join(tar, ARCHIVADOS))) if (f.endsWith(".md")) revisarTrabajo(join(tar, ARCHIVADOS, f), true, false);
+  for (const d of subdirs(join(tar, ARCHIVADOS))) err("V8", `Proyectos/Tareas/${ARCHIVADOS}/${d}/`, "carpeta en Tareas/Archivados/: una tarea es un solo archivo .md");
   if (idRaiz && !RE_KEBAB.test(idRaiz)) aviso("V8", "_context.md", `el Id «${idRaiz}» no está en kebab-case`);
 }
 
@@ -242,6 +257,18 @@ function revisarTrabajo(p: string, archivado: boolean, esProyecto: boolean) {
   }
 }
 
+// ── V10 Carpetas vacías sin .gitkeep ───────────────────────────────────────
+// Git no versiona carpetas vacías: una carpeta que debe verse en el repo lleva un .gitkeep.
+function carpetasVacias(dir: string, salida: string[] = []): string[] {
+  for (const n of readdirSync(dir)) {
+    const p = join(dir, n);
+    if (!esDir(p) || /^(\.git|node_modules)(\/|$)/.test(rel(p))) continue;
+    if (readdirSync(p).length === 0) salida.push(p); else carpetasVacias(p, salida);
+  }
+  return salida;
+}
+for (const p of carpetasVacias(raiz)) aviso("V10", `${rel(p)}/`, "carpeta vacía sin .gitkeep: git no la versionará");
+
 // ── Reporte ────────────────────────────────────────────────────────────────
 const errores = hallazgos.filter((h) => h.sev === "E");
 const avisos = hallazgos.filter((h) => h.sev === "A");
@@ -253,7 +280,7 @@ if (json) {
 } else {
   const porChequeo = new Map<string, Hallazgo[]>();
   for (const h of hallazgos) porChequeo.set(h.chequeo, [...(porChequeo.get(h.chequeo) ?? []), h]);
-  for (const [c, lista] of [...porChequeo.entries()].sort()) {
+  for (const [c, lista] of [...porChequeo.entries()].sort((a, b) => Number(a[0].slice(1)) - Number(b[0].slice(1)))) {
     console.log(`\n[${c}]`);
     for (const h of lista) console.log(`  ${h.sev === "E" ? "✗" : "△"} ${h.ruta} — ${h.detalle}`);
   }

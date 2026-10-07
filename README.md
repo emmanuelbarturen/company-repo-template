@@ -73,9 +73,10 @@ CLAUDE.md                          reglas del framework (lo que el asistente lee
 _context.md _rules.md _links.md  tu empresa: ficha, tabla de áreas, reglas, enlaces
 <Área>/_context.md …               cada área, con su tabla de temas y sus tres descriptores
 <Área>/<tema>/*.md                 los documentos, siempre dentro de un tema
-Proyectos/<slug>/                  un proyecto: propuesta · exploracion · solucion · tareas
+Proyectos/Regulares/<slug>/        un proyecto: propuesta · exploracion · solucion · tareas
+Proyectos/Regulares/Archivados/    proyectos cerrados, con `Resultado:` en su estado
 Proyectos/Tareas/<slug>.md         una tarea
-Proyectos/Archivados/              lo cerrado, con `Resultado:` en su estado
+Proyectos/Tareas/Archivados/       tareas cerradas
 _Referencias/_index.md             el estante
 Decisiones/Q<N>-<AAAA>.md          la bitácora
 _Templates/  validar.ts            moldes, catálogo sugerido de áreas y validador

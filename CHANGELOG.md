@@ -16,7 +16,12 @@ Qué cambió en **Company Cycle OS** y qué debe migrar quien ya lo usa. La bit�
 - `archivar` deja escrita la documentación del trabajo: escribe en el área los documentos de resultado que falten
   (a partir de propuesta, solución, tareas y exploración), decide con criterio de organización el tema donde quedan
   (por tipo de documento, nunca por proyecto) y lo confirma antes de escribir o mover.
-- Migración: nada que hacer en un repo ya configurado; las áreas existentes siguen valiendo.
+- `Proyectos/` adopta una estructura fija: `Regulares/` (proyectos) y `Tareas/` (tareas), cada una con su
+  `Archivados/`. `validar.ts` exige la estructura (V1, V8).
+- Toda carpeta vacía que deba verse lleva un `.gitkeep`; el validador lo avisa (nuevo chequeo V10).
+- Migración: las áreas existentes siguen valiendo. Para `Proyectos/`: `mv Proyectos/<slug> Proyectos/Regulares/<slug>`,
+  `mv Proyectos/Archivados/<slug> Proyectos/Regulares/Archivados/<slug>` y
+  `mv Proyectos/Archivados/Tareas/*.md Proyectos/Tareas/Archivados/`; borra `Proyectos/Archivados/` al quedar vacía.
 
 ## v1.1 — 2026-10-07
 
