@@ -5,7 +5,7 @@ argument-hint: (sin argumentos)
 
 Pones **Company Cycle OS** a punto para la empresa del usuario, **una sola vez**. Al terminar, la raíz describe su
 empresa real y el repo tiene su primer commit. **Aquí no se declara ninguna área ni ningún tema**: la tabla de áreas
-nace vacía y cada carpeta se crea cuando el primer trabajo la necesita, desde `/proyecto:explorar` o
+nace vacía y cada carpeta se crea cuando el primer trabajo la necesita, desde `/proyecto:nuevo` o
 `/proyecto:proponer`, que preguntan en qué área y en qué tema va (procedimiento en `CLAUDE.md`, «Áreas y temas»).
 El usuario puede estar en la app de escritorio sin terminal: todo lo que haya que ejecutar lo ejecutas tú, pidiendo
 permiso cuando la herramienta lo pida.
@@ -63,7 +63,7 @@ finales (solo cómo opera la empresa: cifras agregadas, decisiones, procesos)?* 
 ## 5. Confirmar
 
 Devuelve en pocas líneas: la empresa, el resultado del validador, el commit, y el siguiente paso:
-**`/proyecto:explorar`** para arrancar el primer trabajo, recordándole que ahí se elige el área y el tema donde
+**`/proyecto:nuevo`** para arrancar el primer trabajo, recordándole que ahí se elige el área y el tema donde
 quedará su resultado.
 
 Idioma: español siempre. Directo, breve, cero relleno.

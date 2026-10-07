@@ -18,7 +18,7 @@ Todo en español. Sin instalación, sin dependencias, sin integraciones obligato
    carga. **Solo la pestaña *Code* sirve**: *Chat* y *Cowork* no leen los comandos del repo aunque les des acceso a la
    carpeta. También funciona desde la terminal con `claude` dentro de la carpeta, pero no hace falta.
 3. Escribe **`/proyecto:setup`**. Te pregunta por tu empresa y deja el repo listo; no te pide áreas ni temas.
-   Después, **`/proyecto:explorar`** con el primer problema que quieras resolver: ahí eliges en qué área (carpeta) y
+   Después, **`/proyecto:nuevo`** con el primer problema que quieras resolver: ahí eliges en qué área (carpeta) y
    en qué tema va, entre lo que ya existe y un catálogo sugerido, y la carpeta se crea en ese momento.
 
 Dos avisos para la primera vez. Si al escribir `/proyecto:` no aparecen los comandos, comprueba que estás en la
@@ -32,7 +32,7 @@ aceptar el diálogo de confianza de la carpeta.
 1. **Cada carpeta se autodescribe.** Tres archivos con subguion la explican: `_context.md` (qué vive aquí y qué no),
    `_rules.md` (cómo se documenta y cómo se crea un proyecto de esta área) y `_links.md` (documentos y tableros
    externos). Es lo único que hace que un asistente sin memoria entienda una carpeta que no escribió.
-2. **Todo trabajo tiene un solo hogar y pasa por el ciclo.** `/proyecto:explorar → proponer → aplicar → archivar` lo
+2. **Todo trabajo tiene un solo hogar y pasa por el ciclo.** `/proyecto:nuevo → proponer → aplicar → archivar` lo
    lleva de idea a archivo, siempre en `Proyectos/`. Un trabajo chico es una **tarea** (un archivo); uno grande es un
    **proyecto** (carpeta con propuesta, exploración, solución y tareas).
 3. **Los resultados viven en su área y su tema, no en el proyecto.** Las áreas y sus temas (subcarpetas) nacen con
@@ -48,7 +48,7 @@ aceptar el diálogo de confianza de la carpeta.
 | Comando | Para qué |
 |---|---|
 | `/proyecto:setup` | Primera vez: nombra la empresa y hace el primer commit; sin áreas ni temas |
-| `/proyecto:explorar` | Pensar una idea sin compromiso. No escribe archivos salvo que se lo pidas |
+| `/proyecto:nuevo` | Pensar una idea sin compromiso. No escribe archivos salvo que se lo pidas |
 | `/proyecto:proponer` | Entrevista en vivo → propuesta, solución y plan de tareas; elige área y tema, y los crea si no existen |
 | `/proyecto:aplicar` | **Ejecuta** el plan; cada resultado nace en `<Área>/<tema>/` |
 | `/proyecto:archivar` | Escribe la documentación resultante en su área, decide y confirma la carpeta, archiva y registra el hito |

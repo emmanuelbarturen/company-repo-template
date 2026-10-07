@@ -37,4 +37,4 @@ tildes ni espacios: la carpeta es el identificador.
 
 ## Trabajos activos
 
-Ninguno todavía. El primero arranca con `/proyecto:explorar`.
+Ninguno todavía. El primero arranca con `/proyecto:nuevo`.

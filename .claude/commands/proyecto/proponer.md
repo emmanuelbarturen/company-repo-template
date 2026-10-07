@@ -41,7 +41,7 @@ recomendación. Luego, con el procedimiento de `CLAUDE.md` «Áreas y temas», d
 - **Tema** (header "Tema"): la subcarpeta de esa área donde quedará el resultado. Primero los temas que ya tiene la
   tabla del área, luego los sugeridos en el catálogo para esa área; cualquier otro nombre, por texto libre.
 
-Si `/proyecto:explorar` ya dejó área y tema en el Estado, confírmalos en una línea en vez de volver a preguntar. Si
+Si `/proyecto:nuevo` ya dejó área y tema en el Estado, confírmalos en una línea en vez de volver a preguntar. Si
 el usuario eligió un área o un tema que no existe, **créalo ahora**, antes de escribir la propuesta: el área con su
 carpeta, sus tres descriptores desde `_Templates/area/` (responsabilidad redactada, no en blanco) y su fila en la
 tabla de la raíz; el tema con su carpeta (con un `.gitkeep` mientras va vacía) y su fila en la tabla del área. El
@@ -62,7 +62,7 @@ falta algo, `proponer`. Salta al paso 7.
 
 1. **Cimientos:** `propuesta.md` desde `_Templates/proyecto/propuesta.md` con el bloque `## Estado` completo
    (`Fase: proponer`, `Área:`, `Resultado esperado:` tentativo) y `exploracion.md` desde su molde. Si
-   `/proyecto:explorar` dejó conclusiones, hereda esos puntos.
+   `/proyecto:nuevo` dejó conclusiones, hereda esos puntos.
 2. **Loop de requerimientos** → *Playbook A*. Documenta gated por OK: cuando un frente quede estable, pregunta
    *«esto ya está definido, ¿lo documento?»* y di a qué archivo va (discovery → `exploracion.md`; lo que ya es
    spec → `propuesta.md`). Tras escribir, actualiza `## Estado` (frentes, fecha, próximo paso).
