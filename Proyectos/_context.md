@@ -22,7 +22,7 @@ que este descriptor; el validador lo exige.
 ## Reglas
 
 - **Tarea** (mini-proyecto): cabe en una página, un actor, sin solución técnica propia, hasta ~5 pasos. Un solo
-  archivo `Proyectos/Tareas/<slug>.md` (molde `_Templates/tarea.md`).
+  archivo `Proyectos/Tareas/<slug>.md` (molde `.claude/templates/tarea.md`).
 - **Proyecto**: necesita requerimientos para que otro lo construya, decisiones propias, o más de ~5 tareas. Carpeta
   `Proyectos/Regulares/<slug>/` con cuatro documentos de nombre fijo: `propuesta.md` (qué y por qué), `exploracion.md`
   (opciones y por qué se eligió una), `solucion.md` (cómo: decisiones y spikes), `tareas.md` (plan ejecutable).

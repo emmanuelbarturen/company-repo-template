@@ -12,8 +12,9 @@ Tema o trabajo (opcional): $ARGUMENTS
 
 ## 0. Contexto mínimo
 
-Lee `_context.md` de la raíz (ficha y tabla de áreas) y `_Templates/catalogo-areas.md` (las alternativas que
-ofreces cuando la tabla no alcanza). Todavía no leas áreas: primero hay que saber cuál toca.
+**Sincroniza primero**, sin decir nada técnico: si hay remoto, `git pull --rebase --autostash`; si falla, sigue en
+local y avísalo en una línea (regla «Git» de `CLAUDE.md`). Lee `_context.md` de la raíz (ficha y tabla de áreas) y
+`.claude/templates/catalogo-areas.md` (las alternativas que ofreces cuando la tabla no alcanza). Todavía no leas áreas: primero hay que saber cuál toca.
 
 ## 1. Clasificar el trabajo y su área
 
@@ -66,12 +67,15 @@ Cuando el usuario tenga claridad (o la conversación se agote), ofrece con `AskU
 
 1. **Crear la propuesta** → indícale correr `/proyecto:proponer <tema>` y resume en 3-5 líneas lo que esa sesión debe
    heredar: tipo, área, opción elegida, alcance tentativo, resultado esperado y riesgos.
-2. **Guardar apuntes** → escribe `Proyectos/Regulares/<slug>/exploracion.md` (molde `_Templates/proyecto/exploracion.md`) y
+2. **Guardar apuntes** → escribe `Proyectos/Regulares/<slug>/exploracion.md` (molde `.claude/templates/proyecto/exploracion.md`) y
    un `propuesta.md` **mínimo** con solo el bloque `## Estado` (`Fase: explorar`, `Área:`, `Resultado esperado:`
    tentativo, próximo paso). Si la carpeta no existe, créala solo si confirma el slug. **Si el área elegida es
    nueva, créala primero** con el procedimiento de `CLAUDE.md` (carpeta, tres descriptores y fila en la tabla): el
    validador exige que `Área:` esté en la tabla de áreas.
 3. **Cerrar sin escribir** (por defecto) — la exploración queda en la conversación.
+
+Si escribiste archivos (opción 2 o un área nueva), **guarda y sube** según la regla «Git» de `CLAUDE.md`: commit
+`Exploración de <slug>: <una línea>` y push si hay remoto; confírmalo en una línea sin jerga.
 
 Todo `.md` que escribas lleva la cabecera `<!-- Creado: AAAA-MM-DD · Actualizado: AAAA-MM-DD · Creador: ... -->`
 con el creador por defecto de la ficha.
