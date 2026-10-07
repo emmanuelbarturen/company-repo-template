@@ -1,8 +1,15 @@
-<!-- Creado: 2026-09-27 · Actualizado: 2026-09-27 · Creador: company-cycle-os -->
+<!-- Creado: 2026-09-27 · Actualizado: 2026-10-07 · Creador: company-cycle-os -->
 # Historia del framework
 
 Qué cambió en **Company Cycle OS** y qué debe migrar quien ya lo usa. La bitácora de tu empresa es otra cosa: vive en
 `Decisiones/`.
+
+## v1.1 — 2026-10-07
+
+- Se retira la empresa de ejemplo (Taller Norte) y la carpeta `.ccos/`: la copia viene con la raíz en blanco
+  (`Id` = `mi-empresa`) y `setup` solo escribe, no borra nada.
+- `validar.ts` pierde `--publicar` y los chequeos V10 (manifiesto) y V11 (higiene). Quedan V1-V9; códigos de
+  salida 0 / 1 / 3.
 
 ## v1 — 2026-09-27
 

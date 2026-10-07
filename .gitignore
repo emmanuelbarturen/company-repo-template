@@ -19,9 +19,8 @@ Desktop.ini
 # Planes de sesión del asistente (scratch, traen rutas locales)
 Plans/
 
-# Configuración local del asistente y patrones privados de higiene
+# Configuración local del asistente
 .claude/settings.local.json
-.ccos/higiene.local.txt
 
 # Secretos: nunca versionar
 .env

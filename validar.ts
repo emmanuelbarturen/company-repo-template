@@ -2,18 +2,16 @@
 /**
  * validar.ts — validador de estructura de Company Cycle OS.
  *
- * Uso:  bun validar.ts [--publicar] [--json] [--raiz <dir>]
+ * Uso:  bun validar.ts [--json] [--raiz <dir>]
  *
  * Un solo archivo, sin dependencias: solo node:fs y node:path.
- * Salida: 0 limpio · 1 errores de estructura (V1-V10) · 2 solo higiene (V11, con --publicar) · 3 uso.
- * Si conviven errores de estructura e higiene, gana 1.
+ * Salida: 0 limpio · 1 errores de estructura (V1-V9) · 3 uso.
  */
-import { execFileSync } from "node:child_process";
 import { existsSync, readdirSync, readFileSync, statSync } from "node:fs";
 import { basename, dirname, join, relative, resolve, sep } from "node:path";
 
 // ── Constantes ─────────────────────────────────────────────────────────────
-const RESERVADAS_RAIZ = new Set(["Proyectos", "Decisiones", "_Referencias", "_Templates", "Plans", ".claude", ".ccos", ".git", "node_modules"]);
+const RESERVADAS_RAIZ = new Set(["Proyectos", "Decisiones", "_Referencias", "_Templates", "Plans", ".claude", ".git", "node_modules"]);
 const RESERVADAS_PROYECTOS = new Set(["Tareas", "Archivados", "adjuntos"]);
 const DESCRIPTORES = ["_context.md", "_rules.md", "_links.md"];
 const CANONICOS = new Set(["propuesta.md", "exploracion.md", "solucion.md", "tareas.md"]);
@@ -21,7 +19,6 @@ const FASES = new Set(["explorar", "proponer", "aplicar", "pausado", "archivado"
 const TOPE_LINEAS = 120;
 const EXENTOS_TOPE = [/^Decisiones\//, /^_Referencias\/_index\.md$/, /^\.claude\//];
 const FUERA_CABECERA = [/^\.claude\//, /^Plans\//, /^_Referencias\/(?!_index\.md$)/];
-const IGNORAR_HIGIENE = [/^\.git\//, /^Plans\//, /^\.ccos\//, /^validar\.ts$/, /^LICENSE$/, /^node_modules\//];
 const RE_CABECERA = /^<!-- Creado: (\d{4}-\d{2}-\d{2}|AAAA-MM-DD) · Actualizado: (\d{4}-\d{2}-\d{2}|AAAA-MM-DD) · Creador: .+ -->\s*$/;
 const RE_FECHA = /^\d{4}-\d{2}-\d{2} · /;
 
@@ -31,17 +28,15 @@ interface Hallazgo { chequeo: string; sev: Sev; ruta: string; detalle: string }
 // ── Argumentos ─────────────────────────────────────────────────────────────
 const args = process.argv.slice(2);
 let raiz = process.cwd();
-let publicar = false;
 let json = false;
 for (let i = 0; i < args.length; i++) {
   const a = args[i];
-  if (a === "--publicar") publicar = true;
-  else if (a === "--json") json = true;
+  if (a === "--json") json = true;
   else if (a === "--raiz") { raiz = args[++i] ?? ""; if (!raiz) uso(); }
   else uso();
 }
 function uso(): never {
-  console.error("Uso: bun validar.ts [--publicar] [--json] [--raiz <dir>]");
+  console.error("Uso: bun validar.ts [--json] [--raiz <dir>]");
   process.exit(3);
 }
 if (!existsSync(join(raiz, "_context.md"))) {
@@ -247,63 +242,14 @@ function revisarTrabajo(p: string, archivado: boolean, esProyecto: boolean) {
   }
 }
 
-// ── V10 Manifiesto del ejemplo ─────────────────────────────────────────────
-{
-  const man = join(raiz, ".ccos", "ejemplo.txt");
-  if (idRaiz !== "ejemplo" && existsSync(man)) {
-    for (const l of leer(man).split("\n")) {
-      const ruta = l.trim();
-      if (!ruta || ruta.startsWith("#")) continue;
-      if (existsSync(join(raiz, ruta))) err("V10", ruta, "ruta de la empresa de ejemplo que sigue existiendo tras el setup");
-    }
-    // Residuo textual del ejemplo en archivos que setup debía reescribir.
-    for (const p of mds) {
-      const r = rel(p);
-      if (/^(\.claude|_Templates|Plans)\//.test(r) || r === "README.md" || r === "CHANGELOG.md") continue;
-      if (/Taller Norte/.test(leer(p))) err("V10", r, "menciona a la empresa de ejemplo (Taller Norte) con un Id distinto de `ejemplo`");
-    }
-  }
-}
-
-// ── V11 Higiene (solo --publicar) ──────────────────────────────────────────
-let erroresHigiene = 0;
-if (publicar) {
-  const patrones: RegExp[] = [];
-  for (const f of ["higiene.txt", "higiene.local.txt"]) {
-    const p = join(raiz, ".ccos", f);
-    if (!existsSync(p)) continue;
-    for (const l of leer(p).split("\n")) {
-      const s = l.trim();
-      if (!s || s.startsWith("#")) continue;
-      try { patrones.push(new RegExp(s, "i")); } catch { err("V11", `.ccos/${f}`, `patrón inválido: ${s}`); erroresHigiene++; }
-    }
-  }
-  // El archivo de patrones privados nunca puede viajar en el repo.
-  try {
-    const seguidos = execFileSync("git", ["ls-files", "--", ".ccos/higiene.local.txt"], { cwd: raiz, stdio: ["ignore", "pipe", "ignore"] }).toString().trim();
-    if (seguidos) { err("V11", ".ccos/higiene.local.txt", "está versionado en git: contiene tus patrones privados, sácalo del índice"); erroresHigiene++; }
-  } catch { /* sin git: nada que comprobar */ }
-  for (const p of todos) {
-    const r = rel(p);
-    if (coincide(r, IGNORAR_HIGIENE)) continue;
-    let texto: string;
-    try { texto = leer(p); } catch { continue; }
-    if (texto.includes("\u0000")) continue;
-    texto.split("\n").forEach((l, i) => {
-      for (const re of patrones) if (re.test(l)) { err("V11", `${r}:${i + 1}`, `coincide con ${re.source}`); erroresHigiene++; break; }
-    });
-  }
-}
-
 // ── Reporte ────────────────────────────────────────────────────────────────
 const errores = hallazgos.filter((h) => h.sev === "E");
 const avisos = hallazgos.filter((h) => h.sev === "A");
-const erroresEstructura = errores.length - erroresHigiene;
-const veredicto = errores.length === 0 ? "limpio" : erroresEstructura > 0 ? "estructura" : "higiene";
-const codigo = errores.length === 0 ? 0 : erroresEstructura > 0 ? 1 : 2;
+const veredicto = errores.length === 0 ? "limpio" : "estructura";
+const codigo = errores.length === 0 ? 0 : 1;
 
 if (json) {
-  console.log(JSON.stringify({ raiz, id: idRaiz, publicar, veredicto, errores: errores.length, avisos: avisos.length, hallazgos }, null, 2));
+  console.log(JSON.stringify({ raiz, id: idRaiz, veredicto, errores: errores.length, avisos: avisos.length, hallazgos }, null, 2));
 } else {
   const porChequeo = new Map<string, Hallazgo[]>();
   for (const h of hallazgos) porChequeo.set(h.chequeo, [...(porChequeo.get(h.chequeo) ?? []), h]);
@@ -311,6 +257,6 @@ if (json) {
     console.log(`\n[${c}]`);
     for (const h of lista) console.log(`  ${h.sev === "E" ? "✗" : "△"} ${h.ruta} — ${h.detalle}`);
   }
-  console.log(`\n${errores.length} errores · ${avisos.length} avisos · veredicto: ${veredicto}${publicar ? " (con higiene)" : ""}`);
+  console.log(`\n${errores.length} errores · ${avisos.length} avisos · veredicto: ${veredicto}`);
 }
 process.exit(codigo);
