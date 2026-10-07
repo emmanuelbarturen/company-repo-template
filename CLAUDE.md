@@ -65,9 +65,10 @@ carpeta del proyecto «por ahora»: la carpeta del proyecto guarda el plan, no l
 _context.md · _rules.md · _links.md      la empresa: ficha, tabla de áreas, reglas, enlaces
 <Área>/_context.md _rules.md _links.md   cada área declarada, con su tabla de temas
 <Área>/<tema>/*.md                         los documentos, siempre dentro de un tema
-Proyectos/<slug>/                          proyecto: propuesta.md · exploracion.md · solucion.md · tareas.md
-Proyectos/Tareas/<slug>.md                 mini-proyecto: un solo archivo
-Proyectos/Archivados/                      lo cerrado, con su `Resultado:` en el Estado
+Proyectos/Regulares/<slug>/                proyecto: propuesta.md · exploracion.md · solucion.md · tareas.md
+Proyectos/Regulares/Archivados/<slug>/     proyectos cerrados, con su `Resultado:` en el Estado
+Proyectos/Tareas/<slug>.md                 tarea (mini-proyecto): un solo archivo
+Proyectos/Tareas/Archivados/<slug>.md      tareas cerradas
 _Referencias/_index.md                     archivos de afuera que se consultan; un nivel de subcarpetas por tipo
 Decisiones/Q<N>-<AAAA>.md                  bitácora de la empresa, una línea por evento
 _Templates/                                moldes de descriptores, proyecto, tarea y bitácora; catálogo de áreas
@@ -86,11 +87,12 @@ validar.ts                                 validador de estructura
 | Revisar la estructura cuando no hay `bun`                                             | `/proyecto:validar`  |
 
 Dos tamaños de trabajo. **Tarea** (cabe en una página, un actor, sin solución técnica propia, hasta ~5 pasos):
-un archivo `Proyectos/Tareas/<slug>.md`. **Proyecto**: carpeta `Proyectos/<slug>/` con los cuatro documentos. Ambos
-llevan `Área:` y `Resultado esperado:`, y un bloque `## Estado` con `Fase:` (`explorar | proponer | aplicar |
-pausado | archivado`) que hace la sesión retomable. **Al archivar, el asistente escribe los documentos de resultado
-que falten, decide el tema con criterio de organización y lo confirma siempre**; el Estado conserva
-`Resultado: <rutas>` (o `ninguno — <motivo>`). Reglas completas en `Proyectos/_context.md`.
+un archivo `Proyectos/Tareas/<slug>.md`. **Proyecto**: carpeta `Proyectos/Regulares/<slug>/` con los cuatro
+documentos. Ambos llevan `Área:` y `Resultado esperado:`, y un bloque `## Estado` con `Fase:` (`explorar | proponer |
+aplicar | pausado | archivado`) que hace la sesión retomable. **Al archivar, el asistente escribe los documentos de
+resultado que falten, decide el tema con criterio de organización y lo confirma siempre**; el Estado conserva
+`Resultado: <rutas>` (o `ninguno — <motivo>`) y el trabajo pasa al `Archivados/` de su rama. Reglas completas en
+`Proyectos/_context.md`.
 
 ## Convenciones
 
@@ -104,7 +106,11 @@ Creador: System -->`. El creador por defecto es `System` (fijo en la ficha; no s
   Q3 jul-sep · Q4 oct-dic.
 - **`_Referencias/`** es un estante, no una bandeja: lo de afuera se guarda para consultarse, con su fila en
   `_index.md`. Nada espera ser «procesado». Lo que concluyas leyendo algo de ahí va a su área y cita la fuente.
-- **`Plans/`** es scratch de sesión y no se versiona. Un plan de proyecto vive en `Proyectos/<slug>/solucion.md`.
+- **`Plans/`** es scratch de sesión y no se versiona. Un plan de proyecto vive en
+  `Proyectos/Regulares/<slug>/solucion.md`.
+- **`.gitkeep` en toda carpeta vacía que deba verse:** git no versiona carpetas vacías. Toda carpeta que nace sin
+  archivos (un tema nuevo, los `Archivados/` de `Proyectos/`) lleva un `.gitkeep`, que se borra al llegar el primer
+  archivo. El validador avisa de las carpetas vacías que no lo tienen (V10).
 - **Confidencialidad:** respeta lo que `_rules.md` de la raíz declare que no entra en el repo.
 
 ## Validar

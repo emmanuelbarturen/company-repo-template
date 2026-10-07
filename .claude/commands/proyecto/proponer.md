@@ -21,7 +21,7 @@ Lee `_context.md` y `_rules.md` de la raíz, `Proyectos/_context.md` (reglas de 
 ## 1. ¿En qué trabajamos?
 
 El nombre puede venir en $ARGUMENTS. **Si no viene, no lo inventes:** lista los trabajos activos (carpetas de
-`Proyectos/` que no sean `Tareas/`, `Archivados/` ni `adjuntos/`, más los archivos de `Proyectos/Tareas/`) y
+`Proyectos/Regulares/` y archivos de `Proyectos/Tareas/`, sin mirar dentro de `Archivados/`) y
 preséntalos con `AskUserQuestion` (header "Trabajo") con una opción por trabajo **más la opción fija «Nuevo»**.
 `AskUserQuestion` admite hasta 4 opciones: con más de 3 trabajos, ofrece los 3 más recientes más «Nuevo» y pide el
 resto por nombre en texto libre. Deriva el `<slug>` (kebab-case) y decide la rama:
@@ -48,7 +48,7 @@ tabla de la raíz; el tema con su carpeta (con un `.gitkeep` mientras va vacía)
 Estado necesita un `Área:` que esté en la tabla y un `Resultado esperado:` con su `<Área>/<tema>/`.
 
 Si a mitad de camino una tarea crece (aparece solución técnica propia, más de ~5 pasos, alguien más lo va a
-construir), dilo y **gradúala**: crea la carpeta con el mismo slug y su archivo pasa a ser `propuesta.md`.
+construir), dilo y **gradúala**: crea `Proyectos/Regulares/<slug>/` con el mismo slug y su archivo pasa a ser `propuesta.md`.
 
 ## 3. Rama tarea
 

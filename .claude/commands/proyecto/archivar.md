@@ -1,11 +1,12 @@
 ---
-description: Cierra un trabajo terminado — escribe en su área los documentos que el trabajo deja como resultado, decide como experto en organización la carpeta donde quedan (y lo confirma), mueve el trabajo a Proyectos/Archivados/ y registra el hito en Decisiones. También pausa un trabajo sin archivarlo
+description: Cierra un trabajo terminado — escribe en su área los documentos que el trabajo deja como resultado, decide como experto en organización la carpeta donde quedan (y lo confirma), mueve el trabajo al Archivados/ de su rama y registra el hito en Decisiones. También pausa un trabajo sin archivarlo
 argument-hint: [trabajo]
 ---
 
 Cierras un trabajo: verificas su plan, **dejas escrita en el área la documentación que el trabajo produce**, decides
-con criterio de organización en qué carpeta (tema) queda, lo confirmas con el usuario, mueves el trabajo a
-`Proyectos/Archivados/` y dejas el hito en la bitácora. Es el final del ciclo: lo que no quede documentado en su
+con criterio de organización en qué carpeta (tema) queda, lo confirmas con el usuario, mueves el trabajo al
+`Archivados/` de su rama (`Proyectos/Regulares/Archivados/` o `Proyectos/Tareas/Archivados/`) y dejas el hito en la
+bitácora. Es el final del ciclo: lo que no quede documentado en su
 área aquí, se pierde con el proyecto.
 
 Trabajo (opcional): $ARGUMENTS
@@ -18,8 +19,8 @@ trabajo, lee su `_context.md` (tabla de temas, qué vive en cada uno) y su `_rul
 
 ## 1. ¿Qué archivamos?
 
-El nombre puede venir en $ARGUMENTS. **Si no viene**, lista los trabajos activos (carpetas de `Proyectos/` sin
-`Tareas/`, `Archivados/` ni `adjuntos/`; y los archivos de `Proyectos/Tareas/`) y preséntalos con `AskUserQuestion`
+El nombre puede venir en $ARGUMENTS. **Si no viene**, lista los trabajos activos (carpetas de `Proyectos/Regulares/`
+y archivos de `Proyectos/Tareas/`, sin mirar dentro de `Archivados/`) y preséntalos con `AskUserQuestion`
 (header "Trabajo"; con más de 4, los 4 más recientes y el resto por nombre en texto libre). Si no hay nada, dilo y
 detente.
 
@@ -93,9 +94,10 @@ Con la respuesta:
 
 1. Actualiza `## Estado`: la viñeta **`- **Fase:** archivado`**, fecha de hoy, y la fecha `Actualizado:` de la
    cabecera.
-2. Proyecto: `mv Proyectos/<slug> Proyectos/Archivados/<slug>`. Tarea: `mv Proyectos/Tareas/<slug>.md
-   Proyectos/Archivados/Tareas/<slug>.md` (crea `Archivados/Tareas/` si no existe). No renombres con fecha: la
-   fecha vive en el Estado y en la bitácora.
+2. Proyecto: `mv Proyectos/Regulares/<slug> Proyectos/Regulares/Archivados/<slug>`. Tarea:
+   `mv Proyectos/Tareas/<slug>.md Proyectos/Tareas/Archivados/<slug>.md`. Las dos carpetas `Archivados/` existen
+   siempre (si falta una, créala con su `.gitkeep`). No renombres con fecha: la fecha vive en el Estado y en la
+   bitácora.
 3. Si `_context.md` de la raíz tiene «Trabajos activos», quita la línea del trabajo.
 
 ## 6. Bitácora

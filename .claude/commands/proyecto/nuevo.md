@@ -17,7 +17,7 @@ ofreces cuando la tabla no alcanza). Todavía no leas áreas: primero hay que sa
 
 ## 1. Clasificar el trabajo y su área
 
-- **Si $ARGUMENTS coincide con un trabajo existente** (`Proyectos/<slug>/` o `Proyectos/Tareas/<slug>.md`): el tipo
+- **Si $ARGUMENTS coincide con un trabajo existente** (`Proyectos/Regulares/<slug>/` o `Proyectos/Tareas/<slug>.md`): el tipo
   y el área ya se conocen por su Estado. Léelo y salta al paso 3.
 - **Si es tema nuevo:** propón el tipo con `AskUserQuestion` (header "Tipo"): **Tarea** (cabe en una página, un
   actor, sin solución técnica propia, hasta ~5 pasos) / **Proyecto** (requerimientos para que otro lo construya,
@@ -37,7 +37,7 @@ Pregunta con `AskUserQuestion` (header "Archivos"): *¿Tienes documentos, imáge
 exploración?* **Sí** / **No**.
 
 - **No** → paso 3.
-- **Sí** → confirma el `<slug>` (kebab-case), crea `Proyectos/<slug>/adjuntos/`, dale la ruta exacta, pídele que
+- **Sí** → confirma el `<slug>` (kebab-case), crea `Proyectos/Regulares/<slug>/adjuntos/`, dale la ruta exacta, pídele que
   guarde ahí sus archivos y **termina el turno esperando su aviso**. Al confirmar, lee los archivos (Read soporta
   imágenes y PDF) y resume en 3-5 líneas qué aportan. Si un adjunto trae datos que `_rules.md` de la raíz prohíbe,
   señálalo y no los cites en ningún `.md`.
@@ -46,7 +46,7 @@ exploración?* **Sí** / **No**.
 
 Lee `_context.md` y `_rules.md` del área elegida **si ya existe** (si es nueva, no hay nada que leer), y los
 archivos del tema que el asunto pida. Revisa si hay trabajo
-previo relacionado en `Proyectos/` **y en `Proyectos/Archivados/`**: lo archivado suele contener la mitad de la
+previo relacionado en `Proyectos/` **y en sus dos carpetas `Archivados/`**: lo archivado suele contener la mitad de la
 respuesta. No leas el repo entero: solo lo que el tema pida. Si no hay $ARGUMENTS, pregunta en una línea qué
 exploramos.
 
@@ -66,7 +66,7 @@ Cuando el usuario tenga claridad (o la conversación se agote), ofrece con `AskU
 
 1. **Crear la propuesta** → indícale correr `/proyecto:proponer <tema>` y resume en 3-5 líneas lo que esa sesión debe
    heredar: tipo, área, opción elegida, alcance tentativo, resultado esperado y riesgos.
-2. **Guardar apuntes** → escribe `Proyectos/<slug>/exploracion.md` (molde `_Templates/proyecto/exploracion.md`) y
+2. **Guardar apuntes** → escribe `Proyectos/Regulares/<slug>/exploracion.md` (molde `_Templates/proyecto/exploracion.md`) y
    un `propuesta.md` **mínimo** con solo el bloque `## Estado` (`Fase: explorar`, `Área:`, `Resultado esperado:`
    tentativo, próximo paso). Si la carpeta no existe, créala solo si confirma el slug. **Si el área elegida es
    nueva, créala primero** con el procedimiento de `CLAUDE.md` (carpeta, tres descriptores y fila en la tabla): el

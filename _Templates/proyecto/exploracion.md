@@ -11,7 +11,7 @@ Lo que se pensó antes de comprometerse. **No obliga a nada**: es el registro de
 
 ## Qué ya existe y se reusa
 
-<Trabajo previo (incluido `Proyectos/Archivados/`), documentos de áreas, plantillas.>
+<Trabajo previo (incluidas las carpetas `Archivados/` de `Proyectos/`), documentos de áreas, plantillas.>
 
 ## Preguntas abiertas
 

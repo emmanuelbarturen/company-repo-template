@@ -10,11 +10,13 @@ no instalarlo). El contrato es el mismo que el de `validar.ts`: mismos chequeos,
 ## Nombres reservados
 
 Raíz (no son áreas): `Proyectos`, `Decisiones`, `_Referencias`, `_Templates`, `Plans`, `.claude`, `.git`.
-Dentro de `Proyectos/` (no son trabajos): `Tareas`, `Archivados`, `adjuntos`.
+`Proyectos/` tiene estructura fija: `Regulares/` (una carpeta por proyecto) y `Tareas/` (un `.md` por tarea), cada
+una con su `Archivados/`. Nada más vive en su primer nivel salvo `_context.md`.
 
 ## Chequeos (E = error · A = aviso)
 
 1. **V1 Descriptores.** `_context.md` en la raíz y en `Proyectos/` (E); `_rules.md` y `_links.md` en la raíz (A).
+   Existen `Proyectos/Regulares/`, `Proyectos/Tareas/` y el `Archivados/` de cada una (E).
    En cada área (carpeta de la raíz no reservada): `_context.md`, `_rules.md` y `_links.md` (E cada uno).
 2. **V2 Áreas.** Las filas de la tabla «Áreas» de `_context.md` raíz (columna Carpeta, entre acentos graves) contra
    las carpetas reales de la raíz menos las reservadas, en ambos sentidos: declarada sin carpeta (E), carpeta sin
@@ -30,15 +32,18 @@ Dentro de `Proyectos/` (no son trabajos): `Tareas`, `Archivados`, `adjuntos`.
    `Proyectos/`, `_Referencias/`, `_Templates/` y `.claude/` (A).
 7. **V7 Referencias.** `_Referencias/` con un solo nivel de subcarpetas (E); cada archivo listado en `_index.md` por
    su ruta relativa y sin filas que apunten a archivos inexistentes (E).
-8. **V8 Trabajos.** Cada `Proyectos/<slug>/propuesta.md` y `Proyectos/Tareas/<slug>.md` (y los de `Archivados/`)
-   con `## Estado`, `Fase:` en `explorar | proponer | aplicar | pausado | archivado`, y `Área:` que exista en la tabla
+8. **V8 Trabajos.** Cada `Proyectos/Regulares/<slug>/propuesta.md` y `Proyectos/Tareas/<slug>.md` (y los de sus
+   `Archivados/`) con `## Estado`, `Fase:` en `explorar | proponer | aplicar | pausado | archivado`, y `Área:` que exista en la tabla
    de áreas (E). Un trabajo en `Archivados/` sin `Resultado:` (A; `ninguno — …` cuenta como presente).
 9. **V9 Bitácora.** Solo archivos `Q[1-4]-AAAA.md` en `Decisiones/` (E). Desde la primera línea que empieza con
    fecha en adelante, toda línea no vacía empieza con `AAAA-MM-DD ·` (E).
+10. **V10 Carpetas vacías.** Toda carpeta sin ningún archivo dentro (ni `.gitkeep`) fuera de `.git/` (A): git no la
+    versionará.
 
 Detalles de V8 que también aplican a mano: los slugs (carpetas de trabajo, archivos de tarea, `Id` raíz) van en
 kebab-case; un proyecto en fase `aplicar` o `archivado` tiene los cuatro documentos; `Fase: archivado` fuera de
-`Archivados/` es E; las rutas de `Resultado:` son relativas a la raíz, sin `..`, y deben existir. Las fechas de
+`Archivados/` es E; una carpeta en el primer nivel de `Proyectos/` que no sea `Regulares/` ni `Tareas/`, un `.md`
+suelto en `Regulares/` o una carpeta en `Tareas/` que no sea `Archivados/` son E; las rutas de `Resultado:` son relativas a la raíz, sin `..`, y deben existir. Las fechas de
 cabeceras y bitácora deben existir en el calendario.
 
 ## Reporte
