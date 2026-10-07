@@ -1,4 +1,4 @@
-<!-- Creado: AAAA-MM-DD · Actualizado: AAAA-MM-DD · Creador: <nombre> -->
+<!-- Creado: 2026-10-07 · Actualizado: 2026-10-07 · Creador: admin -->
 # Enlaces de <Nombre de la empresa>
 
 Enlaces externos de nivel empresa: documentos compartidos, tableros, carpetas, herramientas. Lo que es de un área

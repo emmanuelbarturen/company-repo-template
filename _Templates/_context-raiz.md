@@ -1,4 +1,4 @@
-<!-- Creado: AAAA-MM-DD · Actualizado: AAAA-MM-DD · Creador: <nombre> -->
+<!-- Creado: 2026-10-07 · Actualizado: 2026-10-07 · Creador: admin -->
 # <Nombre de la empresa>
 
 > **Este archivo se lee PRIMERO** en cualquier trabajo. Es la fuente de verdad de la empresa.

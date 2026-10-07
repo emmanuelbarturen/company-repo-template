@@ -1,11 +1,11 @@
-<!-- Creado: AAAA-MM-DD · Actualizado: AAAA-MM-DD · Creador: <nombre> -->
+<!-- Creado: 2026-10-07 · Actualizado: 2026-10-07 · Creador: admin -->
 # Tarea — <Título>
 
 ## Estado
 - **Fase:** proponer   <!-- explorar | proponer | aplicar | pausado | archivado -->
 - **Área:** <Área>
 - **Resultado esperado:** <archivo en `<Área>/<tema>/`, o «ninguno — <motivo>»>
-- **Última actualización:** AAAA-MM-DD
+- **Última actualización:** 2026-10-07
 - **Próximo paso al retomar:** <qué sigue>
 
 ## Objetivo

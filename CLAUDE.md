@@ -78,13 +78,13 @@ el Estado conserva `Resultado: <rutas>` (o `ninguno — <motivo>`). Reglas compl
 
 ## Convenciones
 
-- **Cabecera de metadatos** en la primera línea de todo `.md`: `<!-- Creado: AAAA-MM-DD · Actualizado: AAAA-MM-DD ·
-Creador: <nombre> -->`. Al editar, actualiza la fecha. Excepciones: comandos (frontmatter YAML) y archivos ajenos
+- **Cabecera de metadatos** en la primera línea de todo `.md`: `<!-- Creado: 2026-10-07 · Actualizado: 2026-10-07 ·
+Creador: admin -->`. Al editar, actualiza la fecha. Excepciones: comandos (frontmatter YAML) y archivos ajenos
   en `_Referencias/`.
 - **Tope de 120 líneas** por archivo, sin contar tablas ni bloques de código. Si se pasa, es otro documento.
   Exentos: `Decisiones/`, `_Referencias/_index.md`, `.claude/`.
 - **Bitácora:** toda decisión importante, cambio de definición o hito va a `Decisiones/Q<N>-<AAAA>.md` como
-  `AAAA-MM-DD · [tipo] texto`. Solo lo que cambia el rumbo, no el trabajo rutinario. Q1 ene-mar · Q2 abr-jun ·
+  `2026-10-07 · [tipo] texto`. Solo lo que cambia el rumbo, no el trabajo rutinario. Q1 ene-mar · Q2 abr-jun ·
   Q3 jul-sep · Q4 oct-dic.
 - **`_Referencias/`** es un estante, no una bandeja: lo de afuera se guarda para consultarse, con su fila en
   `_index.md`. Nada espera ser «procesado». Lo que concluyas leyendo algo de ahí va a su área y cita la fuente.

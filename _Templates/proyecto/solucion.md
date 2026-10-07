@@ -1,4 +1,4 @@
-<!-- Creado: AAAA-MM-DD · Actualizado: AAAA-MM-DD · Creador: <nombre> -->
+<!-- Creado: 2026-10-07 · Actualizado: 2026-10-07 · Creador: admin -->
 # Solución — <Título del trabajo>
 
 El **cómo**. Se escribe cuando los requerimientos de la propuesta están cerrados.

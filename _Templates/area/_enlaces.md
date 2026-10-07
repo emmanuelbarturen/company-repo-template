@@ -1,4 +1,4 @@
-<!-- Creado: AAAA-MM-DD · Actualizado: AAAA-MM-DD · Creador: <nombre> -->
+<!-- Creado: 2026-10-07 · Actualizado: 2026-10-07 · Creador: admin -->
 # Enlaces de <Área>
 
 Enlaces externos de esta área: documentos compartidos, hojas de cálculo, tableros, carpetas. Solo el enlace y para

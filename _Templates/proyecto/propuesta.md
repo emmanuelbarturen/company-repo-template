@@ -1,11 +1,11 @@
-<!-- Creado: AAAA-MM-DD · Actualizado: AAAA-MM-DD · Creador: <nombre> -->
+<!-- Creado: 2026-10-07 · Actualizado: 2026-10-07 · Creador: admin -->
 # Propuesta — <Título del trabajo>
 
 ## Estado
 - **Fase:** proponer   <!-- explorar | proponer | aplicar | pausado | archivado -->
 - **Área:** <Área>
 - **Resultado esperado:** <qué archivo(s) y en qué `<Área>/<tema>/` quedan al terminar; o «ninguno — <motivo>»>
-- **Última actualización:** AAAA-MM-DD
+- **Última actualización:** 2026-10-07
 - **Frentes:** [ ] problema · [ ] actor · [ ] resultado/métrica · [ ] alcance · [ ] flujo · [ ] reglas/borde · [ ] restricciones · [ ] prioridad
 - **Próximo paso al retomar:** <qué sigue>
 
