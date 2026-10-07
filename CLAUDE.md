@@ -1,4 +1,4 @@
-<!-- Creado: 2026-09-27 · Actualizado: 2026-10-06 · Creador: Emmanuel -->
+<!-- Creado: 2026-09-27 · Actualizado: 2026-10-07 · Creador: Emmanuel -->
 
 # Company Cycle OS
 
@@ -56,14 +56,14 @@ Proyectos/Archivados/                      lo cerrado, con su `Resultado:` en el
 _Referencias/_index.md                     archivos de afuera que se consultan; un nivel de subcarpetas por tipo
 Decisiones/Q<N>-<AAAA>.md                  bitácora de la empresa, una línea por evento
 _Templates/                                moldes de descriptores, proyecto, tarea y bitácora
-validar.ts · .ccos/                       validador de estructura y sus patrones
+validar.ts                                 validador de estructura
 ```
 
 ## El ciclo — el ciclo de vida de todo trabajo
 
 | Situación                                                                             | Comando              |
 | ------------------------------------------------------------------------------------- | -------------------- |
-| Primera vez en el repo: nombrar la empresa, declarar áreas y temas, borrar el ejemplo | `/proyecto:setup`    |
+| Primera vez en el repo: nombrar la empresa, declarar áreas y temas                    | `/proyecto:setup`    |
 | Pensar una idea o problema sin compromiso, antes de crear nada                        | `/proyecto:explorar` |
 | Crear o modificar un trabajo hasta tener su plan de tareas                            | `/proyecto:proponer` |
 | Ejecutar el plan y dejar cada resultado en su área y tema                             | `/proyecto:aplicar`  |
@@ -91,12 +91,11 @@ Creador: admin -->`. Al editar, actualiza la fecha. Excepciones: comandos (front
 - **`Plans/`** es scratch de sesión y no se versiona. Un plan de proyecto vive en `Proyectos/<slug>/solucion.md`.
 - **Confidencialidad:** respeta lo que `_rules.md` de la raíz declare que no entra en el repo.
 
-## Validar y publicar
+## Validar
 
 `bun validar.ts` comprueba la estructura (descriptores, tablas contra carpetas, cabeceras, tope de líneas, índice
-de referencias, trabajos con Estado). `bun validar.ts --publicar` añade la higiene: patrones de `.ccos/higiene.txt`
-y `.ccos/higiene.local.txt` que no deben salir del repo. Si `bun` no está, `/proyecto:validar` hace lo mismo a mano.
-Córrelo después de `setup`, al cerrar un trabajo y antes de compartir el repo.
+de referencias, trabajos con Estado, bitácora). Si `bun` no está, `/proyecto:validar` hace lo mismo a mano. Córrelo
+después de `setup`, al cerrar un trabajo y antes de compartir el repo.
 
 ## Notas
 

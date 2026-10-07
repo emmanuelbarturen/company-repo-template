@@ -1,4 +1,4 @@
-<!-- Creado: 2026-09-27 · Actualizado: 2026-09-27 · Creador: company-cycle-os -->
+<!-- Creado: 2026-09-27 · Actualizado: 2026-10-07 · Creador: company-cycle-os -->
 # Company Cycle OS
 
 **Una forma de operar tu empresa en Markdown, con Claude Code como copiloto.**
@@ -17,18 +17,14 @@ Todo en español. Sin instalación, sin dependencias, sin integraciones obligato
    archivos en tu carpeta). La primera vez la app pregunta si confías en la carpeta: acepta, o nada del framework
    carga. **Solo la pestaña *Code* sirve**: *Chat* y *Cowork* no leen los comandos del repo aunque les des acceso a la
    carpeta. También funciona desde la terminal con `claude` dentro de la carpeta, pero no hace falta.
-3. Escribe **`/proyecto:setup`**. Te pregunta el nombre de tu empresa, sus áreas y temas, borra la empresa de ejemplo y
-   deja el repo listo. Después, **`/proyecto:explorar`** con el primer problema que quieras resolver.
+3. Escribe **`/proyecto:setup`**. Te pregunta el nombre de tu empresa, sus áreas y temas y deja el repo listo.
+   Después, **`/proyecto:explorar`** con el primer problema que quieras resolver.
 
-Tres avisos para la primera vez. Si al escribir `/proyecto:` no aparecen los comandos, comprueba que estás en la
+Dos avisos para la primera vez. Si al escribir `/proyecto:` no aparecen los comandos, comprueba que estás en la
 pestaña *Code* y que la sesión está abierta **sobre esta carpeta** (no sobre una carpeta que la contiene); si sigue sin
 aparecer, pídeselo en palabras: *«ejecuta el comando setup de proyecto»*. Durante `setup` la app te pedirá permiso
-varias veces para borrar y escribir archivos: es normal, borra solo la empresa de ejemplo y escribe la tuya. Y los
-permisos que el repo trae declarados solo aplican después de aceptar el diálogo de confianza de la carpeta.
-
-La carpeta viene con una empresa inventada, **Taller Norte**, para que veas el framework en uso antes de correr
-`setup`: tres áreas con sus temas, un proyecto en curso, uno archivado con su resultado ya guardado en el área que
-le tocaba, y una tarea pendiente. Léela como ejemplo; `setup` la borra por completo.
+varias veces para escribir archivos: es normal. Y los permisos que el repo trae declarados solo aplican después de
+aceptar el diálogo de confianza de la carpeta.
 
 ## La idea en cuatro frases
 
@@ -49,7 +45,7 @@ le tocaba, y una tarea pendiente. Léela como ejemplo; `setup` la borra por comp
 
 | Comando | Para qué |
 |---|---|
-| `/proyecto:setup` | Primera vez: nombra la empresa, declara áreas y temas, borra el ejemplo, primer commit |
+| `/proyecto:setup` | Primera vez: nombra la empresa, declara áreas y temas, primer commit |
 | `/proyecto:explorar` | Pensar una idea sin compromiso. No escribe archivos salvo que se lo pidas |
 | `/proyecto:proponer` | Entrevista en vivo → propuesta, solución y plan de tareas, con área y resultado esperado |
 | `/proyecto:aplicar` | **Ejecuta** el plan; cada resultado nace en `<Área>/<tema>/` |
@@ -78,24 +74,17 @@ Proyectos/<slug>/                  un proyecto: propuesta · exploracion · solu
 Proyectos/Tareas/<slug>.md         una tarea
 Proyectos/Archivados/              lo cerrado, con `Resultado:` en su estado
 _Referencias/_index.md             el estante
-Decisiones/Q3-2026.md              la bitácora
-_Templates/  validar.ts  .ccos/   moldes, validador y sus patrones
+Decisiones/Q<N>-<AAAA>.md          la bitácora
+_Templates/  validar.ts            moldes y validador
 ```
 
 Las reglas completas están en `CLAUDE.md`, que es lo que el asistente lee al abrir cada sesión.
 
 ## Antes de compartir una copia
 
-Si vas a pasar tu repo a alguien más, o hacerlo público, corre la higiene:
-
-```
-bun validar.ts --publicar
-```
-
-Busca los patrones de `.ccos/higiene.txt` (rutas de tu máquina, correos, claves) y los de
-`.ccos/higiene.local.txt`, que **no se versiona** y donde pones lo tuyo: tu marca, nombres propios, dominios
-internos. El objetivo son **cero coincidencias**, también en el historial de git. Y `Plans/` queda fuera del repo
-por defecto: son borradores de sesión con rutas locales.
+Si vas a pasar tu repo a alguien más, o hacerlo público, revisa que no viajen rutas de tu máquina, correos, claves
+ni datos de clientes, también en el historial de git. `Plans/` queda fuera del repo por defecto: son borradores de
+sesión con rutas locales.
 
 ## Licencia
 
