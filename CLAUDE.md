@@ -83,6 +83,7 @@ Decisiones/Q<N>-<AAAA>.md                  bitácora de la empresa, una línea p
 | Ejecutar el plan y dejar cada resultado en su área y tema                             | `/proyecto:aplicar`  |
 | Cerrar un trabajo: escribir sus documentos en el área, archivar, registrar en bitácora | `/proyecto:archivar` |
 | Revisar la estructura cuando no hay `bun`                                             | `/proyecto:validar`  |
+| Traer la versión más nueva del framework desde su plantilla; pregunta ante conflictos | `/update-framework`  |
 
 Dos tamaños de trabajo. **Tarea** (cabe en una página, un actor, sin solución técnica propia, hasta ~5 pasos):
 un archivo `Proyectos/Tareas/<slug>.md`. **Proyecto**: carpeta `Proyectos/Regulares/<slug>/` con los cuatro

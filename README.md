@@ -9,28 +9,35 @@ bitácora de decisiones. El asistente aprende cómo está organizada tu empresa 
 gestor de proyectos ordenado: cada archivo que produce tiene un solo hogar, decidido antes de escribirlo.
 
 **Está pensado para usarse en la pestaña *Code* de la app de escritorio de Claude**, no en una terminal: no hay que
-instalar Claude Code ni escribir comandos de sistema. Todo en español, sin dependencias ni integraciones obligatorias.
+instalar nada ni escribir comandos de sistema. Todo en español, sin dependencias ni integraciones obligatorias.
 **Tampoco necesitas saber git:** el asistente guarda y sube tu trabajo por ti, y si tiene que preguntarte algo lo hace
 en lenguaje de negocio.
 
-## Arrancar en 3 pasos (en la pestaña *Code* de la app de escritorio de Claude)
+## Instalar en 3 pasos (desde la pestaña *Code* de la app de escritorio de Claude)
 
-1. **Descarga esta carpeta** («Use this template» o «Download ZIP») y descomprímela donde guardes tu trabajo.
-2. **Ábrela en la app de escritorio de Claude, en la pestaña *Code***: nueva sesión → entorno *Local* → carpeta de
-   proyecto = esta carpeta, **sin marcar la opción *worktree*** (trabajaría sobre una copia aislada y no verías los
-   archivos en tu carpeta). La primera vez la app pregunta si confías en la carpeta: acepta, o nada del framework
-   carga. **Solo la pestaña *Code* sirve**: *Chat* y *Cowork* no leen los comandos del repo aunque les des acceso a la
-   carpeta. No hace falta la terminal para nada.
-3. Escribe **`/proyecto:setup`**. Te pregunta por tu empresa y deja el repo listo; no te pide áreas ni temas. Al
-   final te ofrece guardar una copia en la nube (GitHub) y te guía si no sabes cómo.
-   Después, **`/proyecto:nuevo`** con el primer problema que quieras resolver: ahí eliges en qué área (carpeta) y
-   en qué tema va, entre lo que ya existe y un catálogo sugerido, y la carpeta se crea en ese momento.
+1. **Crea un repositorio vacío en GitHub.** Entra a github.com (si no tienes cuenta, créala: es gratis) → botón
+   **New** (o ve a github.com/new) → ponle nombre, por ejemplo el de tu empresa → marca **Private** → **no marques**
+   «Add a README», «Add .gitignore» ni «Choose a license»: tiene que quedar vacío de verdad → **Create repository**.
+2. **Abre ese repositorio en la app de escritorio de Claude, pestaña *Code*.** Nueva sesión → elige el repositorio
+   que acabas de crear. La primera vez la app te pedirá conectar tu cuenta de GitHub y autorizar el acceso a ese
+   repositorio: acepta. **Solo la pestaña *Code* sirve**: *Chat* y *Cowork* no leen los comandos del repo.
+3. **Pega este mensaje tal cual y espera a que termine:**
 
-Dos avisos para la primera vez. Si al escribir `/proyecto:` no aparecen los comandos, comprueba que estás en la
-pestaña *Code* y que la sesión está abierta **sobre esta carpeta** (no sobre una carpeta que la contiene); si sigue sin
-aparecer, pídeselo en palabras: *«ejecuta el comando setup de proyecto»*. Durante `setup` la app te pedirá permiso
-varias veces para escribir archivos: es normal. Y los permisos que el repo trae declarados solo aplican después de
-aceptar el diálogo de confianza de la carpeta.
+   ```
+   Clona el proyecto https://github.com/emmanuelbarturen/company-repo-template en este repositorio, en la rama main,
+   conservando todo su historial, y súbelo. Cuando termines, confírmame que quedó listo y recuérdame que debo abrir
+   una sesión nueva sobre este repositorio y escribir /proyecto:setup.
+   ```
+
+   Cuando confirme, **cierra esa sesión y abre una nueva** sobre el mismo repositorio (los comandos del framework se
+   cargan al abrir la sesión) y escribe **`/proyecto:setup`**: te pregunta por tu empresa y deja todo listo; no te
+   pide áreas ni temas. Después, **`/proyecto:nuevo`** con el primer problema que quieras resolver: ahí eliges área y
+   tema, entre lo que ya existe y un catálogo sugerido, y la carpeta se crea en ese momento.
+
+Dos avisos para la primera vez. Si al escribir `/proyecto:` no aparecen los comandos, es que la sesión se abrió antes
+de que el framework estuviera en el repositorio: ciérrala y abre una nueva; si sigue sin aparecer, pídelo en palabras:
+*«ejecuta el comando setup de proyecto»*. Y la app te pedirá permiso varias veces para escribir archivos y guardar:
+es normal, acepta.
 
 ## La idea en cuatro frases
 
@@ -58,6 +65,7 @@ aceptar el diálogo de confianza de la carpeta.
 | `/proyecto:aplicar` | **Ejecuta** el plan; cada resultado nace en `<Área>/<tema>/` |
 | `/proyecto:archivar` | Escribe la documentación resultante en su área, decide y confirma la carpeta, archiva y registra el hito |
 | `/proyecto:validar` | El validador a mano, para máquinas sin `bun` |
+| `/update-framework` | Trae la versión más nueva del framework desde su plantilla; solo toca lo del framework y pregunta ante conflictos |
 
 Y además: `_Referencias/` (archivos de afuera que se consultan, con índice), `Decisiones/` (bitácora por quarter),
 `CHANGELOG.md` (historia del framework) y, dentro de `.claude/`, la maquinaria que no hace falta mirar: los comandos,
