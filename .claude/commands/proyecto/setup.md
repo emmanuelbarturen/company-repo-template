@@ -4,8 +4,9 @@ argument-hint: (sin argumentos)
 ---
 
 Pones **Company Cycle OS** a punto para la empresa del usuario, **una sola vez**. Al terminar, la raíz describe su
-empresa real, cada área tiene sus tres descriptores y sus temas, y el repo tiene su primer commit. El usuario
-puede estar en la app de escritorio sin terminal: todo lo que haya que ejecutar lo ejecutas tú, pidiendo permiso cuando la herramienta lo pida.
+empresa real, cada área tiene sus tres descriptores y sus temas, y el repo tiene su primer commit. El usuario puede
+estar en la app de escritorio sin terminal: todo lo que haya que ejecutar lo ejecutas tú, pidiendo permiso cuando la
+herramienta lo pida.
 
 ## 0. Reconocer el terreno
 
