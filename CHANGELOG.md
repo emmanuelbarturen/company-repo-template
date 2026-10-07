@@ -12,7 +12,9 @@ Qué cambió en **Company Cycle OS** y qué debe migrar quien ya lo usa. La bit�
   ejecuta desde otra carpeta, encuentra la raíz solo. Dentro de `.claude/`, solo `templates/` se revisa (cabecera con
   marcadores permitidos y tope de líneas).
 - `README.md` deja claro que el repo está pensado para la pestaña *Code* de la app de escritorio de Claude, sin
-  terminal ni instalación de Claude Code.
+  terminal ni instalación de Claude Code. La instalación documentada pasa a ser: repositorio vacío en GitHub + un
+  prompt en la pestaña *Code* que clona la plantilla conservando el historial, y luego `/proyecto:setup` en una
+  sesión nueva. Ya no se documenta la descarga en ZIP ni la carpeta local.
 - Nuevo comando **`/update-framework`**: trae la versión más nueva del framework desde la plantilla
   `emmanuelbarturen/company-repo-template`. Compara versiones por el CHANGELOG, solo actualiza archivos del framework
   (nunca los de la empresa), aplica las líneas «Migración:» pendientes y pregunta antes de ejecutar ante cualquier
