@@ -11,6 +11,8 @@ Qué cambió en **Company Cycle OS** y qué debe migrar quien ya lo usa. La bit�
   empresa, `CLAUDE.md`, `README.md` y `CHANGELOG.md`. El validador se corre con `bun .claude/validar.ts`; si se
   ejecuta desde otra carpeta, encuentra la raíz solo. Dentro de `.claude/`, solo `templates/` se revisa (cabecera con
   marcadores permitidos y tope de líneas).
+- `README.md` deja claro que el repo está pensado para la pestaña *Code* de la app de escritorio de Claude, sin
+  terminal ni instalación de Claude Code.
 - **Migración:** `git mv _Templates .claude/templates && git mv validar.ts .claude/validar.ts`, y quitar la fila de
   `_Templates/` de la tabla «Carpetas de servicio» de `_context.md`.
 
