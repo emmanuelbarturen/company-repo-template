@@ -1,19 +1,22 @@
-<!-- Creado: 2026-10-07 · Actualizado: 2026-10-07 · Creador: admin -->
-# Reglas de Taller Norte
+<!-- Creado: 2026-10-07 · Actualizado: 2026-10-07 · Creador: System -->
+# Reglas de <Nombre de la empresa>
 
 Reglas que aplican a todo el repo, por encima de las de cada área. Las de un área viven en su `_rules.md`.
 
 ## Cómo se documenta
 
-- Español, tono directo. Nombres de archivo en kebab-case, sin fechas en el nombre: la fecha va en la cabecera.
-- Toda cifra cita de dónde salió (un archivo de `_Referencias/` o un documento del área).
+<Convenciones de toda la empresa: idioma, tono, nombres de archivo, cómo se citan fuentes, qué se revisa y cada
+cuánto. Si no hay ninguna todavía, escribe «ninguna por ahora».>
 
 ## Cómo se crea un proyecto
 
-- Todo proyecto declara su `Área:` y su `Resultado esperado:` antes de la primera tarea.
-- Un proyecto no arranca sin `tareas.md`. Lo aprueba el administrador.
+<Qué debe existir antes de proponer un trabajo (quién lo pide, qué lo justifica), quién aprueba, y qué convenciones
+técnicas o de negocio hereda cualquier proyecto de esta empresa.>
 
 ## Confidencialidad
 
-- NUNCA se guardan datos de clientes reales ni matrículas de vehículos.
-- Las credenciales nunca se guardan en el repositorio.
+<Qué no entra en este repo bajo ninguna circunstancia. Regla sugerida: **solo plano de control** — cómo opera la
+empresa (ingresos, conteos, funnel, decisiones), nunca los datos personales de clientes finales ni credenciales.
+Marca `no-pii: sí` si la adoptas.>
+
+- `no-pii: <sí / no>`

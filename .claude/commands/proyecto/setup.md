@@ -1,70 +1,57 @@
 ---
-description: Primera sesión en el repo — nombra tu empresa, declara sus áreas y temas, crea los descriptores, borra la empresa de ejemplo y deja el repo versionado. Se corre una sola vez
+description: Primera sesión en el repo — nombra tu empresa, escribe los descriptores de la raíz y deja el repo versionado. Las áreas y los temas no se declaran aquí; nacen con el primer trabajo. Se corre una sola vez
 argument-hint: (sin argumentos)
 ---
 
 Pones **Company Cycle OS** a punto para la empresa del usuario, **una sola vez**. Al terminar, la raíz describe su
-empresa real, cada área tiene sus tres descriptores y sus temas, la empresa de ejemplo desapareció por completo, y
-el repo tiene su primer commit. El usuario puede estar en la app de escritorio sin terminal: todo lo que haya que
-ejecutar lo ejecutas tú, pidiendo permiso cuando la herramienta lo pida.
+empresa real y el repo tiene su primer commit. **Aquí no se declara ninguna área ni ningún tema**: la tabla de áreas
+nace vacía y cada carpeta se crea cuando el primer trabajo la necesita, desde `/proyecto:nuevo` o
+`/proyecto:proponer`, que preguntan en qué área y en qué tema va (procedimiento en `CLAUDE.md`, «Áreas y temas»).
+El usuario puede estar en la app de escritorio sin terminal: todo lo que haya que ejecutar lo ejecutas tú, pidiendo
+permiso cuando la herramienta lo pida.
 
 ## 0. Reconocer el terreno
 
 Lee `_context.md` de la raíz y mira el campo `Id` de la ficha.
 
-- **`Id` = `ejemplo`** → copia recién descargada con la empresa de muestra (Taller Norte). Sigue al paso 1.
+- **`Id` = `mi-empresa`** (el valor con el que viene la plantilla) → copia recién descargada. Sigue al paso 1.
 - **Cualquier otro valor** → el repo ya está en uso. Dilo y pregunta con `AskUserQuestion` (header "Repo en uso"):
-  **Solo agregar áreas** / **Solo revisar la estructura** (corre el paso 6 y termina) / **Cancelar**. **Nunca
-  reconfigures un repo en uso sin que lo confirme.**
+  **Solo revisar la estructura** (corre el paso 4 y termina) / **Cancelar**. **Nunca reconfigures un repo en uso sin
+  que lo confirme.** Si lo que quiere es agregar un área, eso no se hace aquí: se hace desde el trabajo que la
+  necesite.
 
-Comprueba también si hay `bun`: `which bun`. Guarda el resultado para el paso 6.
+Comprueba también si hay `bun`: `which bun`. Guarda el resultado para el paso 4.
 
 ## 1. La empresa
 
 Pregunta en una sola tanda (una línea por dato, acepta la respuesta completa): nombre, qué hace y para quién,
-etapa (idea / validación / operando / escalando), modelo de negocio, cuántas personas, moneda de reporte, y **qué
-nombre va como creador** en las cabeceras cuando escribas tú. Confírmale la ficha antes de escribir nada.
+etapa (idea / validación / operando / escalando), modelo de negocio, cuántas personas y moneda de reporte.
+**El creador por defecto de las cabeceras es `System` y no se pregunta**: va fijo en la ficha. Confírmale la ficha
+antes de escribir nada.
 
-## 2. Las áreas — se declaran aquí, nunca por tu cuenta
+Si al describir la empresa menciona sus áreas, no las crees ni las preguntes: dile que se crearán una a una con el
+primer trabajo que las necesite. Solo si lo pide de forma explícita, crea esa área con el procedimiento de
+`CLAUDE.md`.
 
-Presenta el catálogo sugerido de `_Templates/_context-raiz.md` con `AskUserQuestion` (`multiSelect: true`, header
-"Áreas"). La opción de texto libre sirve para áreas que no estén en el catálogo. Reglas:
-
-- **No agregues ni una sola área que no haya marcado**, ni para que la estructura se vea completa. Una empresa con
-  una sola área es válida.
-- Nombres de carpeta **sin tildes, sin espacios, en singular o plural como el usuario lo diga**: la carpeta es el
-  identificador y no se renombra. El nombre bonito va en el `_context.md` del área.
-- Por cada área, pregunta en una línea **sus temas iniciales** (una o dos subcarpetas bastan; un área con un solo
-  tema es válida). Los temas también son carpetas sin tildes.
-
-## 3. Borrar la empresa de ejemplo — por manifiesto
-
-Lee `.ccos/ejemplo.txt`. Borra **exactamente** las rutas listadas ahí y **ninguna otra**. Los descriptores de la
-raíz, `_Referencias/_index.md` y `Decisiones/` **no se borran: se reescriben** en el paso 4. Antes de borrar, muestra
-la lista, avisa que la app va a pedir permiso por cada borrado, y confirma con `AskUserQuestion` (header "Ejemplo"):
-**Borrar** / **Conservar por ahora** (si conserva, dilo al final: el validador va a fallar hasta que se borre). No
-infieras qué es ejemplo: el manifiesto manda. Si el comando se interrumpe y se vuelve a correr, este paso es seguro:
-borrar lo que ya no existe no hace nada.
-
-## 4. Crear la estructura
+## 2. Crear la estructura
 
 1. Raíz: `_context.md` desde `_Templates/_context-raiz.md` con la ficha del paso 1 (`Id` = un slug en kebab-case
-   del nombre), la tabla de áreas **recortada a lo declarado** y «Trabajos activos» vacío; `_rules.md` desde
-   `_Templates/_rules-raiz.md`; `_enlaces.md` desde `_Templates/_enlaces-raiz.md`.
-2. Por cada área: la carpeta, sus tres descriptores desde `_Templates/area/` con la responsabilidad **redactada**
-   (no en blanco) y la tabla de temas con lo declarado, y una carpeta por tema.
-3. `Decisiones/Q<N>-<AAAA>.md` del quarter actual desde `_Templates/decisiones-quarter.md`, con la primera línea:
-   `AAAA-MM-DD · [hito] Adopción de Company Cycle OS: <n> áreas declaradas (<lista>)`.
-4. `_Referencias/_index.md` desde la forma del que borraste, con la tabla vacía.
-5. Fecha de hoy y el creador del paso 1 en todas las cabeceras.
+   del nombre; `Creador por defecto` = `System`), la tabla de áreas **vacía, solo con su encabezado**, y «Trabajos
+   activos» vacío; `_rules.md` desde `_Templates/_rules-raiz.md`; `_links.md` desde `_Templates/_links-raiz.md`.
+2. `Decisiones/Q<N>-<AAAA>.md` del quarter actual desde `_Templates/decisiones-quarter.md`, con la primera línea:
+   `AAAA-MM-DD · [hito] Adopción de Company Cycle OS — <empresa>`.
+3. `_Referencias/_index.md` con la tabla vacía (ya viene así; solo se actualiza su cabecera).
+4. Fecha de hoy y `Creador: System` en todas las cabeceras.
 
-## 5. Confidencialidad
+No crees ninguna carpeta de área ni de tema en este paso.
+
+## 3. Confidencialidad
 
 Pregunta con `AskUserQuestion` (header "Datos"): *¿Este repo debe quedar libre de datos personales de clientes
 finales (solo cómo opera la empresa: cifras agregadas, decisiones, procesos)?* **Sí, regla no-pii** (recomendado) /
 **No hace falta**. Escribe la respuesta en la sección Confidencialidad de `_rules.md` de la raíz.
 
-## 6. Validar y versionar
+## 4. Validar y versionar
 
 1. **Si hay `bun`:** corre `bun validar.ts` y corrige lo que salga hasta que dé 0 errores. **Si no hay `bun`:**
    ofrece con `AskUserQuestion` (header "Validador"): **Instalarlo ahora** (corre el instalador oficial de
@@ -73,9 +60,10 @@ finales (solo cómo opera la empresa: cifras agregadas, decisiones, procesos)?* 
 3. Pregunta si quiere un remoto. Si sí, pídele la URL del repo **privado** que haya creado en su proveedor (eso lo
    hace él desde la web) y corre `git remote add origin <url>`. No hagas push sin que lo pida.
 
-## 7. Confirmar
+## 5. Confirmar
 
-Devuelve en pocas líneas: la empresa, sus áreas con sus temas, si se borró el ejemplo, el resultado del validador,
-el commit, y el siguiente paso: **`/proyecto:explorar`** para arrancar el primer trabajo.
+Devuelve en pocas líneas: la empresa, el resultado del validador, el commit, y el siguiente paso:
+**`/proyecto:nuevo`** para arrancar el primer trabajo, recordándole que ahí se elige el área y el tema donde
+quedará su resultado.
 
 Idioma: español siempre. Directo, breve, cero relleno.

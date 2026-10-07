@@ -1,4 +1,4 @@
-<!-- Creado: 2026-10-07 · Actualizado: 2026-10-07 · Creador: admin -->
+<!-- Creado: 2026-10-07 · Actualizado: 2026-10-07 · Creador: System -->
 # Decisiones — Q<N> <AAAA>
 
 Una línea por evento, con fecha. Solo lo que cambia el rumbo o la definición: decisiones importantes, cambios de

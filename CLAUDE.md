@@ -1,4 +1,4 @@
-<!-- Creado: 2026-09-27 · Actualizado: 2026-10-06 · Creador: Emmanuel -->
+<!-- Creado: 2026-09-27 · Actualizado: 2026-10-07 · Creador: Emmanuel -->
 
 # Company Cycle OS
 
@@ -9,7 +9,7 @@ de escritorio (o con `claude` en la terminal): en _Chat_ y _Cowork_ el ciclo no 
 ## Regla #1 — clasifica antes de ejecutar
 
 En la **primera respuesta de cada sesión**, antes de hacer nada, pregunta con `AskUserQuestion` si lo que viene es
-**(a) un trabajo nuevo**, que arranca con `/proyecto:explorar`, o **(b) una pregunta suelta**. Nada se ejecuta hasta
+**(a) un trabajo nuevo**, que arranca con `/proyecto:nuevo`, o **(b) una pregunta suelta**. Nada se ejecuta hasta
 que responda. Se salta solo si el primer mensaje ya lo dice: invoca un comando `/proyecto:*`, retoma un trabajo por su
 nombre, o pide leer un archivo concreto. En la duda, pregunta. Sin esta clasificación, el trabajo que merecía entrar
 al ciclo termina como conversación suelta y se pierde.
@@ -31,11 +31,26 @@ nada dentro de ella.**
 | `_rules.md`   | raíz, cada área               | reglas: cómo se documenta aquí y cómo se crea un proyecto de esta área                      |
 | `_links.md` | raíz, cada área               | enlaces externos: documentos, tableros, carpetas compartidas                                |
 
-**Las áreas se declaran en la tabla de `_context.md` raíz, y los temas en la tabla de cada área.** El ruteo se hace
-contra esas tablas, nunca contra un catálogo asumido. **Ninguna sesión crea un área ni un tema sin preguntar**: si
-nada encaja, ofrece los existentes más «crear uno nuevo» con `AskUserQuestion`. Si aceptan, crea la carpeta **y** su
-fila en la tabla (y en un área, sus tres descriptores desde `_Templates/area/`). Si una carpeta existe sin
-descriptor, pregunta qué es antes de escribirle uno.
+**Las áreas viven en la tabla de `_context.md` raíz, y los temas en la tabla de cada área.** El ruteo se hace
+contra esas tablas, nunca contra un catálogo asumido. Si una carpeta existe sin descriptor, pregunta qué es antes de
+escribirle uno.
+
+## Áreas y temas — se crean con el primer trabajo, nunca por adelantado
+
+`setup` no declara áreas ni temas: **la tabla de áreas nace vacía** y crece una fila por vez cuando un trabajo lo
+necesita; igual la tabla de temas de cada área. Quien elige es siempre el usuario, con `AskUserQuestion`:
+
+- **Área:** al clasificar un trabajo nuevo (`explorar`, `proponer`). Hasta 4 opciones: primero las filas que ya
+  tiene la tabla, luego las de `_Templates/catalogo-areas.md` más probables por el tema; cualquier otro nombre, por
+  texto libre.
+- **Tema:** al fijar dónde queda el resultado (`proponer`; también `aplicar` y `archivar` si un archivo no encaja en
+  ningún tema). Primero los temas de la tabla del área, luego los sugeridos en el catálogo para esa área, más «otro».
+- **Al crear:** un área es su carpeta, sus tres descriptores desde `_Templates/area/` con la responsabilidad
+  redactada, y su fila en la tabla de la raíz. Un tema es su carpeta (con `.gitkeep` mientras va vacía; se borra al
+  llegar el primer archivo) y su fila en la tabla del área. Carpetas sin tildes ni espacios: la carpeta es el
+  identificador. Un tema se nombra por el tipo de documentos que vivirán ahí, nunca por el proyecto que los produjo.
+- **Nunca** crees un área o un tema que el usuario no haya elegido, ni dejes una carpeta sin su fila: el validador
+  lo marca.
 
 ## Gestor de proyectos — todo archivo tiene un solo hogar
 
@@ -50,37 +65,40 @@ carpeta del proyecto «por ahora»: la carpeta del proyecto guarda el plan, no l
 _context.md · _rules.md · _links.md      la empresa: ficha, tabla de áreas, reglas, enlaces
 <Área>/_context.md _rules.md _links.md   cada área declarada, con su tabla de temas
 <Área>/<tema>/*.md                         los documentos, siempre dentro de un tema
-Proyectos/<slug>/                          proyecto: propuesta.md · exploracion.md · solucion.md · tareas.md
-Proyectos/Tareas/<slug>.md                 mini-proyecto: un solo archivo
-Proyectos/Archivados/                      lo cerrado, con su `Resultado:` en el Estado
+Proyectos/Regulares/<slug>/                proyecto: propuesta.md · exploracion.md · solucion.md · tareas.md
+Proyectos/Regulares/Archivados/<slug>/     proyectos cerrados, con su `Resultado:` en el Estado
+Proyectos/Tareas/<slug>.md                 tarea (mini-proyecto): un solo archivo
+Proyectos/Tareas/Archivados/<slug>.md      tareas cerradas
 _Referencias/_index.md                     archivos de afuera que se consultan; un nivel de subcarpetas por tipo
 Decisiones/Q<N>-<AAAA>.md                  bitácora de la empresa, una línea por evento
-_Templates/                                moldes de descriptores, proyecto, tarea y bitácora
-validar.ts · .ccos/                       validador de estructura y sus patrones
+_Templates/                                moldes de descriptores, proyecto, tarea y bitácora; catálogo de áreas
+validar.ts                                 validador de estructura
 ```
 
 ## El ciclo — el ciclo de vida de todo trabajo
 
 | Situación                                                                             | Comando              |
 | ------------------------------------------------------------------------------------- | -------------------- |
-| Primera vez en el repo: nombrar la empresa, declarar áreas y temas, borrar el ejemplo | `/proyecto:setup`    |
-| Pensar una idea o problema sin compromiso, antes de crear nada                        | `/proyecto:explorar` |
+| Primera vez en el repo: nombrar la empresa y dejarla versionada (sin áreas ni temas)  | `/proyecto:setup`    |
+| Pensar una idea o problema sin compromiso, antes de crear nada                        | `/proyecto:nuevo`    |
 | Crear o modificar un trabajo hasta tener su plan de tareas                            | `/proyecto:proponer` |
 | Ejecutar el plan y dejar cada resultado en su área y tema                             | `/proyecto:aplicar`  |
-| Cerrar un trabajo: guardar el resultado, archivar, registrar en la bitácora           | `/proyecto:archivar` |
+| Cerrar un trabajo: escribir sus documentos en el área, archivar, registrar en bitácora | `/proyecto:archivar` |
 | Revisar la estructura cuando no hay `bun`                                             | `/proyecto:validar`  |
 
 Dos tamaños de trabajo. **Tarea** (cabe en una página, un actor, sin solución técnica propia, hasta ~5 pasos):
-un archivo `Proyectos/Tareas/<slug>.md`. **Proyecto**: carpeta `Proyectos/<slug>/` con los cuatro documentos. Ambos
-llevan `Área:` y `Resultado esperado:`, y un bloque `## Estado` con `Fase:` (`explorar | proponer | aplicar |
-pausado | archivado`) que hace la sesión retomable. **Al archivar se pregunta siempre** dónde queda el resultado, y
-el Estado conserva `Resultado: <rutas>` (o `ninguno — <motivo>`). Reglas completas en `Proyectos/_context.md`.
+un archivo `Proyectos/Tareas/<slug>.md`. **Proyecto**: carpeta `Proyectos/Regulares/<slug>/` con los cuatro
+documentos. Ambos llevan `Área:` y `Resultado esperado:`, y un bloque `## Estado` con `Fase:` (`explorar | proponer |
+aplicar | pausado | archivado`) que hace la sesión retomable. **Al archivar, el asistente escribe los documentos de
+resultado que falten, decide el tema con criterio de organización y lo confirma siempre**; el Estado conserva
+`Resultado: <rutas>` (o `ninguno — <motivo>`) y el trabajo pasa al `Archivados/` de su rama. Reglas completas en
+`Proyectos/_context.md`.
 
 ## Convenciones
 
 - **Cabecera de metadatos** en la primera línea de todo `.md`: `<!-- Creado: 2026-10-07 · Actualizado: 2026-10-07 ·
-Creador: admin -->`. Al editar, actualiza la fecha. Excepciones: comandos (frontmatter YAML) y archivos ajenos
-  en `_Referencias/`.
+Creador: System -->`. El creador por defecto es `System` (fijo en la ficha; no se pregunta). Al editar, actualiza la
+  fecha. Excepciones: comandos (frontmatter YAML) y archivos ajenos en `_Referencias/`.
 - **Tope de 120 líneas** por archivo, sin contar tablas ni bloques de código. Si se pasa, es otro documento.
   Exentos: `Decisiones/`, `_Referencias/_index.md`, `.claude/`.
 - **Bitácora:** toda decisión importante, cambio de definición o hito va a `Decisiones/Q<N>-<AAAA>.md` como
@@ -88,15 +106,18 @@ Creador: admin -->`. Al editar, actualiza la fecha. Excepciones: comandos (front
   Q3 jul-sep · Q4 oct-dic.
 - **`_Referencias/`** es un estante, no una bandeja: lo de afuera se guarda para consultarse, con su fila en
   `_index.md`. Nada espera ser «procesado». Lo que concluyas leyendo algo de ahí va a su área y cita la fuente.
-- **`Plans/`** es scratch de sesión y no se versiona. Un plan de proyecto vive en `Proyectos/<slug>/solucion.md`.
+- **`Plans/`** es scratch de sesión y no se versiona. Un plan de proyecto vive en
+  `Proyectos/Regulares/<slug>/solucion.md`.
+- **`.gitkeep` en toda carpeta vacía que deba verse:** git no versiona carpetas vacías. Toda carpeta que nace sin
+  archivos (un tema nuevo, los `Archivados/` de `Proyectos/`) lleva un `.gitkeep`, que se borra al llegar el primer
+  archivo. El validador avisa de las carpetas vacías que no lo tienen (V10).
 - **Confidencialidad:** respeta lo que `_rules.md` de la raíz declare que no entra en el repo.
 
-## Validar y publicar
+## Validar
 
 `bun validar.ts` comprueba la estructura (descriptores, tablas contra carpetas, cabeceras, tope de líneas, índice
-de referencias, trabajos con Estado). `bun validar.ts --publicar` añade la higiene: patrones de `.ccos/higiene.txt`
-y `.ccos/higiene.local.txt` que no deben salir del repo. Si `bun` no está, `/proyecto:validar` hace lo mismo a mano.
-Córrelo después de `setup`, al cerrar un trabajo y antes de compartir el repo.
+de referencias, trabajos con Estado, bitácora). Si `bun` no está, `/proyecto:validar` hace lo mismo a mano. Córrelo
+después de `setup`, al cerrar un trabajo y antes de compartir el repo.
 
 ## Notas
 

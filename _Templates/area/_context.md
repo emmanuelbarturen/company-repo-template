@@ -1,4 +1,4 @@
-<!-- Creado: 2026-10-07 · Actualizado: 2026-10-07 · Creador: admin -->
+<!-- Creado: 2026-10-07 · Actualizado: 2026-10-07 · Creador: System -->
 # <Área>
 
 ## Responsabilidad
@@ -18,7 +18,7 @@ encaja en ningún tema, se pregunta antes de crear uno. Un área con un solo tem
 ## Qué NO vive aquí
 
 <Lo que parece de esta área pero va a otra, y a cuál. El plan de un proyecto nunca vive aquí: va a
-`Proyectos/<slug>/`. Aquí llegan sus resultados.>
+`Proyectos/Regulares/<slug>/`. Aquí llegan sus resultados.>
 
 ## Datos operativos
 

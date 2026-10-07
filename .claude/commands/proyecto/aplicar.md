@@ -17,9 +17,9 @@ Lee `_context.md` y `_rules.md` de la raíz y `Proyectos/_context.md`. Cuando se
 
 ## 1. ¿Qué ejecutamos?
 
-El nombre puede venir en $ARGUMENTS. **Si no viene**, lista los trabajos con plan (carpetas de `Proyectos/` con
-`tareas.md`, sin `Tareas/`, `Archivados/` ni `adjuntos/`; y los archivos de `Proyectos/Tareas/`) y preséntalos con
-`AskUserQuestion` (header "Trabajo"). Si no hay ninguno, dilo — los planes se crean con `/proyecto:proponer` — y
+El nombre puede venir en $ARGUMENTS. **Si no viene**, lista los trabajos con plan (carpetas de
+`Proyectos/Regulares/` con `tareas.md` y archivos de `Proyectos/Tareas/`, sin mirar dentro de `Archivados/`) y
+preséntalos con `AskUserQuestion` (header "Trabajo"). Si no hay ninguno, dilo — los planes se crean con `/proyecto:proponer` — y
 detente.
 
 ## 2. Cargar el estado
@@ -36,9 +36,9 @@ Trabaja las tareas **en orden de numeración** (respeta dependencias), o la que 
   en la propuesta o la solución.
 - **Destino antes de escribir.** Antes de crear un archivo, nombra su ruta `<Área>/<tema>/<archivo>.md`. Si la
   tarea no lo dice, decídelo con la tabla de temas del área; si ningún tema encaja, pregunta con
-  `AskUserQuestion` ofreciendo los temas del área más «crear un tema nuevo» — **nunca crees un tema en silencio ni
-  dejes el archivo en la carpeta del proyecto «por ahora»**. Al crear un tema con permiso, agrega su fila en el
-  `_context.md` del área.
+  `AskUserQuestion` ofreciendo los temas del área, los sugeridos para esa área en `_Templates/catalogo-areas.md` y
+  «otro» — **nunca crees un tema en silencio ni dejes el archivo en la carpeta del proyecto «por ahora»**. Al crear
+  un tema con permiso, agrega su fila en el `_context.md` del área (procedimiento en `CLAUDE.md`, «Áreas y temas»).
 - **Documental / operativa:** la ejecutas tú, aquí. **Técnica en otro repo o herramienta:** pide la ruta o el
   acceso y ejecútala ahí; si el usuario decide hacerla él, déjala asignada con su bloqueo anotado — no la simules
   ni la marques.
