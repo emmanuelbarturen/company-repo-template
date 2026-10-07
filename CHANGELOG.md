@@ -11,7 +11,11 @@ Qué cambió en **Company Cycle OS** y qué debe migrar quien ya lo usa. La bit�
   trabajo. Sin jerga: nunca se dice commit, push, rama ni conflicto; si hay que elegir entre dos versiones, la
   pregunta es de negocio. Nunca se fuerza un push ni se reescribe historial; siempre en `main`.
 - `setup` pregunta en lenguaje llano si quiere una copia en la nube (GitHub) y guía la creación del repositorio
-  privado paso a paso.
+  privado paso a paso. Sus demás preguntas (carpeta en uso, datos personales, herramienta de revisión) se
+  reescriben sin jerga.
+- Nueva sección «Preguntas al usuario» en `CLAUDE.md`: toda `AskUserQuestion` se redacta en lenguaje simple y claro,
+  una decisión por pregunta, sin rutas, comandos ni términos técnicos, opciones de pocas palabras con la
+  recomendada marcada.
 - `.claude/settings.json` preautoriza las operaciones de git que esto requiere (pull, push, fetch, remote, mv, rm,
   stash, rebase, merge, checkout, branch, restore) para que la app no interrumpa al usuario con permisos.
 - Migración: nada que hacer; aplica en la siguiente sesión.
