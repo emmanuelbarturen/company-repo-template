@@ -1,8 +1,8 @@
 #!/usr/bin/env bun
 /**
- * validar.ts — validador de estructura de Company Cycle OS.
+ * .claude/validar.ts — validador de estructura de Company Cycle OS.
  *
- * Uso:  bun validar.ts [--json] [--raiz <dir>]
+ * Uso:  bun .claude/validar.ts [--json] [--raiz <dir>]   (la raíz es la carpeta que contiene a .claude/)
  *
  * Un solo archivo, sin dependencias: solo node:fs y node:path.
  * Salida: 0 limpio · 1 errores de estructura (V1-V10) · 3 uso.
@@ -11,7 +11,7 @@ import { existsSync, readdirSync, readFileSync, statSync } from "node:fs";
 import { basename, dirname, join, relative, resolve, sep } from "node:path";
 
 // ── Constantes ─────────────────────────────────────────────────────────────
-const RESERVADAS_RAIZ = new Set(["Proyectos", "Decisiones", "_Referencias", "_Templates", "Plans", ".claude", ".git", "node_modules"]);
+const RESERVADAS_RAIZ = new Set(["Proyectos", "Decisiones", "_Referencias", "Plans", ".claude", ".git", "node_modules"]);
 // Estructura fija de Proyectos/: Regulares/ (proyectos) y Tareas/ (tareas), cada una con su Archivados/.
 const RAMAS_PROYECTOS = ["Regulares", "Tareas"];
 const ARCHIVADOS = "Archivados";
@@ -19,8 +19,9 @@ const DESCRIPTORES = ["_context.md", "_rules.md", "_links.md"];
 const CANONICOS = new Set(["propuesta.md", "exploracion.md", "solucion.md", "tareas.md"]);
 const FASES = new Set(["explorar", "proponer", "aplicar", "pausado", "archivado"]);
 const TOPE_LINEAS = 120;
-const EXENTOS_TOPE = [/^Decisiones\//, /^_Referencias\/_index\.md$/, /^\.claude\//];
-const FUERA_CABECERA = [/^\.claude\//, /^Plans\//, /^_Referencias\/(?!_index\.md$)/];
+// Dentro de .claude/ solo los moldes (templates/) se revisan: cabecera (con marcadores) y tope de líneas.
+const EXENTOS_TOPE = [/^Decisiones\//, /^_Referencias\/_index\.md$/, /^\.claude\/(?!templates\/)/];
+const FUERA_CABECERA = [/^\.claude\/(?!templates\/)/, /^Plans\//, /^_Referencias\/(?!_index\.md$)/];
 const RE_CABECERA = /^<!-- Creado: (\d{4}-\d{2}-\d{2}|AAAA-MM-DD) · Actualizado: (\d{4}-\d{2}-\d{2}|AAAA-MM-DD) · Creador: .+ -->\s*$/;
 const RE_FECHA = /^\d{4}-\d{2}-\d{2} · /;
 
@@ -29,7 +30,8 @@ interface Hallazgo { chequeo: string; sev: Sev; ruta: string; detalle: string }
 
 // ── Argumentos ─────────────────────────────────────────────────────────────
 const args = process.argv.slice(2);
-let raiz = process.cwd();
+// Raíz por defecto: la carpeta que contiene a .claude/ (donde vive este script), se corra desde donde se corra.
+let raiz = resolve(import.meta.dir, "..");
 let json = false;
 for (let i = 0; i < args.length; i++) {
   const a = args[i];
@@ -38,7 +40,7 @@ for (let i = 0; i < args.length; i++) {
   else uso();
 }
 function uso(): never {
-  console.error("Uso: bun validar.ts [--json] [--raiz <dir>]");
+  console.error("Uso: bun .claude/validar.ts [--json] [--raiz <dir>]");
   process.exit(3);
 }
 if (!existsSync(join(raiz, "_context.md"))) {
@@ -152,7 +154,7 @@ for (const p of mds) {
   const r = rel(p);
   const texto = leer(p);
   const primera = texto.split("\n")[0] ?? "";
-  const enTemplates = r.startsWith("_Templates/");
+  const enTemplates = r.startsWith(".claude/templates/");
   if (!coincide(r, FUERA_CABECERA)) {
     const m = primera.match(RE_CABECERA);
     if (!m) err("V4", r, "sin cabecera de metadatos en la primera línea");
@@ -164,7 +166,7 @@ for (const p of mds) {
     if (n > TOPE_LINEAS) err("V5", r, `${n} líneas contadas (tope ${TOPE_LINEAS}); parte el documento`);
   }
   const nombre = basename(r, ".md");
-  const fueraDeZonas = !/^(Proyectos|_Referencias|_Templates|\.claude|Plans)\//.test(r);
+  const fueraDeZonas = !/^(Proyectos|_Referencias|\.claude|Plans)\//.test(r);
   if (fueraDeZonas && /^[a-z0-9]+(-[a-z0-9]+){2,}$/.test(nombre) && !RE_CABECERA.test(primera)) {
     aviso("V6", r, "parece un plan de sesión (slug largo sin cabecera) fuera de Plans/");
   }

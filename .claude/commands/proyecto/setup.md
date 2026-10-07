@@ -36,10 +36,10 @@ primer trabajo que las necesite. Solo si lo pide de forma explícita, crea esa �
 
 ## 2. Crear la estructura
 
-1. Raíz: `_context.md` desde `_Templates/_context-raiz.md` con la ficha del paso 1 (`Id` = un slug en kebab-case
+1. Raíz: `_context.md` desde `.claude/templates/_context-raiz.md` con la ficha del paso 1 (`Id` = un slug en kebab-case
    del nombre; `Creador por defecto` = `System`), la tabla de áreas **vacía, solo con su encabezado**, y «Trabajos
-   activos» vacío; `_rules.md` desde `_Templates/_rules-raiz.md`; `_links.md` desde `_Templates/_links-raiz.md`.
-2. `Decisiones/Q<N>-<AAAA>.md` del quarter actual desde `_Templates/decisiones-quarter.md`, con la primera línea:
+   activos» vacío; `_rules.md` desde `.claude/templates/_rules-raiz.md`; `_links.md` desde `.claude/templates/_links-raiz.md`.
+2. `Decisiones/Q<N>-<AAAA>.md` del quarter actual desde `.claude/templates/decisiones-quarter.md`, con la primera línea:
    `AAAA-MM-DD · [hito] Adopción de Company Cycle OS — <empresa>`.
 3. `_Referencias/_index.md` con la tabla vacía (ya viene así; solo se actualiza su cabecera).
 4. Fecha de hoy y `Creador: System` en todas las cabeceras.
@@ -58,7 +58,7 @@ guardarse cuando un trabajo lo pida). Escribe la respuesta en la sección Confid
 
 El usuario no es técnico: **git lo manejas tú, sin pronunciar una palabra de git** (regla «Git» de `CLAUDE.md`).
 
-1. **Si hay `bun`:** corre `bun validar.ts` y corrige lo que salga hasta que dé 0 errores. **Si no hay `bun`:**
+1. **Si hay `bun`:** corre `bun .claude/validar.ts` y corrige lo que salga hasta que dé 0 errores. **Si no hay `bun`:**
    pregunta con `AskUserQuestion` (header "Revisión", pregunta: *Falta una herramienta pequeña que revisa que la
    carpeta quede en orden. ¿La instalo? Tarda un minuto y no cambia nada más en tu computadora.*): **Sí, instálala
    (Recomendado)** (corre el instalador oficial de `bun.sh` y vuelve a intentar) / **No, revisa a mano** (corre

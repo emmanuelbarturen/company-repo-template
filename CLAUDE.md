@@ -39,11 +39,11 @@ esas tablas, nunca contra un catálogo asumido. Carpeta sin descriptor: pregunta
 necesita; igual la tabla de temas de cada área. Quien elige es siempre el usuario, con `AskUserQuestion`:
 
 - **Área:** al clasificar un trabajo nuevo (`explorar`, `proponer`). Hasta 4 opciones: primero las filas que ya
-  tiene la tabla, luego las de `_Templates/catalogo-areas.md` más probables por el tema; cualquier otro nombre, por
-  texto libre.
+  tiene la tabla, luego las de `.claude/templates/catalogo-areas.md` más probables por el tema; cualquier otro
+  nombre, por texto libre.
 - **Tema:** al fijar dónde queda el resultado (`proponer`; también `aplicar` y `archivar` si un archivo no encaja).
   Primero los temas de la tabla del área, luego los sugeridos en el catálogo para esa área, más «otro».
-- **Al crear:** un área es su carpeta, sus tres descriptores desde `_Templates/area/` con la responsabilidad
+- **Al crear:** un área es su carpeta, sus tres descriptores desde `.claude/templates/area/` con la responsabilidad
   redactada, y su fila en la tabla de la raíz. Un tema es su carpeta (con `.gitkeep` mientras va vacía) y su fila en
   la tabla del área. Carpetas sin tildes ni espacios: la carpeta es el identificador. Un tema se nombra por el tipo
   de documentos que vivirán ahí, nunca por el proyecto que los produjo.
@@ -68,8 +68,9 @@ Proyectos/Tareas/<slug>.md                 tarea (mini-proyecto): un solo archiv
 Proyectos/Tareas/Archivados/<slug>.md      tareas cerradas
 _Referencias/_index.md                     archivos de afuera que se consultan; un nivel de subcarpetas por tipo
 Decisiones/Q<N>-<AAAA>.md                  bitácora de la empresa, una línea por evento
-_Templates/                                moldes de descriptores, proyecto, tarea y bitácora; catálogo de áreas
-validar.ts                                 validador de estructura
+.claude/commands/proyecto/                 los comandos del ciclo
+.claude/templates/                         moldes de descriptores, proyecto, tarea y bitácora; catálogo de áreas
+.claude/validar.ts                         validador de estructura
 ```
 
 ## El ciclo — el ciclo de vida de todo trabajo
@@ -96,7 +97,7 @@ resultado que falten, elige el tema con criterio de organización y lo confirma 
 Creador: System -->`. Creador por defecto `System` (fijo; no se pregunta). Al editar, actualiza la fecha. Excepciones:
   comandos (frontmatter YAML) y archivos ajenos en `_Referencias/`.
 - **Tope de 120 líneas** por archivo, sin contar tablas ni bloques de código. Si se pasa, es otro documento.
-  Exentos: `Decisiones/`, `_Referencias/_index.md`, `.claude/`.
+  Exentos: `Decisiones/`, `_Referencias/_index.md`, `.claude/` salvo `templates/`.
 - **Bitácora:** toda decisión importante, cambio de definición o hito va a `Decisiones/Q<N>-<AAAA>.md` como
   `2026-10-07 · [tipo] texto`. Solo lo que cambia el rumbo, no el trabajo rutinario. Q1 ene-mar · Q2 abr-jun ·
   Q3 jul-sep · Q4 oct-dic.
@@ -122,10 +123,10 @@ Quien usa este repo no es técnico y **nunca opera git**: tú guardas y subes su
 
 - **Al empezar** cualquier comando o cambio de archivos: si hay remoto, `git pull --rebase --autostash` en silencio;
   si falla por red, sigue en local y dilo en una línea.
-- **Al cerrar** cada comando, y en `aplicar` tras cada tanda: `bun validar.ts` si tocaste estructura; `git add -A`;
-  commit en español que nombre el trabajo y qué cambió (`Propuesta de <slug>: alcance y plan`); `git push` si hay
-  remoto (hasta 3 intentos). Confirma en una línea llana: «Guardé y subí los cambios» o «Guardé los cambios en
-  esta computadora; los subiré cuando haya conexión».
+- **Al cerrar** cada comando, y en `aplicar` tras cada tanda: `bun .claude/validar.ts` si tocaste estructura;
+  `git add -A`; commit en español que nombre el trabajo y qué cambió (`Propuesta de <slug>: alcance y plan`); `git
+  push` si hay remoto (hasta 3 intentos). Confirma en una línea llana: «Guardé y subí los cambios» o «Guardé los
+  cambios en esta computadora; los subiré cuando haya conexión».
 - **Palabras:** nunca digas commit, push, pull, merge, rebase, rama, remoto ni conflicto. Di «guardar una versión»,
   «subir a la nube», «traer lo último», «hay dos versiones distintas de este archivo».
 - **Problemas:** push rechazado → `git pull --rebase --autostash` y reintenta. Dos versiones de un `.md`: si una
@@ -135,8 +136,8 @@ Quien usa este repo no es técnico y **nunca opera git**: tú guardas y subes su
 
 ## Validar
 
-`bun validar.ts` comprueba la estructura (descriptores, tablas contra carpetas, cabeceras, tope de líneas, índice de
-referencias, trabajos con Estado, bitácora, carpetas vacías). Sin `bun`, `/proyecto:validar` hace lo mismo a mano.
+`bun .claude/validar.ts` comprueba la estructura (descriptores, tablas contra carpetas, cabeceras, tope de líneas,
+índice de referencias, trabajos con Estado, bitácora y carpetas vacías). Sin `bun`, `/proyecto:validar` lo hace a mano.
 Córrelo después de `setup`, al cerrar un trabajo y antes de compartir el repo.
 
 ## Notas

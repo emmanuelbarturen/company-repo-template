@@ -19,7 +19,7 @@
 ## Áreas
 
 **Esta tabla nace vacía y crece con los trabajos.** Nada se declara por adelantado: cuando un trabajo necesita un
-área que no existe, el ciclo la ofrece junto al catálogo de `_Templates/catalogo-areas.md`, el usuario la elige y
+área que no existe, el ciclo la ofrece junto al catálogo de `.claude/templates/catalogo-areas.md`, el usuario la elige y
 ahí se crean su carpeta, sus tres descriptores y su fila. El ruteo se hace contra esta tabla. Nombres de carpeta sin
 tildes ni espacios: la carpeta es el identificador.
 
@@ -33,7 +33,6 @@ tildes ni espacios: la carpeta es el identificador.
 | `Proyectos/` | todo trabajo: proyectos (carpeta de 4 documentos) y tareas (un archivo) |
 | `_Referencias/` | archivos de afuera que se consultan, con `_index.md` |
 | `Decisiones/` | bitácora de la empresa, por quarter |
-| `_Templates/` | moldes y el catálogo sugerido de áreas; no se editan para un caso concreto, se copian |
 
 ## Trabajos activos
 

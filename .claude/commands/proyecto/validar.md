@@ -1,15 +1,15 @@
 ---
-description: Revisa la estructura del repo a mano cuando no hay bun — los mismos chequeos que validar.ts (descriptores, tablas contra carpetas, cabeceras, tope de líneas, índice de referencias, trabajos con Estado, bitácora)
+description: Revisa la estructura del repo a mano cuando no hay bun — los mismos chequeos que .claude/validar.ts (descriptores, tablas contra carpetas, cabeceras, tope de líneas, índice de referencias, trabajos con Estado, bitácora)
 argument-hint: (sin argumentos)
 ---
 
 Ejecutas el validador **a mano**, con Read, Glob y Grep, porque en esta máquina no hay `bun` (o el usuario prefiere
-no instalarlo). El contrato es el mismo que el de `validar.ts`: mismos chequeos, misma severidad, mismo reporte. Si
-`which bun` sí devuelve una ruta, no hagas nada de esto: corre `bun validar.ts` y muestra su salida.
+no instalarlo). El contrato es el mismo que el de `.claude/validar.ts`: mismos chequeos, misma severidad, mismo reporte. Si
+`which bun` sí devuelve una ruta, no hagas nada de esto: corre `bun .claude/validar.ts` y muestra su salida.
 
 ## Nombres reservados
 
-Raíz (no son áreas): `Proyectos`, `Decisiones`, `_Referencias`, `_Templates`, `Plans`, `.claude`, `.git`.
+Raíz (no son áreas): `Proyectos`, `Decisiones`, `_Referencias`, `Plans`, `.claude`, `.git`.
 `Proyectos/` tiene estructura fija: `Regulares/` (una carpeta por proyecto) y `Tareas/` (un `.md` por tarea), cada
 una con su `Archivados/`. Nada más vive en su primer nivel salvo `_context.md`.
 
@@ -24,12 +24,13 @@ una con su `Archivados/`. Nada más vive en su primer nivel salvo `_context.md`.
 3. **V3 Temas.** Por área: las filas de la tabla «Temas» de su `_context.md` contra sus subcarpetas, en ambos
    sentidos (E). Un `.md` suelto en el área que no sea uno de los tres descriptores (E).
 4. **V4 Cabecera.** Primera línea de todo `.md` = `<!-- Creado: AAAA-MM-DD · Actualizado: AAAA-MM-DD · Creador: … -->`
-   con fechas reales (E). Los marcadores `AAAA-MM-DD` valen solo bajo `_Templates/`. Fuera de alcance: `.claude/`,
+   con fechas reales (E). Los marcadores `AAAA-MM-DD` valen solo bajo `.claude/templates/`. Fuera de alcance: el
+   resto de `.claude/`,
    `_Referencias/**` salvo `_index.md`, `Plans/`.
 5. **V5 Tope de 120 líneas** contando fuera de bloques de código y sin filas de tabla (E). Exentos: `Decisiones/`,
-   `_Referencias/_index.md`, `.claude/`.
+   `_Referencias/_index.md`, `.claude/` salvo `templates/`.
 6. **V6 Slug de plan-mode** fuera de `Plans/`: `.md` con nombre kebab de tres o más palabras, sin cabecera, fuera de
-   `Proyectos/`, `_Referencias/`, `_Templates/` y `.claude/` (A).
+   `Proyectos/`, `_Referencias/` y `.claude/` (A).
 7. **V7 Referencias.** `_Referencias/` con un solo nivel de subcarpetas (E); cada archivo listado en `_index.md` por
    su ruta relativa y sin filas que apunten a archivos inexistentes (E).
 8. **V8 Trabajos.** Cada `Proyectos/Regulares/<slug>/propuesta.md` y `Proyectos/Tareas/<slug>.md` (y los de sus

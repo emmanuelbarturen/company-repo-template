@@ -6,7 +6,7 @@
       "Grep",
       "Edit",
       "Write",
-      "Bash(bun validar.ts*)",
+      "Bash(bun .claude/validar.ts*)",
       "Bash(bun --version)",
       "Bash(which bun)",
       "Bash(ls *)",

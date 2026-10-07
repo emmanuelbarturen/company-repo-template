@@ -41,7 +41,8 @@ aceptar el diálogo de confianza de la carpeta.
    el primer trabajo que los necesita, elegidos por ti; el asistente nombra el destino de cada archivo antes de
    escribirlo. Al archivar, escribe los documentos que el trabajo deja, propone la carpeta con criterio de
    organización y te lo confirma antes de mover nada.
-4. **El validador exige lo que la disciplina olvida.** `bun validar.ts` comprueba descriptores, tablas contra carpetas,
+4. **El validador exige lo que la disciplina olvida.** `bun .claude/validar.ts` comprueba descriptores, tablas contra
+   carpetas,
    cabeceras, tope de líneas, índice de referencias y trabajos con estado. Sin `bun`, `/proyecto:validar` hace lo
    mismo a mano.
 
@@ -56,16 +57,16 @@ aceptar el diálogo de confianza de la carpeta.
 | `/proyecto:archivar` | Escribe la documentación resultante en su área, decide y confirma la carpeta, archiva y registra el hito |
 | `/proyecto:validar` | El validador a mano, para máquinas sin `bun` |
 
-Y además: `_Templates/` (moldes de descriptores, proyecto, tarea y bitácora), `_Referencias/` (archivos de afuera
-que se consultan, con índice), `Decisiones/` (bitácora por quarter), `CHANGELOG.md` (historia del framework) y
-`validar.ts`.
+Y además: `_Referencias/` (archivos de afuera que se consultan, con índice), `Decisiones/` (bitácora por quarter),
+`CHANGELOG.md` (historia del framework) y, dentro de `.claude/`, la maquinaria que no hace falta mirar: los comandos,
+los moldes (`templates/`), el catálogo sugerido de áreas y el validador (`validar.ts`).
 
 ## Qué NO trae, a propósito
 
 - **Ninguna integración.** El repo es la única fuente de verdad. No publica a ninguna herramienta.
 - **Ningún agente, skill, MCP ni hook.** Funciona con Claude Code estándar, también desde la app de escritorio.
-- **Ningún catálogo de áreas impuesto.** Hay uno sugerido en `_Templates/catalogo-areas.md`, que se ofrece como
-  alternativa cuando un trabajo necesita un área o un tema nuevo. Una sola área es válida.
+- **Ningún catálogo de áreas impuesto.** Hay uno sugerido en `.claude/templates/catalogo-areas.md`, que se ofrece
+  como alternativa cuando un trabajo necesita un área o un tema nuevo. Una sola área es válida.
 - **Ninguna bandeja que haya que vaciar.** `_Referencias/` es un estante: lo que está ahí se consulta, no se procesa.
 
 ## Estructura
@@ -81,7 +82,7 @@ Proyectos/Tareas/<slug>.md         una tarea
 Proyectos/Tareas/Archivados/       tareas cerradas
 _Referencias/_index.md             el estante
 Decisiones/Q<N>-<AAAA>.md          la bitácora
-_Templates/  validar.ts            moldes, catálogo sugerido de áreas y validador
+.claude/                           la maquinaria: comandos, moldes, catálogo de áreas y validador
 ```
 
 Las reglas completas están en `CLAUDE.md`, que es lo que el asistente lee al abrir cada sesión.

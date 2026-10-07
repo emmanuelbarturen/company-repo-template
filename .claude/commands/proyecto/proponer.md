@@ -16,7 +16,7 @@ Trabajo o tema (opcional): $ARGUMENTS
 
 **Sincroniza primero**, sin decir nada técnico: si hay remoto, `git pull --rebase --autostash`; si falla, sigue en
 local y avísalo en una línea (regla «Git» de `CLAUDE.md`). Lee `_context.md` y `_rules.md` de la raíz, `Proyectos/_context.md` (reglas de tamaño y del bloque Estado) y
-`_Templates/catalogo-areas.md` (alternativas de área y tema). Cuando sepas el área del trabajo y exista, lee también
+`.claude/templates/catalogo-areas.md` (alternativas de área y tema). Cuando sepas el área del trabajo y exista, lee también
 `_context.md` y `_rules.md` de esa área: sus reglas de «cómo se crea un proyecto» son parte de la entrevista.
 
 ## 1. ¿En qué trabajamos?
@@ -44,7 +44,7 @@ recomendación. Luego, con el procedimiento de `CLAUDE.md` «Áreas y temas», d
 
 Si `/proyecto:nuevo` ya dejó área y tema en el Estado, confírmalos en una línea en vez de volver a preguntar. Si
 el usuario eligió un área o un tema que no existe, **créalo ahora**, antes de escribir la propuesta: el área con su
-carpeta, sus tres descriptores desde `_Templates/area/` (responsabilidad redactada, no en blanco) y su fila en la
+carpeta, sus tres descriptores desde `.claude/templates/area/` (responsabilidad redactada, no en blanco) y su fila en la
 tabla de la raíz; el tema con su carpeta (con un `.gitkeep` mientras va vacía) y su fila en la tabla del área. El
 Estado necesita un `Área:` que esté en la tabla y un `Resultado esperado:` con su `<Área>/<tema>/`.
 
@@ -55,13 +55,13 @@ construir), dilo y **gradúala**: crea `Proyectos/Regulares/<slug>/` con el mism
 
 Un lote de 3-5 preguntas (playbook de requerimientos condensado): problema real · resultado esperado y **con qué
 nombre de archivo queda** en el `<Área>/<tema>/` elegido en el paso 2 · qué NO entra · pasos concretos. Escribe
-`Proyectos/Tareas/<slug>.md` desde `_Templates/tarea.md`, con `Área:` y `Resultado esperado:` llenos y los pasos
+`Proyectos/Tareas/<slug>.md` desde `.claude/templates/tarea.md`, con `Área:` y `Resultado esperado:` llenos y los pasos
 numerados por dependencia. Si el checklist quedó completo, deja **`- **Fase:** aplicar`** (el plan ya existe); si
 falta algo, `proponer`. Salta al paso 7.
 
 ## 4. Rama proyecto — entrevista en vivo
 
-1. **Cimientos:** `propuesta.md` desde `_Templates/proyecto/propuesta.md` con el bloque `## Estado` completo
+1. **Cimientos:** `propuesta.md` desde `.claude/templates/proyecto/propuesta.md` con el bloque `## Estado` completo
    (`Fase: proponer`, `Área:`, `Resultado esperado:` tentativo) y `exploracion.md` desde su molde. Si
    `/proyecto:nuevo` dejó conclusiones, hereda esos puntos.
 2. **Loop de requerimientos** → *Playbook A*. Documenta gated por OK: cuando un frente quede estable, pregunta
@@ -118,7 +118,7 @@ en su único archivo. Cierra actualizando `## Estado`.
 ## 7. Cierre
 
 Actualiza `## Estado`. Si `_context.md` de la raíz tiene la sección «Trabajos activos», agrega la línea del trabajo.
-**Guarda y sube** según la regla «Git» de `CLAUDE.md`: `bun validar.ts` si creaste área o tema, commit `Propuesta de
+**Guarda y sube** según la regla «Git» de `CLAUDE.md`: `bun .claude/validar.ts` si creaste área o tema, commit `Propuesta de
 <slug>: <qué quedó definido>` y push si hay remoto; confírmalo en una línea sin jerga. Luego ofrece con
 `AskUserQuestion` (header "Cierre"): **Ejecutar ahora** → indícale correr `/proyecto:aplicar <slug>` / **Cerrar** → la
 propuesta queda lista para otra sesión.

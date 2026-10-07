@@ -4,6 +4,16 @@
 Qué cambió en **Company Cycle OS** y qué debe migrar quien ya lo usa. La bitácora de tu empresa es otra cosa: vive en
 `Decisiones/`.
 
+## v1.4 — 2026-10-07
+
+- La maquinaria del framework deja la raíz: los moldes pasan de `_Templates/` a `.claude/templates/` (mismos nombres
+  de archivo) y el validador de `validar.ts` a `.claude/validar.ts`. En la raíz quedan solo los archivos de la
+  empresa, `CLAUDE.md`, `README.md` y `CHANGELOG.md`. El validador se corre con `bun .claude/validar.ts`; si se
+  ejecuta desde otra carpeta, encuentra la raíz solo. Dentro de `.claude/`, solo `templates/` se revisa (cabecera con
+  marcadores permitidos y tope de líneas).
+- **Migración:** `git mv _Templates .claude/templates && git mv validar.ts .claude/validar.ts`, y quitar la fila de
+  `_Templates/` de la tabla «Carpetas de servicio» de `_context.md`.
+
 ## v1.3 — 2026-10-07
 
 - **Git lo lleva el asistente.** El usuario del repo no es técnico: nueva sección «Git» en `CLAUDE.md`. Cada comando
