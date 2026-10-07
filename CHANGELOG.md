@@ -4,6 +4,40 @@
 Qué cambió en **Company Cycle OS** y qué debe migrar quien ya lo usa. La bitácora de tu empresa es otra cosa: vive en
 `Decisiones/`.
 
+## v1.4 — 2026-10-07
+
+- La maquinaria del framework deja la raíz: los moldes pasan de `_Templates/` a `.claude/templates/` (mismos nombres
+  de archivo) y el validador de `validar.ts` a `.claude/validar.ts`. En la raíz quedan solo los archivos de la
+  empresa, `CLAUDE.md`, `README.md` y `CHANGELOG.md`. El validador se corre con `bun .claude/validar.ts`; si se
+  ejecuta desde otra carpeta, encuentra la raíz solo. Dentro de `.claude/`, solo `templates/` se revisa (cabecera con
+  marcadores permitidos y tope de líneas).
+- `README.md` deja claro que el repo está pensado para la pestaña *Code* de la app de escritorio de Claude, sin
+  terminal ni instalación de Claude Code. La instalación documentada pasa a ser: repositorio vacío en GitHub + un
+  prompt en la pestaña *Code* que clona la plantilla conservando el historial, y luego `/proyecto:setup` en una
+  sesión nueva. Ya no se documenta la descarga en ZIP ni la carpeta local.
+- Nuevo comando **`/update-framework`**: trae la versión más nueva del framework desde la plantilla
+  `emmanuelbarturen/company-repo-template`. Compara versiones por el CHANGELOG, solo actualiza archivos del framework
+  (nunca los de la empresa), aplica las líneas «Migración:» pendientes y pregunta antes de ejecutar ante cualquier
+  conflicto. Las entradas «Migración:» de este archivo son, desde ahora, instrucciones que ese comando ejecuta.
+- **Migración:** `git mv _Templates .claude/templates && git mv validar.ts .claude/validar.ts`, y quitar la fila de
+  `_Templates/` de la tabla «Carpetas de servicio» de `_context.md`.
+
+## v1.3 — 2026-10-07
+
+- **Git lo lleva el asistente.** El usuario del repo no es técnico: nueva sección «Git» en `CLAUDE.md`. Cada comando
+  trae lo último al empezar, y al cerrar (y `aplicar` tras cada tanda) guarda y sube con un mensaje que nombra el
+  trabajo. Sin jerga: nunca se dice commit, push, rama ni conflicto; si hay que elegir entre dos versiones, la
+  pregunta es de negocio. Nunca se fuerza un push ni se reescribe historial; siempre en `main`.
+- `setup` pregunta en lenguaje llano si quiere una copia en la nube (GitHub) y guía la creación del repositorio
+  privado paso a paso. Sus demás preguntas (carpeta en uso, datos personales, herramienta de revisión) se
+  reescriben sin jerga.
+- Nueva sección «Preguntas al usuario» en `CLAUDE.md`: toda `AskUserQuestion` se redacta en lenguaje simple y claro,
+  una decisión por pregunta, sin rutas, comandos ni términos técnicos, opciones de pocas palabras con la
+  recomendada marcada.
+- `.claude/settings.json` preautoriza las operaciones de git que esto requiere (pull, push, fetch, remote, mv, rm,
+  stash, rebase, merge, checkout, branch, restore) para que la app no interrumpa al usuario con permisos.
+- Migración: nada que hacer; aplica en la siguiente sesión.
+
 ## v1.2 — 2026-10-07
 
 - `/proyecto:explorar` pasa a llamarse **`/proyecto:nuevo`**: es el comando con el que arranca todo trabajo. El

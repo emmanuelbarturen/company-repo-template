@@ -15,8 +15,9 @@ permiso cuando la herramienta lo pida.
 Lee `_context.md` de la raíz y mira el campo `Id` de la ficha.
 
 - **`Id` = `mi-empresa`** (el valor con el que viene la plantilla) → copia recién descargada. Sigue al paso 1.
-- **Cualquier otro valor** → el repo ya está en uso. Dilo y pregunta con `AskUserQuestion` (header "Repo en uso"):
-  **Solo revisar la estructura** (corre el paso 4 y termina) / **Cancelar**. **Nunca reconfigures un repo en uso sin
+- **Cualquier otro valor** → el repo ya está en uso. Dilo y pregunta con `AskUserQuestion` (header "Carpeta en uso",
+  pregunta: *Esta carpeta ya tiene una empresa configurada. ¿Qué hacemos?*): **Solo revisar que todo esté en orden**
+  (corre el paso 4 y termina) / **No hacer nada**. **Nunca reconfigures un repo en uso sin
   que lo confirme.** Si lo que quiere es agregar un área, eso no se hace aquí: se hace desde el trabajo que la
   necesite.
 
@@ -35,10 +36,10 @@ primer trabajo que las necesite. Solo si lo pide de forma explícita, crea esa �
 
 ## 2. Crear la estructura
 
-1. Raíz: `_context.md` desde `_Templates/_context-raiz.md` con la ficha del paso 1 (`Id` = un slug en kebab-case
+1. Raíz: `_context.md` desde `.claude/templates/_context-raiz.md` con la ficha del paso 1 (`Id` = un slug en kebab-case
    del nombre; `Creador por defecto` = `System`), la tabla de áreas **vacía, solo con su encabezado**, y «Trabajos
-   activos» vacío; `_rules.md` desde `_Templates/_rules-raiz.md`; `_links.md` desde `_Templates/_links-raiz.md`.
-2. `Decisiones/Q<N>-<AAAA>.md` del quarter actual desde `_Templates/decisiones-quarter.md`, con la primera línea:
+   activos» vacío; `_rules.md` desde `.claude/templates/_rules-raiz.md`; `_links.md` desde `.claude/templates/_links-raiz.md`.
+2. `Decisiones/Q<N>-<AAAA>.md` del quarter actual desde `.claude/templates/decisiones-quarter.md`, con la primera línea:
    `AAAA-MM-DD · [hito] Adopción de Company Cycle OS — <empresa>`.
 3. `_Referencias/_index.md` con la tabla vacía (ya viene así; solo se actualiza su cabecera).
 4. Fecha de hoy y `Creador: System` en todas las cabeceras.
@@ -47,22 +48,37 @@ No crees ninguna carpeta de área ni de tema en este paso.
 
 ## 3. Confidencialidad
 
-Pregunta con `AskUserQuestion` (header "Datos"): *¿Este repo debe quedar libre de datos personales de clientes
-finales (solo cómo opera la empresa: cifras agregadas, decisiones, procesos)?* **Sí, regla no-pii** (recomendado) /
-**No hace falta**. Escribe la respuesta en la sección Confidencialidad de `_rules.md` de la raíz.
+Pregunta con `AskUserQuestion` (header "Datos"): *¿Quieres que en esta carpeta nunca se guarden datos personales de
+tus clientes (nombres, correos, teléfonos), solo cómo opera la empresa: cifras totales, decisiones y procesos?*
+**Sí, sin datos personales (Recomendado)** (protege a tus clientes y a tu empresa) / **No hace falta** (podrán
+guardarse cuando un trabajo lo pida). Escribe la respuesta en la sección Confidencialidad de `_rules.md` de la raíz
+(`no-pii: sí / no`).
 
-## 4. Validar y versionar
+## 4. Validar y guardar
 
-1. **Si hay `bun`:** corre `bun validar.ts` y corrige lo que salga hasta que dé 0 errores. **Si no hay `bun`:**
-   ofrece con `AskUserQuestion` (header "Validador"): **Instalarlo ahora** (corre el instalador oficial de
-   `bun.sh` y vuelve a intentar) / **Sin instalar** (corre `/proyecto:validar`, que hace los mismos chequeos a mano).
-2. Si el repo no tiene `.git`, corre `git init` y haz el primer commit: `Adopción de Company Cycle OS — <empresa>`.
-3. Pregunta si quiere un remoto. Si sí, pídele la URL del repo **privado** que haya creado en su proveedor (eso lo
-   hace él desde la web) y corre `git remote add origin <url>`. No hagas push sin que lo pida.
+El usuario no es técnico: **git lo manejas tú, sin pronunciar una palabra de git** (regla «Git» de `CLAUDE.md`).
+
+1. **Si hay `bun`:** corre `bun .claude/validar.ts` y corrige lo que salga hasta que dé 0 errores. **Si no hay `bun`:**
+   pregunta con `AskUserQuestion` (header "Revisión", pregunta: *Falta una herramienta pequeña que revisa que la
+   carpeta quede en orden. ¿La instalo? Tarda un minuto y no cambia nada más en tu computadora.*): **Sí, instálala
+   (Recomendado)** (corre el instalador oficial de `bun.sh` y vuelve a intentar) / **No, revisa a mano** (corre
+   `/proyecto:validar`, que hace los mismos chequeos sin la herramienta).
+2. Si la carpeta no tiene `.git`, corre `git init -b main`. Haz el primer commit: `Adopción de Company Cycle OS —
+   <empresa>`. Al usuario dile solo «guardé la primera versión».
+3. **Copia en la nube.** Si ya hay remoto (la carpeta vino de un repositorio del usuario), haz `git push` y sigue.
+   Si no, pregunta con `AskUserQuestion` (header "Copia en la nube"): *¿Quieres que tu empresa quede guardada también
+   en internet (GitHub), además de en esta computadora, para no perderla y poder abrirla desde otro equipo?*
+   **Sí, ya tengo el enlace** → pídele que pegue el enlace del repositorio **privado y vacío** que creó, corre
+   `git remote add origin <url>` y `git push -u origin main`. / **Sí, pero no sé cómo** → dale 3 pasos en lenguaje
+   llano (entrar a github.com → «New repository» → nombre, marcar *Private*, no marcar nada más → «Create» → copiar
+   el enlace que aparece) y espera el enlace. / **No, solo en esta computadora** → sigue; podrá pedirlo después.
+   Si el push falla, no lo conviertas en un problema técnico: di que quedó guardado en la computadora y que lo
+   subirás en la próxima sesión.
 
 ## 5. Confirmar
 
-Devuelve en pocas líneas: la empresa, el resultado del validador, el commit, y el siguiente paso:
+Devuelve en pocas líneas: la empresa, el resultado del validador, dónde quedó guardado (computadora o también
+en la nube), y el siguiente paso:
 **`/proyecto:nuevo`** para arrancar el primer trabajo, recordándole que ahí se elige el área y el tema donde
 quedará su resultado.
 
