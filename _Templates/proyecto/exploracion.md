@@ -1,4 +1,4 @@
-<!-- Creado: 2026-10-07 · Actualizado: 2026-10-07 · Creador: admin -->
+<!-- Creado: 2026-10-07 · Actualizado: 2026-10-07 · Creador: System -->
 # Exploración — <Título del trabajo>
 
 Lo que se pensó antes de comprometerse. **No obliga a nada**: es el registro de por qué se eligió un camino.

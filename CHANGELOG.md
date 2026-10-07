@@ -4,6 +4,15 @@
 Qué cambió en **Company Cycle OS** y qué debe migrar quien ya lo usa. La bitácora de tu empresa es otra cosa: vive en
 `Decisiones/`.
 
+## v1.2 — 2026-10-07
+
+- `setup` ya no pregunta áreas ni temas: la tabla de áreas de `_context.md` raíz nace vacía. Un área se crea cuando
+  un trabajo la necesita, desde `/proyecto:explorar` o `/proyecto:proponer`, que preguntan en qué carpeta va
+  ofreciendo lo que ya existe más el catálogo de `_Templates/catalogo-areas.md` (nuevo). Los temas igual: se eligen
+  al proponer el trabajo, con los de la tabla del área y los sugeridos del catálogo como alternativas.
+- El creador por defecto de las cabeceras es `System`, fijo en la ficha; `setup` ya no lo pregunta.
+- Migración: nada que hacer en un repo ya configurado; las áreas existentes siguen valiendo.
+
 ## v1.1 — 2026-10-07
 
 - Se retira la empresa de ejemplo (Taller Norte) y la carpeta `.ccos/`: la copia viene con la raíz en blanco

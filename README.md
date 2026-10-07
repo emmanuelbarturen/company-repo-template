@@ -17,8 +17,9 @@ Todo en español. Sin instalación, sin dependencias, sin integraciones obligato
    archivos en tu carpeta). La primera vez la app pregunta si confías en la carpeta: acepta, o nada del framework
    carga. **Solo la pestaña *Code* sirve**: *Chat* y *Cowork* no leen los comandos del repo aunque les des acceso a la
    carpeta. También funciona desde la terminal con `claude` dentro de la carpeta, pero no hace falta.
-3. Escribe **`/proyecto:setup`**. Te pregunta el nombre de tu empresa, sus áreas y temas y deja el repo listo.
-   Después, **`/proyecto:explorar`** con el primer problema que quieras resolver.
+3. Escribe **`/proyecto:setup`**. Te pregunta por tu empresa y deja el repo listo; no te pide áreas ni temas.
+   Después, **`/proyecto:explorar`** con el primer problema que quieras resolver: ahí eliges en qué área (carpeta) y
+   en qué tema va, entre lo que ya existe y un catálogo sugerido, y la carpeta se crea en ese momento.
 
 Dos avisos para la primera vez. Si al escribir `/proyecto:` no aparecen los comandos, comprueba que estás en la
 pestaña *Code* y que la sesión está abierta **sobre esta carpeta** (no sobre una carpeta que la contiene); si sigue sin
@@ -34,9 +35,9 @@ aceptar el diálogo de confianza de la carpeta.
 2. **Todo trabajo tiene un solo hogar y pasa por el ciclo.** `/proyecto:explorar → proponer → aplicar → archivar` lo
    lleva de idea a archivo, siempre en `Proyectos/`. Un trabajo chico es una **tarea** (un archivo); uno grande es un
    **proyecto** (carpeta con propuesta, exploración, solución y tareas).
-3. **Los resultados viven en su área y su tema, no en el proyecto.** Cada área declara sus temas (subcarpetas), y el
-   asistente nombra el destino de cada archivo antes de escribirlo. Al archivar, siempre pregunta dónde queda el
-   resultado.
+3. **Los resultados viven en su área y su tema, no en el proyecto.** Las áreas y sus temas (subcarpetas) nacen con
+   el primer trabajo que los necesita, elegidos por ti; el asistente nombra el destino de cada archivo antes de
+   escribirlo. Al archivar, siempre pregunta dónde queda el resultado.
 4. **El validador exige lo que la disciplina olvida.** `bun validar.ts` comprueba descriptores, tablas contra carpetas,
    cabeceras, tope de líneas, índice de referencias y trabajos con estado. Sin `bun`, `/proyecto:validar` hace lo
    mismo a mano.
@@ -45,9 +46,9 @@ aceptar el diálogo de confianza de la carpeta.
 
 | Comando | Para qué |
 |---|---|
-| `/proyecto:setup` | Primera vez: nombra la empresa, declara áreas y temas, primer commit |
+| `/proyecto:setup` | Primera vez: nombra la empresa y hace el primer commit; sin áreas ni temas |
 | `/proyecto:explorar` | Pensar una idea sin compromiso. No escribe archivos salvo que se lo pidas |
-| `/proyecto:proponer` | Entrevista en vivo → propuesta, solución y plan de tareas, con área y resultado esperado |
+| `/proyecto:proponer` | Entrevista en vivo → propuesta, solución y plan de tareas; elige área y tema, y los crea si no existen |
 | `/proyecto:aplicar` | **Ejecuta** el plan; cada resultado nace en `<Área>/<tema>/` |
 | `/proyecto:archivar` | Confirma dónde queda el resultado, archiva y registra el hito |
 | `/proyecto:validar` | El validador a mano, para máquinas sin `bun` |
@@ -60,7 +61,8 @@ que se consultan, con índice), `Decisiones/` (bitácora por quarter), `CHANGELO
 
 - **Ninguna integración.** El repo es la única fuente de verdad. No publica a ninguna herramienta.
 - **Ningún agente, skill, MCP ni hook.** Funciona con Claude Code estándar, también desde la app de escritorio.
-- **Ningún catálogo de áreas impuesto.** Hay uno sugerido; tu empresa lo recorta. Una sola área es válida.
+- **Ningún catálogo de áreas impuesto.** Hay uno sugerido en `_Templates/catalogo-areas.md`, que se ofrece como
+  alternativa cuando un trabajo necesita un área o un tema nuevo. Una sola área es válida.
 - **Ninguna bandeja que haya que vaciar.** `_Referencias/` es un estante: lo que está ahí se consulta, no se procesa.
 
 ## Estructura
@@ -75,7 +77,7 @@ Proyectos/Tareas/<slug>.md         una tarea
 Proyectos/Archivados/              lo cerrado, con `Resultado:` en su estado
 _Referencias/_index.md             el estante
 Decisiones/Q<N>-<AAAA>.md          la bitácora
-_Templates/  validar.ts            moldes y validador
+_Templates/  validar.ts            moldes, catálogo sugerido de áreas y validador
 ```
 
 Las reglas completas están en `CLAUDE.md`, que es lo que el asistente lee al abrir cada sesión.

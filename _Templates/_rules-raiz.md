@@ -1,4 +1,4 @@
-<!-- Creado: 2026-10-07 · Actualizado: 2026-10-07 · Creador: admin -->
+<!-- Creado: 2026-10-07 · Actualizado: 2026-10-07 · Creador: System -->
 # Reglas de <Nombre de la empresa>
 
 Reglas que aplican a todo el repo, por encima de las de cada área. Las de un área viven en su `_rules.md`.

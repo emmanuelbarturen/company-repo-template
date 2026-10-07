@@ -40,7 +40,8 @@ Reúne los candidatos a resultado del trabajo:
 
 Preséntalos con `AskUserQuestion` (header "Resultado", `multiSelect: true`): por cada candidato, la ruta propuesta
 en `<Área>/<tema>/` (para los que ya están ahí, «confirmar»; para los sueltos, el destino que corresponde por la
-tabla de temas del área; si ningún tema encaja, «crear tema» como opción explícita). `AskUserQuestion` admite hasta
+tabla de temas del área; si ningún tema encaja, «crear tema» como opción explícita, con los sugeridos para esa
+área en `_Templates/catalogo-areas.md` como alternativas). `AskUserQuestion` admite hasta
 4 opciones: con más de 4 candidatos, haz **una pregunta por candidato**. **No muevas nada sin esta confirmación**,
 aunque el destino parezca obvio. Si el trabajo no dejó archivos (una decisión, un trámite), la opción es
 **«ninguno»** y pides el motivo en una línea.
