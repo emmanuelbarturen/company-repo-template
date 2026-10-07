@@ -51,7 +51,7 @@ paso 7.
 
 1. **Cimientos:** `propuesta.md` desde `_Templates/proyecto/propuesta.md` con el bloque `## Estado` completo
    (`Fase: proponer`, `Área:`, `Resultado esperado:` tentativo) y `exploracion.md` desde su molde. Si
-   `/proyecto:explorar` dejó conclusiones, hereda esos puntos.
+   `/proyecto:nuevo` dejó conclusiones, hereda esos puntos.
 2. **Loop de requerimientos** → *Playbook A*. Documenta gated por OK: cuando un frente quede estable, pregunta
    *«esto ya está definido, ¿lo documento?»* y di a qué archivo va (discovery → `exploracion.md`; lo que ya es
    spec → `propuesta.md`). Tras escribir, actualiza `## Estado` (frentes, fecha, próximo paso).

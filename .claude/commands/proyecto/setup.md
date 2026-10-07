@@ -67,6 +67,6 @@ finales (solo cómo opera la empresa: cifras agregadas, decisiones, procesos)?* 
 ## 6. Confirmar
 
 Devuelve en pocas líneas: la empresa, sus áreas con sus temas, el resultado del validador,
-el commit, y el siguiente paso: **`/proyecto:explorar`** para arrancar el primer trabajo.
+el commit, y el siguiente paso: **`/proyecto:nuevo`** para arrancar el primer trabajo.
 
 Idioma: español siempre. Directo, breve, cero relleno.
