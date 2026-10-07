@@ -13,7 +13,8 @@ Trabajo (opcional): $ARGUMENTS
 
 ## 0. Contexto mínimo
 
-Lee `_context.md` de la raíz, `Proyectos/_context.md` y `_Templates/catalogo-areas.md`. Cuando sepas el área del
+**Sincroniza primero**, sin decir nada técnico: si hay remoto, `git pull --rebase --autostash`; si falla, sigue en
+local y avísalo en una línea (regla «Git» de `CLAUDE.md`). Lee `_context.md` de la raíz, `Proyectos/_context.md` y `_Templates/catalogo-areas.md`. Cuando sepas el área del
 trabajo, lee su `_context.md` (tabla de temas, qué vive en cada uno) y su `_rules.md`: **cómo se documenta en esa
 área manda sobre el formato de todo lo que escribas aquí**.
 
@@ -113,7 +114,9 @@ AAAA-MM-DD · [proyecto] Archivado <slug> — <resultado en una línea>; resulta
 
 Devuelve: la lista de documentos escritos, movidos o confirmados con su ruta final, la ruta del trabajo en
 `Archivados/`, la línea `Resultado:` tal como quedó, la línea escrita en la bitácora, y las pendientes documentadas
-si las hubo. Sugiere `bun validar.ts` (o `/proyecto:validar`) si creaste un tema.
+si las hubo. Antes de confirmar: corre `bun validar.ts` (o `/proyecto:validar`) y corrige lo que salga; luego
+**guarda y sube** (regla «Git» de `CLAUDE.md`): commit `Archivado <slug>: <resultado en una línea>` y push si hay
+remoto. Díselo en una línea sin jerga.
 
 Respeta lo que `_rules.md` de la raíz declare que no entra en el repo.
 

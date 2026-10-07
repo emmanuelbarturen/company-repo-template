@@ -7,7 +7,8 @@ No es software. Es una estructura de carpetas que se autodescribe, un ciclo de t
 bitácora de decisiones. El asistente aprende cómo está organizada tu empresa leyendo la carpeta, y actúa como un
 gestor de proyectos ordenado: cada archivo que produce tiene un solo hogar, decidido antes de escribirlo.
 
-Todo en español. Sin instalación, sin dependencias, sin integraciones obligatorias.
+Todo en español. Sin instalación, sin dependencias, sin integraciones obligatorias. **No necesitas saber git:** el
+asistente guarda y sube tu trabajo por ti, y si tiene que preguntarte algo lo hace en lenguaje de negocio.
 
 ## Arrancar en 3 pasos (desde la app de escritorio de Claude)
 
@@ -17,7 +18,8 @@ Todo en español. Sin instalación, sin dependencias, sin integraciones obligato
    archivos en tu carpeta). La primera vez la app pregunta si confías en la carpeta: acepta, o nada del framework
    carga. **Solo la pestaña *Code* sirve**: *Chat* y *Cowork* no leen los comandos del repo aunque les des acceso a la
    carpeta. También funciona desde la terminal con `claude` dentro de la carpeta, pero no hace falta.
-3. Escribe **`/proyecto:setup`**. Te pregunta por tu empresa y deja el repo listo; no te pide áreas ni temas.
+3. Escribe **`/proyecto:setup`**. Te pregunta por tu empresa y deja el repo listo; no te pide áreas ni temas. Al
+   final te ofrece guardar una copia en la nube (GitHub) y te guía si no sabes cómo.
    Después, **`/proyecto:nuevo`** con el primer problema que quieras resolver: ahí eliges en qué área (carpeta) y
    en qué tema va, entre lo que ya existe y un catálogo sugerido, y la carpeta se crea en ese momento.
 

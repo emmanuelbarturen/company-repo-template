@@ -4,6 +4,18 @@
 Qué cambió en **Company Cycle OS** y qué debe migrar quien ya lo usa. La bitácora de tu empresa es otra cosa: vive en
 `Decisiones/`.
 
+## v1.3 — 2026-10-07
+
+- **Git lo lleva el asistente.** El usuario del repo no es técnico: nueva sección «Git» en `CLAUDE.md`. Cada comando
+  trae lo último al empezar, y al cerrar (y `aplicar` tras cada tanda) guarda y sube con un mensaje que nombra el
+  trabajo. Sin jerga: nunca se dice commit, push, rama ni conflicto; si hay que elegir entre dos versiones, la
+  pregunta es de negocio. Nunca se fuerza un push ni se reescribe historial; siempre en `main`.
+- `setup` pregunta en lenguaje llano si quiere una copia en la nube (GitHub) y guía la creación del repositorio
+  privado paso a paso.
+- `.claude/settings.json` preautoriza las operaciones de git que esto requiere (pull, push, fetch, remote, mv, rm,
+  stash, rebase, merge, checkout, branch, restore) para que la app no interrumpa al usuario con permisos.
+- Migración: nada que hacer; aplica en la siguiente sesión.
+
 ## v1.2 — 2026-10-07
 
 - `/proyecto:explorar` pasa a llamarse **`/proyecto:nuevo`**: es el comando con el que arranca todo trabajo. El

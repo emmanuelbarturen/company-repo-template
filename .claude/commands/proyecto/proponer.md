@@ -14,7 +14,8 @@ Trabajo o tema (opcional): $ARGUMENTS
 
 ## 0. Contexto mínimo
 
-Lee `_context.md` y `_rules.md` de la raíz, `Proyectos/_context.md` (reglas de tamaño y del bloque Estado) y
+**Sincroniza primero**, sin decir nada técnico: si hay remoto, `git pull --rebase --autostash`; si falla, sigue en
+local y avísalo en una línea (regla «Git» de `CLAUDE.md`). Lee `_context.md` y `_rules.md` de la raíz, `Proyectos/_context.md` (reglas de tamaño y del bloque Estado) y
 `_Templates/catalogo-areas.md` (alternativas de área y tema). Cuando sepas el área del trabajo y exista, lee también
 `_context.md` y `_rules.md` de esa área: sus reglas de «cómo se crea un proyecto» son parte de la entrevista.
 
@@ -116,9 +117,11 @@ en su único archivo. Cierra actualizando `## Estado`.
 
 ## 7. Cierre
 
-Actualiza `## Estado` y ofrece con `AskUserQuestion` (header "Cierre"): **Ejecutar ahora** → indícale correr
-`/proyecto:aplicar <slug>` / **Cerrar** → la propuesta queda lista para otra sesión. Si `_context.md` de la raíz tiene
-la sección «Trabajos activos», agrega la línea del trabajo.
+Actualiza `## Estado`. Si `_context.md` de la raíz tiene la sección «Trabajos activos», agrega la línea del trabajo.
+**Guarda y sube** según la regla «Git» de `CLAUDE.md`: `bun validar.ts` si creaste área o tema, commit `Propuesta de
+<slug>: <qué quedó definido>` y push si hay remoto; confírmalo en una línea sin jerga. Luego ofrece con
+`AskUserQuestion` (header "Cierre"): **Ejecutar ahora** → indícale correr `/proyecto:aplicar <slug>` / **Cerrar** → la
+propuesta queda lista para otra sesión.
 
 Todo `.md` lleva la cabecera de metadatos con el **Creador por defecto** declarado en la ficha de `_context.md` de la
 raíz; al editar, actualiza la fecha. Los campos del Estado se escriben siempre como viñeta `- **Campo:** valor`.

@@ -51,18 +51,29 @@ Pregunta con `AskUserQuestion` (header "Datos"): *¿Este repo debe quedar libre 
 finales (solo cómo opera la empresa: cifras agregadas, decisiones, procesos)?* **Sí, regla no-pii** (recomendado) /
 **No hace falta**. Escribe la respuesta en la sección Confidencialidad de `_rules.md` de la raíz.
 
-## 4. Validar y versionar
+## 4. Validar y guardar
+
+El usuario no es técnico: **git lo manejas tú, sin pronunciar una palabra de git** (regla «Git» de `CLAUDE.md`).
 
 1. **Si hay `bun`:** corre `bun validar.ts` y corrige lo que salga hasta que dé 0 errores. **Si no hay `bun`:**
    ofrece con `AskUserQuestion` (header "Validador"): **Instalarlo ahora** (corre el instalador oficial de
    `bun.sh` y vuelve a intentar) / **Sin instalar** (corre `/proyecto:validar`, que hace los mismos chequeos a mano).
-2. Si el repo no tiene `.git`, corre `git init` y haz el primer commit: `Adopción de Company Cycle OS — <empresa>`.
-3. Pregunta si quiere un remoto. Si sí, pídele la URL del repo **privado** que haya creado en su proveedor (eso lo
-   hace él desde la web) y corre `git remote add origin <url>`. No hagas push sin que lo pida.
+2. Si la carpeta no tiene `.git`, corre `git init -b main`. Haz el primer commit: `Adopción de Company Cycle OS —
+   <empresa>`. Al usuario dile solo «guardé la primera versión».
+3. **Copia en la nube.** Si ya hay remoto (la carpeta vino de un repositorio del usuario), haz `git push` y sigue.
+   Si no, pregunta con `AskUserQuestion` (header "Copia en la nube"): *¿Quieres que tu empresa quede guardada también
+   en internet (GitHub), además de en esta computadora, para no perderla y poder abrirla desde otro equipo?*
+   **Sí, ya tengo el enlace** → pídele que pegue el enlace del repositorio **privado y vacío** que creó, corre
+   `git remote add origin <url>` y `git push -u origin main`. / **Sí, pero no sé cómo** → dale 3 pasos en lenguaje
+   llano (entrar a github.com → «New repository» → nombre, marcar *Private*, no marcar nada más → «Create» → copiar
+   el enlace que aparece) y espera el enlace. / **No, solo en esta computadora** → sigue; podrá pedirlo después.
+   Si el push falla, no lo conviertas en un problema técnico: di que quedó guardado en la computadora y que lo
+   subirás en la próxima sesión.
 
 ## 5. Confirmar
 
-Devuelve en pocas líneas: la empresa, el resultado del validador, el commit, y el siguiente paso:
+Devuelve en pocas líneas: la empresa, el resultado del validador, dónde quedó guardado (computadora o también
+en la nube), y el siguiente paso:
 **`/proyecto:nuevo`** para arrancar el primer trabajo, recordándole que ahí se elige el área y el tema donde
 quedará su resultado.
 

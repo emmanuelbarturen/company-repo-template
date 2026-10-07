@@ -19,7 +19,19 @@
       "Bash(git add*)",
       "Bash(git commit*)",
       "Bash(git log*)",
-      "Bash(git diff*)"
+      "Bash(git diff*)",
+      "Bash(git pull*)",
+      "Bash(git push*)",
+      "Bash(git fetch*)",
+      "Bash(git remote*)",
+      "Bash(git mv*)",
+      "Bash(git rm*)",
+      "Bash(git stash*)",
+      "Bash(git rebase*)",
+      "Bash(git merge*)",
+      "Bash(git checkout*)",
+      "Bash(git branch*)",
+      "Bash(git restore*)"
     ]
   }
 }

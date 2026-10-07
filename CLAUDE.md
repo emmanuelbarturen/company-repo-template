@@ -29,7 +29,7 @@ nada dentro de ella.**
 | ------------- | ----------------------------- | ------------------------------------------------------------------------------------------- |
 | `_context.md` | raíz, cada área, `Proyectos/` | qué vive aquí, qué no; en la raíz la **tabla de áreas**, en cada área la **tabla de temas** |
 | `_rules.md`   | raíz, cada área               | reglas: cómo se documenta aquí y cómo se crea un proyecto de esta área                      |
-| `_links.md` | raíz, cada área               | enlaces externos: documentos, tableros, carpetas compartidas                                |
+| `_links.md`   | raíz, cada área               | enlaces externos: documentos, tableros, carpetas compartidas                                |
 
 **Las áreas viven en la tabla de `_context.md` raíz, y los temas en la tabla de cada área.** El ruteo se hace
 contra esas tablas, nunca contra un catálogo asumido. Si una carpeta existe sin descriptor, pregunta qué es antes de
@@ -112,6 +112,24 @@ Creador: System -->`. El creador por defecto es `System` (fijo en la ficha; no s
   archivos (un tema nuevo, los `Archivados/` de `Proyectos/`) lleva un `.gitkeep`, que se borra al llegar el primer
   archivo. El validador avisa de las carpetas vacías que no lo tienen (V10).
 - **Confidencialidad:** respeta lo que `_rules.md` de la raíz declare que no entra en el repo.
+
+## Git — lo lleva el asistente; el usuario no lo toca
+
+Quien usa este repo no es técnico y **nunca opera git**: tú guardas y subes su trabajo, sin errores y sin jerga.
+
+- **Al empezar** cualquier comando o cambio de archivos: si hay remoto (`git remote`), `git pull --rebase --autostash`
+  en silencio. Si falla por red, sigue en local y dilo en una línea.
+- **Al cerrar** cada comando, y en `aplicar` tras cada tanda: `bun validar.ts` si tocaste estructura; `git add -A`;
+  commit con mensaje en español que nombre el trabajo y qué cambió (`Propuesta de <slug>: alcance y plan`); `git
+  push` si hay remoto (reintenta hasta 3 veces). Confirma en una línea llana: «Guardé y subí los cambios» o «Guardé
+  los cambios en esta computadora; los subiré cuando haya conexión».
+- **Palabras:** nunca digas commit, push, pull, merge, rebase, rama, remoto ni conflicto. Di «guardar una versión»,
+  «subir a la nube», «traer lo último», «hay dos versiones distintas de este archivo». Si hace falta preguntar, la
+  pregunta es de negocio («¿me quedo con el texto de hoy o con el de ayer?»), nunca de herramienta.
+- **Problemas:** push rechazado → `git pull --rebase --autostash` y reintenta. Dos versiones de un `.md` → si una
+  contiene a la otra, resuélvelo tú; si no, muestra ambos fragmentos en texto plano con `AskUserQuestion`
+  («la de esta computadora» / «la de la nube» / «juntar las dos») y resuelve. **Nunca** dejes el repo a medio
+  rebase o merge, reescribas historial, fuerces un push ni borres trabajo del usuario. Siempre en `main`, sin ramas.
 
 ## Validar
 
