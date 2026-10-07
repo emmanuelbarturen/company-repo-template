@@ -29,7 +29,7 @@ nada dentro de ella.**
 | ------------- | ----------------------------- | ------------------------------------------------------------------------------------------- |
 | `_context.md` | raíz, cada área, `Proyectos/` | qué vive aquí, qué no; en la raíz la **tabla de áreas**, en cada área la **tabla de temas** |
 | `_rules.md`   | raíz, cada área               | reglas: cómo se documenta aquí y cómo se crea un proyecto de esta área                      |
-| `_enlaces.md` | raíz, cada área               | enlaces externos: documentos, tableros, carpetas compartidas                                |
+| `_links.md` | raíz, cada área               | enlaces externos: documentos, tableros, carpetas compartidas                                |
 
 **Las áreas se declaran en la tabla de `_context.md` raíz, y los temas en la tabla de cada área.** El ruteo se hace
 contra esas tablas, nunca contra un catálogo asumido. **Ninguna sesión crea un área ni un tema sin preguntar**: si
@@ -47,8 +47,8 @@ carpeta del proyecto «por ahora»: la carpeta del proyecto guarda el plan, no l
 ## Estructura
 
 ```
-_context.md · _rules.md · _enlaces.md      la empresa: ficha, tabla de áreas, reglas, enlaces
-<Área>/_context.md _rules.md _enlaces.md   cada área declarada, con su tabla de temas
+_context.md · _rules.md · _links.md      la empresa: ficha, tabla de áreas, reglas, enlaces
+<Área>/_context.md _rules.md _links.md   cada área declarada, con su tabla de temas
 <Área>/<tema>/*.md                         los documentos, siempre dentro de un tema
 Proyectos/<slug>/                          proyecto: propuesta.md · exploracion.md · solucion.md · tareas.md
 Proyectos/Tareas/<slug>.md                 mini-proyecto: un solo archivo

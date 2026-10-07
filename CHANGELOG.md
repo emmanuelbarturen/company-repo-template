@@ -7,7 +7,7 @@ Qué cambió en **Company Cycle OS** y qué debe migrar quien ya lo usa. La bit�
 ## v1 — 2026-09-27
 
 - Creación del framework. Mono-empresa, en español, para Claude Code (también desde la app de escritorio).
-- Descriptores con subguion por carpeta: `_context.md`, `_rules.md`, `_enlaces.md`. Áreas declaradas en la raíz,
+- Descriptores con subguion por carpeta: `_context.md`, `_rules.md`, `_links.md`. Áreas declaradas en la raíz,
   temas declarados en cada área; nada se crea sin preguntar.
 - Ciclo de trabajo `/proyecto:explorar → proponer → aplicar → archivar`, más `/proyecto:setup` (adopción) y
   `/proyecto:validar` (respaldo del validador cuando no hay `bun`).

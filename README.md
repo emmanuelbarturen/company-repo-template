@@ -33,7 +33,7 @@ le tocaba, y una tarea pendiente. Léela como ejemplo; `setup` la borra por comp
 ## La idea en cuatro frases
 
 1. **Cada carpeta se autodescribe.** Tres archivos con subguion la explican: `_context.md` (qué vive aquí y qué no),
-   `_rules.md` (cómo se documenta y cómo se crea un proyecto de esta área) y `_enlaces.md` (documentos y tableros
+   `_rules.md` (cómo se documenta y cómo se crea un proyecto de esta área) y `_links.md` (documentos y tableros
    externos). Es lo único que hace que un asistente sin memoria entienda una carpeta que no escribió.
 2. **Todo trabajo tiene un solo hogar y pasa por el ciclo.** `/proyecto:explorar → proponer → aplicar → archivar` lo
    lleva de idea a archivo, siempre en `Proyectos/`. Un trabajo chico es una **tarea** (un archivo); uno grande es un
@@ -71,7 +71,7 @@ que se consultan, con índice), `Decisiones/` (bitácora por quarter), `CHANGELO
 
 ```
 CLAUDE.md                          reglas del framework (lo que el asistente lee siempre)
-_context.md _rules.md _enlaces.md  tu empresa: ficha, tabla de áreas, reglas, enlaces
+_context.md _rules.md _links.md  tu empresa: ficha, tabla de áreas, reglas, enlaces
 <Área>/_context.md …               cada área, con su tabla de temas y sus tres descriptores
 <Área>/<tema>/*.md                 los documentos, siempre dentro de un tema
 Proyectos/<slug>/                  un proyecto: propuesta · exploracion · solucion · tareas

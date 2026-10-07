@@ -15,7 +15,7 @@ import { basename, dirname, join, relative, resolve, sep } from "node:path";
 // ── Constantes ─────────────────────────────────────────────────────────────
 const RESERVADAS_RAIZ = new Set(["Proyectos", "Decisiones", "_Referencias", "_Templates", "Plans", ".claude", ".ccos", ".git", "node_modules"]);
 const RESERVADAS_PROYECTOS = new Set(["Tareas", "Archivados", "adjuntos"]);
-const DESCRIPTORES = ["_context.md", "_rules.md", "_enlaces.md"];
+const DESCRIPTORES = ["_context.md", "_rules.md", "_links.md"];
 const CANONICOS = new Set(["propuesta.md", "exploracion.md", "solucion.md", "tareas.md"]);
 const FASES = new Set(["explorar", "proponer", "aplicar", "pausado", "archivado"]);
 const TOPE_LINEAS = 120;
@@ -125,7 +125,7 @@ const areasReales = subdirs(raiz).filter((n) => !RESERVADAS_RAIZ.has(n) && !n.st
 
 // ── V1 Descriptores ────────────────────────────────────────────────────────
 if (!existsSync(join(raiz, "Proyectos", "_context.md"))) err("V1", "Proyectos/_context.md", "falta el descriptor");
-for (const d of ["_rules.md", "_enlaces.md"]) if (!existsSync(join(raiz, d))) aviso("V1", d, "falta en la raíz");
+for (const d of ["_rules.md", "_links.md"]) if (!existsSync(join(raiz, d))) aviso("V1", d, "falta en la raíz");
 for (const a of areasReales) for (const d of DESCRIPTORES) {
   if (!existsSync(join(raiz, a, d))) err("V1", `${a}/${d}`, "falta el descriptor del área");
 }
