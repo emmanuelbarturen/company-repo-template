@@ -1,5 +1,5 @@
 ---
-description: Crea o modifica la propuesta de un trabajo — tarea (un archivo con checklist) o proyecto (entrevista en vivo → propuesta, solución y plan de tareas). Declara área y resultado esperado. Sesión retomable vía el bloque Estado
+description: Crea o modifica la propuesta de un trabajo — corto (un archivo con checklist) o largo (entrevista en vivo → propuesta, solución y plan de tareas). Declara área y resultado esperado. Sesión retomable vía el bloque Estado
 argument-hint: [trabajo o tema]
 ---
 
@@ -7,8 +7,8 @@ Conduces una sesión para **proponer** un trabajo: definir su qué, su cómo, d�
 tareas ejecutable. La entrevista la corres **tú, en el hilo principal**, con los tres playbooks de abajo
 (requerimientos, solución, tareas). No hay agentes: los playbooks son parte de este comando.
 
-**Contrato: una propuesta no se cierra sin su plan de tareas** — `tareas.md` en un proyecto, o el checklist
-`## Tareas` en una tarea. Ese plan es lo que `/proyecto:aplicar` ejecuta.
+**Contrato: una propuesta no se cierra sin su plan de tareas** — `tareas.md` en un largo, o el checklist
+`## Tareas` en un corto. Ese plan es lo que `/proyecto:aplicar` ejecuta.
 
 Trabajo o tema (opcional): $ARGUMENTS
 
@@ -22,7 +22,7 @@ local y avísalo en una línea (regla «Git» de `CLAUDE.md`). Lee `_context.md`
 ## 1. ¿En qué trabajamos?
 
 El nombre puede venir en $ARGUMENTS. **Si no viene, no lo inventes:** lista los trabajos activos (carpetas de
-`Proyectos/Regulares/` y archivos de `Proyectos/Tareas/`, sin mirar dentro de `Archivados/`) y
+`Proyectos/Largos/` y archivos de `Proyectos/Cortos/`, sin mirar dentro de `Archivados/`) y
 preséntalos con `AskUserQuestion` (header "Trabajo") con una opción por trabajo **más la opción fija «Nuevo»**.
 `AskUserQuestion` admite hasta 4 opciones: con más de 3 trabajos, ofrece los 3 más recientes más «Nuevo» y pide el
 resto por nombre en texto libre. Deriva el `<slug>` (kebab-case) y decide la rama:
@@ -34,7 +34,7 @@ resto por nombre en texto libre. Deriva el `<slug>` (kebab-case) y decide la ram
 
 ## 2. Calibrar tamaño, área y tema (solo nuevo)
 
-Con `AskUserQuestion` (header "Tamaño"): **Tarea** / **Proyecto**, con la heurística de `Proyectos/_context.md` y tu
+Con `AskUserQuestion` (header "Tamaño"): **Corto** / **Largo**, con la heurística de `Proyectos/_context.md` y tu
 recomendación. Luego, con el procedimiento de `CLAUDE.md` «Áreas y temas», dos preguntas más:
 
 - **Área** (header "Área"): hasta 4 opciones, primero las filas que ya tiene la tabla de áreas de la raíz, luego las
@@ -48,20 +48,21 @@ carpeta, sus tres descriptores desde `.claude/templates/area/` (responsabilidad 
 tabla de la raíz; el tema con su carpeta (con un `.gitkeep` mientras va vacía) y su fila en la tabla del área. El
 Estado necesita un `Área:` que esté en la tabla y un `Resultado esperado:` con su `<Área>/<tema>/`.
 
-Si a mitad de camino una tarea crece (aparece solución técnica propia, más de ~5 pasos, alguien más lo va a
-construir), dilo y **gradúala**: crea `Proyectos/Regulares/<slug>/` con el mismo slug y su archivo pasa a ser `propuesta.md`.
+Si a mitad de camino un corto crece (aparece solución técnica propia, más de ~5 pasos, alguien más lo va a
+construir), dilo y **gradúalo**: crea `Proyectos/Largos/<slug>/` con el mismo slug y su archivo pasa a ser
+`propuesta.md`.
 
-## 3. Rama tarea
+## 3. Rama corto
 
 Un lote de 3-5 preguntas (playbook de requerimientos condensado): problema real · resultado esperado y **con qué
 nombre de archivo queda** en el `<Área>/<tema>/` elegido en el paso 2 · qué NO entra · pasos concretos. Escribe
-`Proyectos/Tareas/<slug>.md` desde `.claude/templates/tarea.md`, con `Área:` y `Resultado esperado:` llenos y los pasos
-numerados por dependencia. Si el checklist quedó completo, deja **`- **Fase:** aplicar`** (el plan ya existe); si
+`Proyectos/Cortos/<slug>.md` desde `.claude/templates/proyecto-corto.md`, con `Área:` y `Resultado esperado:` llenos
+y los pasos numerados por dependencia. Si el checklist quedó completo, deja **`- **Fase:** aplicar`** (el plan ya existe); si
 falta algo, `proponer`. Salta al paso 7.
 
-## 4. Rama proyecto — entrevista en vivo
+## 4. Rama largo — entrevista en vivo
 
-1. **Cimientos:** `propuesta.md` desde `.claude/templates/proyecto/propuesta.md` con el bloque `## Estado` completo
+1. **Cimientos:** `propuesta.md` desde `.claude/templates/proyecto-largo/propuesta.md` con el bloque `## Estado` completo
    (`Fase: proponer`, `Área:`, `Resultado esperado:` tentativo) y `exploracion.md` desde su molde. Si
    `/proyecto:nuevo` dejó conclusiones, hereda esos puntos.
 2. **Loop de requerimientos** → *Playbook A*. Documenta gated por OK: cuando un frente quede estable, pregunta
@@ -112,7 +113,7 @@ flujo, métrica) → Playbook A → `propuesta.md`; **técnico** (enfoque, herra
 Playbook B → `solucion.md`; **ambos** → primero el qué, luego el cómo. Pregunta solo lo que el cambio deja ambiguo.
 **Edita quirúrgicamente.** Coherencia obligatoria: un Must nuevo necesita su fila en el mapa de `solucion.md`; una
 decisión que cambia el alcance se ve en la propuesta. **Y siempre actualiza `tareas.md`:** las tareas que el cambio
-invalida quedan `~~tachadas~~` con una línea de por qué; las nuevas van al final de su etapa. En una tarea, todo va
+invalida quedan `~~tachadas~~` con una línea de por qué; las nuevas van al final de su etapa. En un corto, todo va
 en su único archivo. Cierra actualizando `## Estado`.
 
 ## 7. Cierre

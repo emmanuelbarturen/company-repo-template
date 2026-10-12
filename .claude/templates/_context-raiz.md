@@ -1,4 +1,4 @@
-<!-- Creado: 2026-10-07 · Actualizado: 2026-10-07 · Creador: System -->
+<!-- Creado: 2026-10-07 · Actualizado: 2026-10-12 · Creador: System -->
 # <Nombre de la empresa>
 
 > **Este archivo se lee PRIMERO** en cualquier trabajo. Es la fuente de verdad de la empresa.
@@ -30,7 +30,7 @@ tildes ni espacios: la carpeta es el identificador.
 
 | Carpeta | Qué vive aquí |
 |---|---|
-| `Proyectos/` | todo trabajo: proyectos (carpeta de 4 documentos) y tareas (un archivo) |
+| `Proyectos/` | todo trabajo: largos (carpeta de 4 documentos) y cortos (un archivo) |
 | `_Referencias/` | archivos de afuera que se consultan, con `_index.md` |
 | `Decisiones/` | bitácora de la empresa, por quarter |
 

@@ -1,4 +1,4 @@
-<!-- Creado: 2026-09-27 · Actualizado: 2026-10-07 · Creador: company-cycle-os -->
+<!-- Creado: 2026-09-27 · Actualizado: 2026-10-12 · Creador: company-cycle-os -->
 # Company Cycle OS
 
 **Una forma de operar tu empresa en Markdown, con Claude como copiloto, desde la pestaña *Code* de la app de
@@ -45,8 +45,8 @@ es normal, acepta.
    `_rules.md` (cómo se documenta y cómo se crea un proyecto de esta área) y `_links.md` (documentos y tableros
    externos). Es lo único que hace que un asistente sin memoria entienda una carpeta que no escribió.
 2. **Todo trabajo tiene un solo hogar y pasa por el ciclo.** `/proyecto:nuevo → proponer → aplicar → archivar` lo
-   lleva de idea a archivo, siempre en `Proyectos/`. Un trabajo chico es una **tarea** (un archivo); uno grande es un
-   **proyecto** (carpeta con propuesta, exploración, solución y tareas).
+   lleva de idea a archivo, siempre en `Proyectos/`. Un trabajo chico es un **proyecto corto** (un archivo); uno
+   grande, un **proyecto largo** (carpeta con propuesta, exploración, solución y tareas).
 3. **Los resultados viven en su área y su tema, no en el proyecto.** Las áreas y sus temas (subcarpetas) nacen con
    el primer trabajo que los necesita, elegidos por ti; el asistente nombra el destino de cada archivo antes de
    escribirlo. Al archivar, escribe los documentos que el trabajo deja, propone la carpeta con criterio de
@@ -87,10 +87,10 @@ CLAUDE.md                          reglas del framework (lo que el asistente lee
 _context.md _rules.md _links.md  tu empresa: ficha, tabla de áreas, reglas, enlaces
 <Área>/_context.md …               cada área, con su tabla de temas y sus tres descriptores
 <Área>/<tema>/*.md                 los documentos, siempre dentro de un tema
-Proyectos/Regulares/<slug>/        un proyecto: propuesta · exploracion · solucion · tareas
-Proyectos/Regulares/Archivados/    proyectos cerrados, con `Resultado:` en su estado
-Proyectos/Tareas/<slug>.md         una tarea
-Proyectos/Tareas/Archivados/       tareas cerradas
+Proyectos/Largos/<slug>/           un proyecto largo: propuesta · exploracion · solucion · tareas
+Proyectos/Largos/Archivados/       largos cerrados, con `Resultado:` en su estado
+Proyectos/Cortos/<slug>.md         un proyecto corto
+Proyectos/Cortos/Archivados/       cortos cerrados
 _Referencias/_index.md             el estante
 Decisiones/Q<N>-<AAAA>.md          la bitácora
 .claude/                           la maquinaria: comandos, moldes, catálogo de áreas y validador

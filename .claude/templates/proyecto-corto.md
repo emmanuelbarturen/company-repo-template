@@ -1,5 +1,5 @@
-<!-- Creado: 2026-10-07 · Actualizado: 2026-10-07 · Creador: System -->
-# Tarea — <Título>
+<!-- Creado: 2026-10-07 · Actualizado: 2026-10-12 · Creador: System -->
+# Proyecto corto — <Título>
 
 ## Estado
 - **Fase:** proponer   <!-- explorar | proponer | aplicar | pausado | archivado -->
@@ -12,7 +12,7 @@
 <Qué se quiere lograr y cómo se ve el éxito, en 2-4 líneas.>
 
 ## Contexto
-<Solo lo necesario. Si crece, es señal de que esto es un proyecto.>
+<Solo lo necesario. Si crece, es señal de que esto es un proyecto largo.>
 
 ## Tareas
 - [ ] 01. <paso> — se comprueba: <cómo>

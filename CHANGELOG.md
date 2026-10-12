@@ -1,8 +1,25 @@
-<!-- Creado: 2026-09-27 · Actualizado: 2026-10-07 · Creador: company-cycle-os -->
+<!-- Creado: 2026-09-27 · Actualizado: 2026-10-12 · Creador: company-cycle-os -->
 # Historia del framework
 
 Qué cambió en **Company Cycle OS** y qué debe migrar quien ya lo usa. La bitácora de tu empresa es otra cosa: vive en
 `Decisiones/`.
+
+## v1.5 — 2026-10-12
+
+- **Los dos tamaños de trabajo se nombran por lo que son: `Largos/` y `Cortos/`.** `Proyectos/Regulares/` pasa a
+  `Proyectos/Largos/` y `Proyectos/Tareas/` a `Proyectos/Cortos/` (cada una con su `Archivados/`). «Regulares» no
+  nombraba nada —existía solo para no escribir `Proyectos/Proyectos/`— y «Tareas» chocaba con `tareas.md`, el plan
+  que vive dentro de cada trabajo: la misma palabra para dos cosas distintas. Ahora el vocabulario es **proyecto
+  largo** (carpeta de cuatro documentos) y **proyecto corto** (un archivo), y la palabra «tarea» queda libre para
+  significar solo un paso del plan.
+- Los moldes siguen la misma simetría: `.claude/templates/proyecto/` pasa a `.claude/templates/proyecto-largo/` y
+  `.claude/templates/tarea.md` a `.claude/templates/proyecto-corto.md`. Las preguntas de tamaño del ciclo
+  (`/proyecto:nuevo`, `/proyecto:proponer`) ofrecen **Corto** / **Largo**.
+- **Migración:** `git mv Proyectos/Regulares Proyectos/Largos && git mv Proyectos/Tareas Proyectos/Cortos &&
+  git mv .claude/templates/proyecto .claude/templates/proyecto-largo &&
+  git mv .claude/templates/tarea.md .claude/templates/proyecto-corto.md`. En `_context.md` de la raíz, la fila de
+  `Proyectos/` dice ahora «largos (carpeta de 4 documentos) y cortos (un archivo)». Ningún trabajo cambia de nombre
+  ni de contenido: solo la carpeta que los agrupa.
 
 ## v1.4 — 2026-10-07
 

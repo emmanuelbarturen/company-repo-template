@@ -5,9 +5,9 @@ argument-hint: [trabajo]
 
 Cierras un trabajo: verificas su plan, **dejas escrita en el área la documentación que el trabajo produce**, decides
 con criterio de organización en qué carpeta (tema) queda, lo confirmas con el usuario, mueves el trabajo al
-`Archivados/` de su rama (`Proyectos/Regulares/Archivados/` o `Proyectos/Tareas/Archivados/`) y dejas el hito en la
+`Archivados/` de su rama (`Proyectos/Largos/Archivados/` o `Proyectos/Cortos/Archivados/`) y dejas el hito en la
 bitácora. Es el final del ciclo: lo que no quede documentado en su
-área aquí, se pierde con el proyecto.
+área aquí, se pierde con el trabajo.
 
 Trabajo (opcional): $ARGUMENTS
 
@@ -20,14 +20,14 @@ local y avísalo en una línea (regla «Git» de `CLAUDE.md`). Lee `_context.md`
 
 ## 1. ¿Qué archivamos?
 
-El nombre puede venir en $ARGUMENTS. **Si no viene**, lista los trabajos activos (carpetas de `Proyectos/Regulares/`
-y archivos de `Proyectos/Tareas/`, sin mirar dentro de `Archivados/`) y preséntalos con `AskUserQuestion`
+El nombre puede venir en $ARGUMENTS. **Si no viene**, lista los trabajos activos (carpetas de `Proyectos/Largos/`
+y archivos de `Proyectos/Cortos/`, sin mirar dentro de `Archivados/`) y preséntalos con `AskUserQuestion`
 (header "Trabajo"; con más de 4, los 4 más recientes y el resto por nombre en texto libre). Si no hay nada, dilo y
 detente.
 
 ## 2. Pre-chequeo
 
-Lee el plan (`tareas.md` o el checklist de la tarea) y el bloque `## Estado`.
+Lee el plan (`tareas.md` o el checklist del corto) y el bloque `## Estado`.
 
 - **Plan al 100 %** → sigue al paso 3.
 - **Con pendientes** → pregunta con `AskUserQuestion` (header "Pendientes"): **Archivar igual** (anota en
@@ -49,10 +49,10 @@ Un trabajo deja documentación en su área; la carpeta del proyecto guarda el pl
 
 Con esa lista fija **qué documentos deben existir en el área al cerrar**. Normalmente uno por resultado, nombrado
 por lo que es (`proceso-de-onboarding.md`, `politica-de-reembolsos.md`), en kebab-case sin tildes, nunca por el
-nombre del proyecto ni con fecha. Clasifica cada uno:
+nombre del trabajo ni con fecha. Clasifica cada uno:
 
 - **Ya existe en su `<Área>/<tema>/`** → se confirma; revisa que tenga cabecera y que diga lo que se hizo.
-- **Existe solo en la carpeta del proyecto** → se mueve con `mv`, conservando el nombre.
+- **Existe solo en la carpeta del trabajo** → se mueve con `mv`, conservando el nombre.
 - **No existe** → **lo escribes tú** en el paso 4, a partir de propuesta, solución, tareas y exploración. Un
   documento de resultado dice qué es, cómo se usa y qué se decidió y por qué; no cuenta cómo se planificó. Si el
   contenido real lo tiene el usuario en otro lado (un archivo, un adjunto), pídeselo en vez de inventarlo.
@@ -95,8 +95,8 @@ Con la respuesta:
 
 1. Actualiza `## Estado`: la viñeta **`- **Fase:** archivado`**, fecha de hoy, y la fecha `Actualizado:` de la
    cabecera.
-2. Proyecto: `mv Proyectos/Regulares/<slug> Proyectos/Regulares/Archivados/<slug>`. Tarea:
-   `mv Proyectos/Tareas/<slug>.md Proyectos/Tareas/Archivados/<slug>.md`. Las dos carpetas `Archivados/` existen
+2. Largo: `mv Proyectos/Largos/<slug> Proyectos/Largos/Archivados/<slug>`. Corto:
+   `mv Proyectos/Cortos/<slug>.md Proyectos/Cortos/Archivados/<slug>.md`. Las dos carpetas `Archivados/` existen
    siempre (si falta una, créala con su `.gitkeep`). No renombres con fecha: la fecha vive en el Estado y en la
    bitácora.
 3. Si `_context.md` de la raíz tiene «Trabajos activos», quita la línea del trabajo.

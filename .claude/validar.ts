@@ -12,8 +12,8 @@ import { basename, dirname, join, relative, resolve, sep } from "node:path";
 
 // ── Constantes ─────────────────────────────────────────────────────────────
 const RESERVADAS_RAIZ = new Set(["Proyectos", "Decisiones", "_Referencias", "Plans", ".claude", ".git", "node_modules"]);
-// Estructura fija de Proyectos/: Regulares/ (proyectos) y Tareas/ (tareas), cada una con su Archivados/.
-const RAMAS_PROYECTOS = ["Regulares", "Tareas"];
+// Estructura fija de Proyectos/: Largos/ (proyectos largos) y Cortos/ (proyectos cortos), cada una con su Archivados/.
+const RAMAS_PROYECTOS = ["Largos", "Cortos"];
 const ARCHIVADOS = "Archivados";
 const DESCRIPTORES = ["_context.md", "_rules.md", "_links.md"];
 const CANONICOS = new Set(["propuesta.md", "exploracion.md", "solucion.md", "tareas.md"]);
@@ -224,20 +224,20 @@ function revisarTrabajo(p: string, archivado: boolean, esProyecto: boolean) {
 }
 {
   const base = join(raiz, "Proyectos");
-  // Primer nivel: solo Regulares/, Tareas/ y _context.md.
-  for (const d of subdirs(base)) if (!RAMAS_PROYECTOS.includes(d)) err("V8", `Proyectos/${d}/`, "carpeta fuera de la estructura: los proyectos van en Regulares/ y las tareas en Tareas/");
-  for (const f of archivos(base)) if (f !== "_context.md") err("V8", `Proyectos/${f}`, "archivo suelto en Proyectos/: un trabajo vive en Regulares/<slug>/ o en Tareas/<slug>.md");
-  // Regulares/: una carpeta por proyecto; Regulares/Archivados/: los cerrados.
-  const reg = join(base, "Regulares");
-  for (const d of subdirs(reg)) if (d !== ARCHIVADOS) revisarTrabajo(join(reg, d, "propuesta.md"), false, true);
-  for (const f of archivos(reg)) if (f.endsWith(".md")) err("V8", `Proyectos/Regulares/${f}`, ".md suelto: un proyecto es una carpeta con propuesta.md");
-  for (const d of subdirs(join(reg, ARCHIVADOS))) revisarTrabajo(join(reg, ARCHIVADOS, d, "propuesta.md"), true, true);
-  // Tareas/: un archivo por tarea; Tareas/Archivados/: las cerradas.
-  const tar = join(base, "Tareas");
-  for (const f of archivos(tar)) if (f.endsWith(".md")) revisarTrabajo(join(tar, f), false, false);
-  for (const d of subdirs(tar)) if (d !== ARCHIVADOS) err("V8", `Proyectos/Tareas/${d}/`, "carpeta en Tareas/: una tarea es un solo archivo .md");
-  for (const f of archivos(join(tar, ARCHIVADOS))) if (f.endsWith(".md")) revisarTrabajo(join(tar, ARCHIVADOS, f), true, false);
-  for (const d of subdirs(join(tar, ARCHIVADOS))) err("V8", `Proyectos/Tareas/${ARCHIVADOS}/${d}/`, "carpeta en Tareas/Archivados/: una tarea es un solo archivo .md");
+  // Primer nivel: solo Largos/, Cortos/ y _context.md.
+  for (const d of subdirs(base)) if (!RAMAS_PROYECTOS.includes(d)) err("V8", `Proyectos/${d}/`, "carpeta fuera de la estructura: los largos van en Largos/ y los cortos en Cortos/");
+  for (const f of archivos(base)) if (f !== "_context.md") err("V8", `Proyectos/${f}`, "archivo suelto en Proyectos/: un trabajo vive en Largos/<slug>/ o en Cortos/<slug>.md");
+  // Largos/: una carpeta por proyecto largo; Largos/Archivados/: los cerrados.
+  const lar = join(base, "Largos");
+  for (const d of subdirs(lar)) if (d !== ARCHIVADOS) revisarTrabajo(join(lar, d, "propuesta.md"), false, true);
+  for (const f of archivos(lar)) if (f.endsWith(".md")) err("V8", `Proyectos/Largos/${f}`, ".md suelto: un proyecto largo es una carpeta con propuesta.md");
+  for (const d of subdirs(join(lar, ARCHIVADOS))) revisarTrabajo(join(lar, ARCHIVADOS, d, "propuesta.md"), true, true);
+  // Cortos/: un archivo por proyecto corto; Cortos/Archivados/: los cerrados.
+  const cor = join(base, "Cortos");
+  for (const f of archivos(cor)) if (f.endsWith(".md")) revisarTrabajo(join(cor, f), false, false);
+  for (const d of subdirs(cor)) if (d !== ARCHIVADOS) err("V8", `Proyectos/Cortos/${d}/`, "carpeta en Cortos/: un proyecto corto es un solo archivo .md");
+  for (const f of archivos(join(cor, ARCHIVADOS))) if (f.endsWith(".md")) revisarTrabajo(join(cor, ARCHIVADOS, f), true, false);
+  for (const d of subdirs(join(cor, ARCHIVADOS))) err("V8", `Proyectos/Cortos/${ARCHIVADOS}/${d}/`, "carpeta en Cortos/Archivados/: un proyecto corto es un solo archivo .md");
   if (idRaiz && !RE_KEBAB.test(idRaiz)) aviso("V8", "_context.md", `el Id «${idRaiz}» no está en kebab-case`);
 }
 

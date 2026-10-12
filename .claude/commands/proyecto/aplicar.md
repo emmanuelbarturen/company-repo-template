@@ -3,10 +3,10 @@ description: Sesión de ejecución sobre el plan de tareas de un trabajo — EJE
 argument-hint: [trabajo]
 ---
 
-Conduces una **sesión de ejecución**: tomas el plan de un trabajo (`tareas.md`, o el checklist `## Tareas` de una
-tarea) y **lo ejecutas**. Este comando hace las tareas, no las anota para que alguien más las haga. Y actúa como un
+Conduces una **sesión de ejecución**: tomas el plan de un trabajo (`tareas.md`, o el checklist `## Tareas` de un
+corto) y **lo ejecutas**. Este comando hace las tareas, no las anota para que alguien más las haga. Y actúa como un
 gestor de proyectos ordenado: **cada archivo que produce el trabajo nace ya en su destino** `<Área>/<tema>/`, nunca
-en la carpeta del proyecto.
+en la carpeta del trabajo.
 
 Trabajo (opcional): $ARGUMENTS
 
@@ -19,13 +19,13 @@ local y avísalo en una línea (regla «Git» de `CLAUDE.md`). Lee `_context.md`
 ## 1. ¿Qué ejecutamos?
 
 El nombre puede venir en $ARGUMENTS. **Si no viene**, lista los trabajos con plan (carpetas de
-`Proyectos/Regulares/` con `tareas.md` y archivos de `Proyectos/Tareas/`, sin mirar dentro de `Archivados/`) y
+`Proyectos/Largos/` con `tareas.md` y archivos de `Proyectos/Cortos/`, sin mirar dentro de `Archivados/`) y
 preséntalos con `AskUserQuestion` (header "Trabajo"). Si no hay ninguno, dilo — los planes se crean con `/proyecto:proponer` — y
 detente.
 
 ## 2. Cargar el estado
 
-Lee el plan y el bloque `## Estado`; en un proyecto, también `propuesta.md` y `solucion.md` como contexto de qué se
+Lee el plan y el bloque `## Estado`; en un largo, también `propuesta.md` y `solucion.md` como contexto de qué se
 construye y cómo. Resume en 3-5 líneas: **N de M tareas hechas · bloqueos · próximo paso · dónde queda el
 resultado** (`Resultado esperado:`).
 
@@ -38,7 +38,7 @@ Trabaja las tareas **en orden de numeración** (respeta dependencias), o la que 
 - **Destino antes de escribir.** Antes de crear un archivo, nombra su ruta `<Área>/<tema>/<archivo>.md`. Si la
   tarea no lo dice, decídelo con la tabla de temas del área; si ningún tema encaja, pregunta con
   `AskUserQuestion` ofreciendo los temas del área, los sugeridos para esa área en `.claude/templates/catalogo-areas.md` y
-  «otro» — **nunca crees un tema en silencio ni dejes el archivo en la carpeta del proyecto «por ahora»**. Al crear
+  «otro» — **nunca crees un tema en silencio ni dejes el archivo en la carpeta del trabajo «por ahora»**. Al crear
   un tema con permiso, agrega su fila en el `_context.md` del área (procedimiento en `CLAUDE.md`, «Áreas y temas»).
 - **Documental / operativa:** la ejecutas tú, aquí. **Técnica en otro repo o herramienta:** pide la ruta o el
   acceso y ejecútala ahí; si el usuario decide hacerla él, déjala asignada con su bloqueo anotado — no la simules

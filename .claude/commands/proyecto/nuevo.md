@@ -1,5 +1,5 @@
 ---
-description: Piensa una idea o problema con contexto del repo, sin compromiso — pesa opciones y da forma a un posible trabajo ANTES de proponer nada. Clasifica el trabajo (tarea vs proyecto), identifica su área, y no escribe archivos salvo pedido explícito
+description: Piensa una idea o problema con contexto del repo, sin compromiso — pesa opciones y da forma a un posible trabajo ANTES de proponer nada. Clasifica el trabajo (corto vs largo), identifica su área, y no escribe archivos salvo pedido explícito
 argument-hint: [tema o trabajo]
 ---
 
@@ -18,10 +18,10 @@ local y avísalo en una línea (regla «Git» de `CLAUDE.md`). Lee `_context.md`
 
 ## 1. Clasificar el trabajo y su área
 
-- **Si $ARGUMENTS coincide con un trabajo existente** (`Proyectos/Regulares/<slug>/` o `Proyectos/Tareas/<slug>.md`): el tipo
-  y el área ya se conocen por su Estado. Léelo y salta al paso 3.
-- **Si es tema nuevo:** propón el tipo con `AskUserQuestion` (header "Tipo"): **Tarea** (cabe en una página, un
-  actor, sin solución técnica propia, hasta ~5 pasos) / **Proyecto** (requerimientos para que otro lo construya,
+- **Si $ARGUMENTS coincide con un trabajo existente** (`Proyectos/Largos/<slug>/` o `Proyectos/Cortos/<slug>.md`): el
+  tamaño y el área ya se conocen por su Estado. Léelo y salta al paso 3.
+- **Si es tema nuevo:** propón el tamaño con `AskUserQuestion` (header "Tamaño"): **Corto** (cabe en una página, un
+  actor, sin solución técnica propia, hasta ~5 pasos) / **Largo** (requerimientos para que otro lo construya,
   decisiones propias, o más de ~5 tareas), marcando tu recomendación. Luego el **área**, con `AskUserQuestion`
   (header "Área") según el procedimiento de `CLAUDE.md` «Áreas y temas»: hasta 4 opciones, **primero las filas que
   ya tiene la tabla de áreas**, luego las del catálogo más probables por el tema; cualquier otro nombre, por texto
@@ -38,7 +38,7 @@ Pregunta con `AskUserQuestion` (header "Archivos"): *¿Tienes documentos, imáge
 exploración?* **Sí** / **No**.
 
 - **No** → paso 3.
-- **Sí** → confirma el `<slug>` (kebab-case), crea `Proyectos/Regulares/<slug>/adjuntos/`, dale la ruta exacta, pídele que
+- **Sí** → confirma el `<slug>` (kebab-case), crea `Proyectos/Largos/<slug>/adjuntos/`, dale la ruta exacta, pídele que
   guarde ahí sus archivos y **termina el turno esperando su aviso**. Al confirmar, lee los archivos (Read soporta
   imágenes y PDF) y resume en 3-5 líneas qué aportan. Si un adjunto trae datos que `_rules.md` de la raíz prohíbe,
   señálalo y no los cites en ningún `.md`.
@@ -55,7 +55,7 @@ exploramos.
 
 - Plantea **opciones con sus costos**: esfuerzo, riesgo, qué habilita cada una.
 - Señala **qué ya existe y se reusa**: documentos de áreas, trabajos archivados, plantillas.
-- Da **orden de magnitud** (tarea vs proyecto), no estimaciones finas.
+- Da **orden de magnitud** (corto vs largo), no estimaciones finas.
 - Cuestiona el problema antes que la solución: ¿es real? ¿de quién? ¿qué pasa si no se hace nada?
 - Ve nombrando **dónde quedaría el resultado** (`<Área>/<tema>/`): si no puedes nombrarlo, el trabajo todavía no
   está claro. Para el tema, apóyate en la tabla de temas del área si existe y en los sugeridos del catálogo; el tema
@@ -67,7 +67,7 @@ Cuando el usuario tenga claridad (o la conversación se agote), ofrece con `AskU
 
 1. **Crear la propuesta** → indícale correr `/proyecto:proponer <tema>` y resume en 3-5 líneas lo que esa sesión debe
    heredar: tipo, área, opción elegida, alcance tentativo, resultado esperado y riesgos.
-2. **Guardar apuntes** → escribe `Proyectos/Regulares/<slug>/exploracion.md` (molde `.claude/templates/proyecto/exploracion.md`) y
+2. **Guardar apuntes** → escribe `Proyectos/Largos/<slug>/exploracion.md` (molde `.claude/templates/proyecto-largo/exploracion.md`) y
    un `propuesta.md` **mínimo** con solo el bloque `## Estado` (`Fase: explorar`, `Área:`, `Resultado esperado:`
    tentativo, próximo paso). Si la carpeta no existe, créala solo si confirma el slug. **Si el área elegida es
    nueva, créala primero** con el procedimiento de `CLAUDE.md` (carpeta, tres descriptores y fila en la tabla): el

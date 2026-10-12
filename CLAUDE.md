@@ -1,4 +1,4 @@
-<!-- Creado: 2026-09-27 · Actualizado: 2026-10-07 · Creador: Emmanuel -->
+<!-- Creado: 2026-09-27 · Actualizado: 2026-10-12 · Creador: Emmanuel -->
 
 # Company Cycle OS
 
@@ -62,14 +62,14 @@ esa carpeta guarda el plan, no los entregables.
 _context.md · _rules.md · _links.md      la empresa: ficha, tabla de áreas, reglas, enlaces
 <Área>/_context.md _rules.md _links.md   cada área declarada, con su tabla de temas
 <Área>/<tema>/*.md                         los documentos, siempre dentro de un tema
-Proyectos/Regulares/<slug>/                proyecto: propuesta.md · exploracion.md · solucion.md · tareas.md
-Proyectos/Regulares/Archivados/<slug>/     proyectos cerrados, con su `Resultado:` en el Estado
-Proyectos/Tareas/<slug>.md                 tarea (mini-proyecto): un solo archivo
-Proyectos/Tareas/Archivados/<slug>.md      tareas cerradas
+Proyectos/Largos/<slug>/                   proyecto largo: propuesta.md · exploracion.md · solucion.md · tareas.md
+Proyectos/Largos/Archivados/<slug>/        largos cerrados, con su `Resultado:` en el Estado
+Proyectos/Cortos/<slug>.md                 proyecto corto: un solo archivo
+Proyectos/Cortos/Archivados/<slug>.md      cortos cerrados
 _Referencias/_index.md                     archivos de afuera que se consultan; un nivel de subcarpetas por tipo
 Decisiones/Q<N>-<AAAA>.md                  bitácora de la empresa, una línea por evento
 .claude/commands/proyecto/                 los comandos del ciclo
-.claude/templates/                         moldes de descriptores, proyecto, tarea y bitácora; catálogo de áreas
+.claude/templates/                         moldes de descriptores, largo, corto y bitácora; catálogo de áreas
 .claude/validar.ts                         validador de estructura
 ```
 
@@ -85,8 +85,8 @@ Decisiones/Q<N>-<AAAA>.md                  bitácora de la empresa, una línea p
 | Revisar la estructura cuando no hay `bun`                                             | `/proyecto:validar`  |
 | Traer la versión más nueva del framework desde su plantilla; pregunta ante conflictos | `/update-framework`  |
 
-Dos tamaños de trabajo. **Tarea** (cabe en una página, un actor, sin solución técnica propia, hasta ~5 pasos):
-un archivo `Proyectos/Tareas/<slug>.md`. **Proyecto**: carpeta `Proyectos/Regulares/<slug>/` con los cuatro
+Dos tamaños de trabajo. **Corto** (cabe en una página, un actor, sin solución técnica propia, hasta ~5 pasos):
+un archivo `Proyectos/Cortos/<slug>.md`. **Largo**: carpeta `Proyectos/Largos/<slug>/` con los cuatro
 documentos. Ambos llevan `Área:` y `Resultado esperado:`, y un bloque `## Estado` con `Fase:` (`explorar | proponer |
 aplicar | pausado | archivado`) que hace la sesión retomable. **Al archivar, el asistente escribe los documentos de
 resultado que falten, elige el tema con criterio de organización y lo confirma siempre**; el Estado conserva
